@@ -5,7 +5,7 @@ using UnityEngine;
 public class KeepVerticalRotation : MonoBehaviour
 {
     [Range(0.2f, 1f)]
-    public float strength = 0.1f;    
+    [SerializeField] float strength = 0.1f;    
 
     Rigidbody rb;
 
@@ -13,14 +13,7 @@ public class KeepVerticalRotation : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //rb.rotation = Quaternion.identity;
-    }
-    
-    
+        
 
     private void FixedUpdate()
     {
