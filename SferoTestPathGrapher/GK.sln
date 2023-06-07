@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SferoTestPathGrapher", "GK.vcxproj", "{2D7CCCF3-2D03-4BEE-AD64-0BBAF69808BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D7CCCF3-2D03-4BEE-AD64-0BBAF69808BC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2D7CCCF3-2D03-4BEE-AD64-0BBAF69808BC}.Debug|Win32.Build.0 = Debug|Win32
+		{2D7CCCF3-2D03-4BEE-AD64-0BBAF69808BC}.Release|Win32.ActiveCfg = Release|Win32
+		{2D7CCCF3-2D03-4BEE-AD64-0BBAF69808BC}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C5464E4-BA91-44FF-B293-4D85F8AF8878}
+	EndGlobalSection
+EndGlobal

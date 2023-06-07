@@ -1,0 +1,13 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: Katalog pośredni (Debug\) zawiera pliki udostępnione z innego projektu (GK.vcxproj). Może to spowodować niepoprawne zachowanie podczas oczyszczania i ponownej kompilacji.
+cl : wiersz polecenia warning D9035: Opcja "Gm" jest przestarzała i będzie usunięta w przyszłych wydaniach
+  GK.cpp
+D:\pliki\gry\SferoTestVR\SferoTestPathGrapher\src\GK.cpp(25,2): warning C4091: "typedef ": zignorowano na lewo od "Slider" podczas gdy brak deklaracji zmiennej
+D:\pliki\gry\SferoTestVR\SferoTestPathGrapher\src\GK.cpp(71,61): warning C4244: "=": konwersja z "float" do "LONG", możliwa utrata danych
+D:\pliki\gry\SferoTestVR\SferoTestPathGrapher\src\GK.cpp(72,61): warning C4244: "=": konwersja z "float" do "LONG", możliwa utrata danych
+D:\pliki\gry\SferoTestVR\SferoTestPathGrapher\src\GK.cpp(121,26): warning C4244: "argument": konwersja z "double" do "int", możliwa utrata danych
+D:\pliki\gry\SferoTestVR\SferoTestPathGrapher\src\GK.cpp(121,22): warning C4244: "argument": konwersja z "double" do "int", możliwa utrata danych
+D:\pliki\gry\SferoTestVR\SferoTestPathGrapher\src\GK.cpp(122,28): warning C4244: "argument": konwersja z "double" do "int", możliwa utrata danych
+D:\pliki\gry\SferoTestVR\SferoTestPathGrapher\src\GK.cpp(122,22): warning C4244: "argument": konwersja z "double" do "int", możliwa utrata danych
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1371,5): warning MSB8012: Wartość TargetPath(D:\pliki\gry\SferoTestVR\SferoTestPathGrapher\Debug\SferoTestPathGrapher.exe) jest niezgodna z wartością właściwości OutputFile obiektu Linker (D:\pliki\gry\SferoTestVR\SferoTestPathGrapher\Debug\GK.exe). Może to spowodować, że projekt zostanie niepoprawnie skompilowany. Aby rozwiązać ten problem, upewnij się, że wartości właściwości $(OutDir), $(TargetName) i $(TargetExt) są zgodne z wartością określoną we właściwości %(Link.OutputFile). 
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1373,5): warning MSB8012: Wartość TargetName(SferoTestPathGrapher) jest niezgodna z wartością właściwości OutputFile obiektu Linker (GK). Może to spowodować, że projekt zostanie niepoprawnie skompilowany. Aby rozwiązać ten problem, upewnij się, że wartości właściwości $(OutDir), $(TargetName) i $(TargetExt) są zgodne z wartością określoną we właściwości %(Link.OutputFile). 
+  GK.vcxproj -> D:\pliki\gry\SferoTestVR\SferoTestPathGrapher\Debug\SferoTestPathGrapher.exe
