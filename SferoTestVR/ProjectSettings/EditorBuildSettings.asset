@@ -4,5 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
-  m_configObjects: {}
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Resources/Scenes/Jakub tests.unity
+    guid: 2583acdf20256e04893d5563e72f068d
+  m_configObjects:
+    Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: ba79b5ff942130c45a50e824dd3a4c44,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5d2caa7a446df7e4597d37c7ba09f48c,
+      type: 2}
