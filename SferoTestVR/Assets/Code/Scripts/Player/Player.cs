@@ -8,6 +8,14 @@ public class Player : MonoBehaviour
     Camera camera;
     GameObject checkPoint;
 
+
+    protected void Start()
+    {
+        
+        camera = Camera.main; //get camera
+        rigidbody = GetComponent<Rigidbody>(); //get rigidbody
+    }
+
     /// <summary>
     /// not modified in derived class
     /// </summary>
