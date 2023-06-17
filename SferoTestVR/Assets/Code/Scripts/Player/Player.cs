@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     GameObject checkPoint;
 
 
-    protected void Start()
+    virtual protected void Start()
     {
         
         camera = Camera.main; //get camera
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// starts revival coroutine/animation
     /// </summary>
-    protected void Revive()
+    private void Revive()
     {
         //TODO
     }
