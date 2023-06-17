@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// in order to work properly these things must be set up:
+/// rigidbody of platform must have all positions freezed checked
+/// </summary>
 public class KeepVerticalRotation : MonoBehaviour
 {
-    [Range(0.2f, 1f)]
-    [SerializeField] float strength = 0.1f;    
+    [Range(0.2f, 5f)]
+    [SerializeField] float strength = 0.2f;    
 
     Rigidbody rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        rb.constraints = RigidbodyConstraints.FreezePosition; // in case us forgot to set freezed positions!
     }
         
 
