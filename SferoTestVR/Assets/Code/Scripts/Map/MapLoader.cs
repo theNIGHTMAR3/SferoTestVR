@@ -13,8 +13,9 @@ public class MapLoader : MonoBehaviour
     {
         List<RoomType> roomTypes = LoadRooms();
         List<Room> rooms = InstantiateRooms(roomTypes);
-        List<ExtendedRoom> extendedRooms = rooms.Select(x => new ExtendedRoom(x)).ToList();        
-
+        //technicaly functions as a linked list XD  
+        //holds only rooms! It doesn't have corridors!
+        List<ExtendedRoom> extendedRooms = rooms.Select(x => new ExtendedRoom(x)).ToList(); 
         for(int i = 0; i < extendedRooms.Count - 1; i++)
         {
             extendedRooms[i].nextCorridor = new Corridor();
@@ -23,17 +24,25 @@ public class MapLoader : MonoBehaviour
             extendedRooms[i].nextCorridor.nextRoom.prevCorridor = extendedRooms[i].nextCorridor;
 
         }
-
-        //CalculateCorridors(extendedRooms);
+        
+        //try building map
+        //in process random corridors are selected
         if (extendedRooms[0].Build() == false)
         {
             Debug.LogError("Build Map failed!");
         }
 
+        //move each room to calculated place
         MoveRooms(extendedRooms);
+
+        //TODO
         //InstantiateCorridors and mvoe them();
     }
 
+    /// <summary>
+    /// set the rooms' position calculated when trying to build
+    /// </summary>
+    /// <param name="rooms"></param>
     void MoveRooms(List<ExtendedRoom> rooms)
     {
         foreach (ExtendedRoom room in rooms)
@@ -59,7 +68,7 @@ public class MapLoader : MonoBehaviour
     }
 
     /// <summary>
-    /// load rooms list
+    /// load rooms list from file
     /// </summary>
     /// <returns></returns>
     List<RoomType> LoadRooms()
@@ -179,6 +188,10 @@ public class ExtendedRoom
         this.room = room;
     }
 
+
+    /// <summary>
+    /// returns rooms rectangle size and position
+    /// </summary>    
     Rect GetRect() //XDDD
     {
         Rect rect = new Rect();
@@ -220,8 +233,8 @@ public class ExtendedRoom
     {
         if (prevCorridor != null)
         {
-            pos = prevCorridor.GetExitPos();//set position
-            directon = prevCorridor.GetExitDirection(); //set direction
+            pos = prevCorridor.GetExitPos();//set position from corridor
+            directon = prevCorridor.GetExitDirection(); //set direction from corridor
 
             if (prevCorridor.CheckCollisions(GetRect()))
             {
@@ -247,11 +260,10 @@ public class ExtendedRoom
    
     /// <summary>
     /// returns true if collided
+    /// collisions are checked recursively
     /// </summary>    
     public bool CheckCollisions(Rect rect)
-    {
-        Debug.Log(GetRect());
-        Debug.Log(rect);
+    {        
         if (GetRect().OverlapWithoutEdge(rect))
         {
             return true;
