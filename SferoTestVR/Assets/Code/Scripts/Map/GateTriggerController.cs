@@ -15,12 +15,14 @@ public class GateTriggerController : MonoBehaviour
         {
             if (isOpened)
             {
-                myGate.Play("GateClose", 0, 0.0f);
+                //myGate.Play("GateClose", 0, 0.0f);
+                myGate.SetBool("isOpened", false);
                 isOpened = false;
             }
             else
             {
-                myGate.Play("GateOpen", 0, 0.0f);
+                //myGate.Play("GateOpen", 0, 0.0f);
+                myGate.SetBool("isOpened", true);
                 isOpened = true;
             }
         }
