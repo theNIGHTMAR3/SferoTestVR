@@ -33,10 +33,8 @@ public class PlayerVRHome : Player
             if (walkInput.magnitude > 0.2)
             {
                 Move(walkInput);
-            }            
-            
+            }                        
         }        
-
     }
 
 
