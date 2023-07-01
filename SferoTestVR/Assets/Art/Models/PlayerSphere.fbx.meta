@@ -3,7 +3,17 @@ guid: 39bfdc552d9a5614d86004dc0ddae711
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: ba251a49d75165447850087fa5d24d5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_
+    second: {fileID: 2100000, guid: 19b786a04bb70254eae97ce5aa27d63a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -59,7 +69,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
