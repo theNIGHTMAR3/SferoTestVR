@@ -8,6 +8,14 @@ public class Player : MonoBehaviour
     Camera camera;
     GameObject checkPoint;
 
+
+    virtual protected void Start()
+    {
+        
+        camera = Camera.main; //get camera
+        rigidbody = GetComponent<Rigidbody>(); //get rigidbody
+    }
+
     /// <summary>
     /// not modified in derived class
     /// </summary>
@@ -46,7 +54,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// starts revival coroutine/animation
     /// </summary>
-    protected void Revive()
+    private void Revive()
     {
         //TODO
     }
