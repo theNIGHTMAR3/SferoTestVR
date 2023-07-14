@@ -2,18 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : MonoBehaviour
 {
-    Rigidbody rigidbody;
-    Camera camera;
-    GameObject checkPoint;
+    protected Rigidbody rigidbody;
+    protected Camera camera;
+    protected GameObject checkPoint;
+
+    public float moveSpeed = 10f;
+    public float sensitivity = 5f;
+
+    protected UnityEngine.Vector2 playerInput;
 
 
-    virtual protected void Start()
+    protected virtual void Start()
     {
-        
         camera = Camera.main; //get camera
         rigidbody = GetComponent<Rigidbody>(); //get rigidbody
+
+        // make sure cursor is locked and invisible
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     /// <summary>
@@ -25,21 +34,26 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// movement is 2D, so it call 2D version of Move method
+    /// Add force to sphere from Vector3
     /// </summary>    
     protected void Move(Vector3 direction)
     {
-        Move((Vector2)direction);
+
+        Vector3 movement = direction;
+        movement.y = 0;
+        movement.Normalize();
+        movement *= direction.magnitude;
+        
+        rigidbody.AddForce(movement);
     }
 
 
     /// <summary>
-    /// Add force or momentForce in the inputed direction
+    /// Add force to sphere from Vector2
     /// </summary>
-    /// <param name="direction"></param>
     protected void Move(Vector2 direction)
     {
-        //TODO
+        rigidbody.AddForce(new Vector3(direction.x, 0, direction.y));
     }
 
 
