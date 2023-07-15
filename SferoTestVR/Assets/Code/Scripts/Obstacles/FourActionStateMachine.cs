@@ -32,6 +32,7 @@ public class FourActionStateMachine : MonoBehaviour
                 {
                     machineState = MachineState.ACTION2;
                     startTime = Time.time;
+                    OnAction2Start();
                 }
                 else
                 {
@@ -43,7 +44,8 @@ public class FourActionStateMachine : MonoBehaviour
                 if (Time.time > startTime + action2Time)//if ended
                 {
                     machineState = MachineState.ACTION3;
-                    startTime = Time.time;                    
+                    startTime = Time.time;
+                    OnAction3Start();
                 }
                 else
                 {
@@ -56,6 +58,7 @@ public class FourActionStateMachine : MonoBehaviour
                 {
                     machineState = MachineState.ACTION4;
                     startTime = Time.time;
+                    OnAction4Start();
                 }
                 else
                 {
@@ -67,7 +70,8 @@ public class FourActionStateMachine : MonoBehaviour
                 if (Time.time > startTime + action4Time) //if ended
                 {
                     machineState = MachineState.ACTION1;
-                    startTime = Time.time;                    
+                    startTime = Time.time;
+                    OnAction1Start();
                 }
                 else
                 {
@@ -78,22 +82,34 @@ public class FourActionStateMachine : MonoBehaviour
         }
     }
 
+    virtual protected void OnAction1Start()
+    {
 
+    }
     virtual protected void Action1(float percentage)
     {
 
     }
+    virtual protected void OnAction2Start()
+    {
 
+    }
     virtual protected void Action2(float percentage)
     {
 
     }
+    virtual protected void OnAction3Start()
+    {
 
+    }
     virtual protected void Action3(float percentage)
     {
 
     }
+    virtual protected void OnAction4Start()
+    {
 
+    }
     virtual protected void Action4(float percentage)
     {
 

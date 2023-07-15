@@ -492,7 +492,7 @@ PrefabInstance:
     - target: {fileID: 4527272787461580405, guid: d0a48197a19753640a11a22425104667,
         type: 3}
       propertyPath: m_Name
-      value: 3x4_Room_Deep Variant
+      value: test3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0a48197a19753640a11a22425104667, type: 3}
@@ -537,7 +537,7 @@ PrefabInstance:
     - target: {fileID: 6235120423462871146, guid: 01587a28d615cc949baa3420b430f298,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.609999
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 6235120423462871146, guid: 01587a28d615cc949baa3420b430f298,
         type: 3}
