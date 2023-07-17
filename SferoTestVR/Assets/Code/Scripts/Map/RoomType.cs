@@ -33,7 +33,7 @@ static class RoomTypeConverter
         switch (room)
         {
             case RoomType.A:
-                return roomsFolder+"Room";
+                return roomsFolder + "A";
             case RoomType.B:
                 return roomsFolder + "B";
             default:
