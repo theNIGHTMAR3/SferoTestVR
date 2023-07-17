@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1254135090540692256, guid: 03b3df42cb07d6946b07c019d23e7219,
         type: 3}
       propertyPath: m_Name
-      value: 5x8_Room__Deep_and_Tall Variant
+      value: B
       objectReference: {fileID: 0}
     - target: {fileID: 1885958849252792730, guid: 03b3df42cb07d6946b07c019d23e7219,
         type: 3}
@@ -35,12 +35,12 @@ PrefabInstance:
     - target: {fileID: 1885958849252792730, guid: 03b3df42cb07d6946b07c019d23e7219,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1885958849252792730, guid: 03b3df42cb07d6946b07c019d23e7219,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1885958849252792730, guid: 03b3df42cb07d6946b07c019d23e7219,
         type: 3}
@@ -50,7 +50,7 @@ PrefabInstance:
     - target: {fileID: 1885958849252792730, guid: 03b3df42cb07d6946b07c019d23e7219,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1885958849252792730, guid: 03b3df42cb07d6946b07c019d23e7219,
         type: 3}

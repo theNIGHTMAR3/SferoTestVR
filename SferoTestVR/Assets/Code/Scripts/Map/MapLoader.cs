@@ -36,7 +36,7 @@ public class MapLoader : MonoBehaviour
         MoveRooms(extendedRooms);
 
         //TODO
-        //InstantiateCorridors and mvoe them();
+        InstantiateCorridors(extendedRooms);// and mvoe them();
     }
 
     /// <summary>
@@ -55,13 +55,40 @@ public class MapLoader : MonoBehaviour
                     //don't change rotation
                     break;
                 case Directon.LEFT:
-                    room.room.transform.rotation = Quaternion.Euler(-90, 0, -90);
+                    room.room.transform.rotation = Quaternion.Euler(0, -90,0);
                     break;
                 case Directon.RIGHT:
-                    room.room.transform.rotation = Quaternion.Euler(-90, 0, -270);
+                    room.room.transform.rotation = Quaternion.Euler(0, -270,0);
                     break;
                 case Directon.DOWN:
-                    room.room.transform.rotation = Quaternion.Euler(-90, 0, -180);
+                    room.room.transform.rotation = Quaternion.Euler(0,-180,0);
+                    break;
+            }
+        }
+    }
+
+    void InstantiateCorridors(List<ExtendedRoom> rooms)
+    {
+        for(int roomIndex = 0; roomIndex < rooms.Count - 1; roomIndex++)
+        {
+            Corridor corridor = rooms[roomIndex].nextCorridor;
+            Object corridorObject = Resources.Load(corridor.type.GetPrefabPath());
+            GameObject corridorGameoBject = GameObject.Instantiate((GameObject)corridorObject);
+            corridorGameoBject.transform.position = new Vector3(corridor.pos.x, 0, corridor.pos.y) * 8;            
+
+            switch (corridor.directon)
+            {
+                case Directon.UP:
+                    //don't change rotation
+                    break;
+                case Directon.LEFT:
+                    corridorGameoBject.transform.rotation = Quaternion.Euler(0, -90, 0);
+                    break;
+                case Directon.RIGHT:
+                    corridorGameoBject.transform.rotation = Quaternion.Euler(0, -270, 0);
+                    break;
+                case Directon.DOWN:
+                    corridorGameoBject.transform.rotation = Quaternion.Euler(0, -180, 0);
                     break;
             }
         }
