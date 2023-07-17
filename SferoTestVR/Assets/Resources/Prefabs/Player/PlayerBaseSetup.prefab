@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8949b9d9201edd744851801c00ec72fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensitivity: 5
 --- !u!1 &2834067586815700952
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +267,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 39bfdc552d9a5614d86004dc0ddae711,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 50f494d40e908bb4eb0abf43612b389b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 39bfdc552d9a5614d86004dc0ddae711,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 14a32f520f44ac54e9ec32c603809f89, type: 2}
     - target: {fileID: 919132149155446097, guid: 39bfdc552d9a5614d86004dc0ddae711,
         type: 3}
       propertyPath: m_Name
