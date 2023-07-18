@@ -1,22 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine;using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour
 {
     protected Rigidbody rigidbody;
     protected Camera camera;
-    protected GameObject checkPoint;
 
     public float moveSpeed = 10f;
     public float sensitivity = 5f;
 
     protected UnityEngine.Vector2 playerInput;
 
+    private Vector3 lastCheckpointPos;
+    private Quaternion savedRotation;
+
+
 
     protected virtual void Start()
     {
+       
         camera = Camera.main; //get camera
         rigidbody = GetComponent<Rigidbody>(); //get rigidbody
 
@@ -31,6 +35,12 @@ public class Player : MonoBehaviour
     protected void Update()
     {
         GetInput();
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Revive();
+        }
+
     }
 
     /// <summary>
@@ -70,16 +80,18 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Revive()
     {
-        //TODO
+        transform.position = lastCheckpointPos;
+        camera.transform.rotation = savedRotation;
     }
 
 
     /// <summary>
     /// sets new checkpoint
     /// </summary>    
-    public void SetNewCheckPoint(GameObject newCheckpoint)
+    public void SetNewCheckPoint(Vector3 newCheckpoint)
     {
-        //TODO
+        lastCheckpointPos = newCheckpoint;
+        savedRotation = transform.rotation;
     }
 
     /// <summary>
