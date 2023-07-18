@@ -27,7 +27,8 @@ public class CameraFollower : MonoBehaviour
 
         mouseRotation.x += Input.GetAxis("Mouse X") * sensitivity;
         mouseRotation.y += Input.GetAxis("Mouse Y") * sensitivity;
-        transform.localRotation = Quaternion.Euler(-mouseRotation.y, mouseRotation.x, 0);    
-     
+        mouseRotation.y = Mathf.Clamp(mouseRotation.y, -90f, 90f);
+        transform.localRotation = Quaternion.Euler(-mouseRotation.y, mouseRotation.x, 0);
+
     }
 }
