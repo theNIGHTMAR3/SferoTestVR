@@ -41,6 +41,18 @@ static class RoomTypeConverter
                 return "What?!";
         }
     }
+
+    public static string GetStartRoomPath()
+    {
+
+        return roomsFolder + "Start Room";
+    }
+
+    public static string GetEndRoomPath()
+    {
+
+        return roomsFolder + "End Room";
+    }
 }
 
 
