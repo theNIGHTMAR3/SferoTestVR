@@ -110,7 +110,7 @@ public class MapLoader : MonoBehaviour
     configPath = CONFIG_FILE;
 
 #endif
-
+        
         if (File.Exists(configPath))
         {
             rooms = new List<RoomType>();
@@ -134,16 +134,26 @@ public class MapLoader : MonoBehaviour
         return rooms;
     }
 
+
+    void InstantiateRoom(List<Room> rooms, string path)
+    {
+        Object roomObject = Resources.Load(path);
+        Room room = GameObject.Instantiate((GameObject)roomObject).GetComponent<Room>();
+        rooms.Add(room);
+    }
+
     List<Room> InstantiateRooms(List<RoomType> roomTypes)
     {
         List<Room> rooms = new List<Room>();
 
+        InstantiateRoom(rooms, RoomTypeConverter.GetStartRoomPath());        
+
         foreach (RoomType roomType in roomTypes)
         {
-            Object roomObject = Resources.Load(roomType.GetPrefabPath());
-            Room room = GameObject.Instantiate((GameObject)roomObject).GetComponent<Room>();
-            rooms.Add(room);
+            InstantiateRoom(rooms,roomType.GetPrefabPath());                        
         }
+
+        InstantiateRoom(rooms, RoomTypeConverter.GetEndRoomPath());
 
         return rooms;
     }
