@@ -38,7 +38,7 @@ Transform:
   - {fileID: 5614402222282879521}
   - {fileID: 5695797873125178303}
   m_Father: {fileID: 6098821085523225793}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &442335578455088712
 PrefabInstance:
@@ -407,6 +407,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1589049353560419554, guid: 21afa2acd5985d24fb02e49a4912a93a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606495118642441916, guid: 21afa2acd5985d24fb02e49a4912a93a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285825912197112115, guid: 21afa2acd5985d24fb02e49a4912a93a,
+        type: 3}
+      propertyPath: myGate
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8561258686744190014, guid: 21afa2acd5985d24fb02e49a4912a93a,
         type: 3}
       propertyPath: m_RootOrder
@@ -465,9 +480,15 @@ PrefabInstance:
     - target: {fileID: 9044463654244517508, guid: 21afa2acd5985d24fb02e49a4912a93a,
         type: 3}
       propertyPath: m_Name
-      value: Start Room Variant
+      value: Start Room
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9052853373877037473, guid: 21afa2acd5985d24fb02e49a4912a93a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9052853373877037473, guid: 21afa2acd5985d24fb02e49a4912a93a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 21afa2acd5985d24fb02e49a4912a93a, type: 3}
 --- !u!4 &6098821085523225793 stripped
 Transform:
