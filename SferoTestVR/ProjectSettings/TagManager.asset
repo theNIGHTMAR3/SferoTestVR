@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Threat
-  - GameMaster
+  - GM
   layers:
   - Default
   - TransparentFX

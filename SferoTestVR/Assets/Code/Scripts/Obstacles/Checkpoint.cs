@@ -12,11 +12,12 @@ public class Checkpoint : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && used == false)
         {
-            player.SetNewCheckPoint(transform.position);
+            player.SetNewCheckPoint(gameObject);
             used = true;
         }
         
