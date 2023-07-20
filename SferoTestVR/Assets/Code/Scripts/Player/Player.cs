@@ -99,6 +99,8 @@ public class Player : MonoBehaviour
     {
         transform.position = lastCheckpointPos;
         cameraScript.SetCameraRotation(savedRotation);
+        transform.rotation = Quaternion.Euler(-90,savedRotation.eulerAngles.y,0);
+
         StartCoroutine(FreezePlayer(1f));
     }
 
