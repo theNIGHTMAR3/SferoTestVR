@@ -16,6 +16,8 @@ public class CameraFollower : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+
+        // make sure cursor is locked and invisible
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -27,7 +29,14 @@ public class CameraFollower : MonoBehaviour
 
         mouseRotation.x += Input.GetAxis("Mouse X") * sensitivity;
         mouseRotation.y += Input.GetAxis("Mouse Y") * sensitivity;
-        transform.localRotation = Quaternion.Euler(-mouseRotation.y, mouseRotation.x, 0);    
-     
+        mouseRotation.y = Mathf.Clamp(mouseRotation.y, -90f, 90f);
+        transform.localRotation = Quaternion.Euler(-mouseRotation.y, mouseRotation.x, 0);
+
+    }
+
+    public void SetCameraRotation(Quaternion checkpointRotation)
+    {
+        mouseRotation.x = checkpointRotation.eulerAngles.y;
+        mouseRotation.y = 0;
     }
 }
