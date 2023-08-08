@@ -1,24 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!95 &9033305079335674551
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6054922290060041199}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6ed84859f7e03e849b2f28c196b913cd, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1636469102698505642
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6416996923498306213}
   - component: {fileID: 4348128495386019713}
-  - component: {fileID: 8215594804539009573}
+  - component: {fileID: 4525680679191714858}
   m_Layer: 0
   m_Name: GateTrigger
   m_TagString: Untagged
@@ -45,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636469102698505642}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.44700012, z: 4.95}
-  m_LocalScale: {x: 0.5, y: 5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 1.71, z: 4}
+  m_LocalScale: {x: 8, y: 4, z: 1}
   m_Children:
   - {fileID: 1877753568340203789}
   m_Father: {fileID: 1653914810114615284}
@@ -63,9 +44,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 50, y: 0.1, z: 5}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8215594804539009573
+--- !u!114 &4525680679191714858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,11 +55,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 1636469102698505642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1769c3887b3e47f42b7aa870f97a6d27, type: 3}
+  m_Script: {fileID: 11500000, guid: c6259cc0de1f80047998d3931381bbed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOpened: 1
-  myGate: {fileID: 9033305079335674551}
+  gateObject: {fileID: 6054922290060041199}
+  isOpenned: 0
+  shouldBeOpened: 1
+  height: 6.9
+  openingTime: 0.5
+  positionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  doOnce: 1
 --- !u!1 &6268955793586658181
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +97,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1877753568340203789}
-  - component: {fileID: 6342236383181115093}
   - component: {fileID: 3425895553250027159}
   - component: {fileID: 4089541054526042368}
   m_Layer: 0
@@ -105,26 +113,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6268955793586658181}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.1}
-  m_LocalScale: {x: 5, y: 0.1, z: 50}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6416996923498306213}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &6342236383181115093
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6268955793586658181}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3425895553250027159
 MeshFilter:
   m_ObjectHideFlags: 0
