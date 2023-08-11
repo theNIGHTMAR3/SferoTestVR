@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
-using UnityEngine;using UnityEngine.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour
@@ -19,6 +22,11 @@ public class Player : MonoBehaviour
     private Quaternion savedRotation;
 
     private bool isAlive = true;
+    private bool isRespawning = false;
+    //private bool isHanging = false;
+
+    private float respawnHeight = 2f;
+    private float respawnDuration = 2f;
 
 
     protected virtual void Start()
@@ -41,6 +49,11 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Die();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            StopRespawning();
         }
 
     }
@@ -79,17 +92,17 @@ public class Player : MonoBehaviour
     {
         if(isAlive) 
         {
+            isAlive = false;
+            UIManager.Instance.ShowDeathUI();
+            StartCoroutine(DieCoroutine());
+            //DieCoroutine();
             //TODO
             // animations
             // death screen
             // saving path
             // other stuff
 
-            isAlive = false;
-
-            Revive();
         }
-   
     }
 
     /// <summary>
@@ -136,6 +149,44 @@ public class Player : MonoBehaviour
         rigidbody.isKinematic = false;
         isAlive = true;
     }
+
+    private IEnumerator DieCoroutine()
+    {
+        Vector3 originalPosition = rigidbody.position;
+        isRespawning = true;
+        float elapsedTime = 0;
+        StartCoroutine(FreezePlayer(respawnDuration));
+        Vector3 finalPosition = new Vector3();
+        while (elapsedTime < respawnDuration)
+        {
+            if (!isRespawning)
+                break;
+
+            float t = elapsedTime / respawnDuration;
+            Vector3 newPos = Vector3.Lerp(originalPosition, originalPosition + Vector3.up * respawnHeight, t);
+            rigidbody.position = newPos;
+            finalPosition= newPos;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        while(isRespawning)
+        {
+            rigidbody.position = finalPosition;
+            yield return null;
+        }
+
+        Revive();
+    }
+
+    public void StopRespawning()
+    {
+        isRespawning = false;
+        //isHanging= false;
+        UIManager.Instance.HideDeathUI();   
+    }
+
 
     /// <summary>
     /// method for getting input from the device
