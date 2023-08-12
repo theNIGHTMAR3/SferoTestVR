@@ -7,5 +7,11 @@ public class Room : MonoBehaviour
     [SerializeField] private int _width = 1;
     [SerializeField] private int _length = 1;
     public int width { get { return _width; } private set { _width = value; } }
-    public int length { get { return _length; } private set { _length = value; } }    
+    public int length { get { return _length; } private set { _length = value; } }
+
+    /// <summary>
+    /// index in the order of the rooms
+    /// </summary>
+    public int index = 0;
+
 }
