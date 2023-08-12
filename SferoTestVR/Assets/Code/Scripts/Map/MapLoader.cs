@@ -45,9 +45,11 @@ public class MapLoader : MonoBehaviour
     /// <param name="rooms"></param>
     void MoveRooms(List<ExtendedRoom> rooms)
     {
+        int index = 0;
         foreach (ExtendedRoom room in rooms)
         {
             room.room.transform.position = new Vector3(room.pos.x,0,room.pos.y) * 8; //multiply by U unit
+            room.room.index = index++;
 
             switch (room.directon)
             {
