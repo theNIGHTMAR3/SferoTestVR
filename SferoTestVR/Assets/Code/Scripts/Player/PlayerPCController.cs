@@ -18,10 +18,40 @@ public class PlayerPCController : Player
     }
 
 
+
+    protected override IEnumerator DieCoroutine()
+    {
+        Vector3 originalPosition = rigidbody.position;
+        isRespawning = true;
+        float elapsedTime = 0;
+        StartCoroutine(FreezePlayer(respawnDuration));
+        Vector3 finalPosition = new Vector3();
+        while (elapsedTime < respawnDuration)
+        {
+            if (!isRespawning)
+                break;
+
+            float t = elapsedTime / respawnDuration;
+            Vector3 newPos = Vector3.Lerp(originalPosition, originalPosition + Vector3.up * respawnHeight, t);
+            rigidbody.position = newPos;
+            finalPosition = newPos;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        while (isRespawning)
+        {
+            rigidbody.position = finalPosition;
+            yield return null;
+        }
+
+        Revive();
+    }
+
     protected override void GetInput()
     {
         playerInput.x = Input.GetAxis("Horizontal");
         playerInput.y = Input.GetAxis("Vertical");
     }
-
 }

@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     protected Rigidbody rigidbody;
     protected Camera camera;
     protected CameraFollower cameraScript;
-    protected UnityEngine.Vector2 playerInput;
+    protected Vector2 playerInput;
 
     public float moveSpeed = 10f;
     public float sensitivity = 5f;
@@ -21,18 +21,18 @@ public class Player : MonoBehaviour
     private Vector3 lastCheckpointPos;
     private Quaternion savedRotation;
 
-    private bool isAlive = true;
-    private bool isRespawning = false;
-    //private bool isHanging = false;
+    protected bool isAlive = true;
+    protected bool isRespawning = false;
 
-    private float respawnHeight = 2f;
-    private float respawnDuration = 2f;
+
+    protected float respawnHeight = 2f;
+    protected float respawnDuration = 4f;
 
 
     protected virtual void Start()
     {
-        camera = Camera.main; //get camera
-        rigidbody = GetComponent<Rigidbody>(); //get rigidbody
+        camera = Camera.main;
+        rigidbody = GetComponent<Rigidbody>();
         cameraScript = camera.GetComponent<CameraFollower>();
 
         // save player start position
@@ -46,12 +46,12 @@ public class Player : MonoBehaviour
     {
         GetInput();
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && isAlive)
         {
             Die();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && isRespawning)
         {
             StopRespawning();
         }
@@ -95,20 +95,17 @@ public class Player : MonoBehaviour
             isAlive = false;
             UIManager.Instance.ShowDeathUI();
             StartCoroutine(DieCoroutine());
-            //DieCoroutine();
             //TODO
             // animations
-            // death screen
             // saving path
             // other stuff
-
         }
     }
 
     /// <summary>
     /// starts revival coroutine/animation
     /// </summary>
-    private void Revive()
+    protected void Revive()
     {
         transform.position = lastCheckpointPos;
         cameraScript.SetCameraRotation(savedRotation);
@@ -142,7 +139,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// freezes player for given amount of seconds
     /// </summary> 
-    IEnumerator FreezePlayer(float seconds)
+    protected IEnumerator FreezePlayer(float seconds)
     {
         rigidbody.isKinematic = true;
         yield return new WaitForSeconds(seconds);
@@ -150,13 +147,15 @@ public class Player : MonoBehaviour
         isAlive = true;
     }
 
-    private IEnumerator DieCoroutine()
+    /// <summary>
+    /// handles logic after player dies
+    /// </summary>    
+    protected virtual IEnumerator DieCoroutine()
     {
         Vector3 originalPosition = rigidbody.position;
         isRespawning = true;
         float elapsedTime = 0;
         StartCoroutine(FreezePlayer(respawnDuration));
-        Vector3 finalPosition = new Vector3();
         while (elapsedTime < respawnDuration)
         {
             if (!isRespawning)
@@ -165,25 +164,23 @@ public class Player : MonoBehaviour
             float t = elapsedTime / respawnDuration;
             Vector3 newPos = Vector3.Lerp(originalPosition, originalPosition + Vector3.up * respawnHeight, t);
             rigidbody.position = newPos;
-            finalPosition= newPos;
 
             elapsedTime += Time.deltaTime;
+            UIManager.Instance.UpdateRespawnText(Mathf.Ceil(respawnDuration - elapsedTime));
             yield return null;
         }
 
-        while(isRespawning)
-        {
-            rigidbody.position = finalPosition;
-            yield return null;
-        }
+        StopRespawning();
 
         Revive();
     }
 
-    public void StopRespawning()
+    /// <summary>
+    /// stops respawning procedure
+    /// </summary>    
+    protected void StopRespawning()
     {
         isRespawning = false;
-        //isHanging= false;
         UIManager.Instance.HideDeathUI();   
     }
 
