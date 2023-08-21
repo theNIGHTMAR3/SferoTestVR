@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -15,13 +15,11 @@ public class Player : MonoBehaviour
     protected Vector2 playerInput;
 
     public float moveSpeed = 10f;
-    public float sensitivity = 5f;
-
    
     private Vector3 lastCheckpointPos;
     private Quaternion savedRotation;
 
-    protected bool isAlive = true;
+    protected bool isAlive = false;
     protected bool isRespawning = false;
 
 
@@ -37,6 +35,10 @@ public class Player : MonoBehaviour
 
         // save player start position
         lastCheckpointPos = transform.position;
+
+        Debug.Log("SphereDiameter: "+PlayerPrefs.GetFloat("SphereDiameter"));
+        SetPlayerSize();
+        StartCoroutine(FreezePlayer(1));
     }
 
     /// <summary>
@@ -155,7 +157,8 @@ public class Player : MonoBehaviour
         Vector3 originalPosition = rigidbody.position;
         isRespawning = true;
         float elapsedTime = 0;
-        StartCoroutine(FreezePlayer(respawnDuration));
+
+        rigidbody.isKinematic = true;
         while (elapsedTime < respawnDuration)
         {
             if (!isRespawning)
@@ -169,10 +172,21 @@ public class Player : MonoBehaviour
             UIManager.Instance.UpdateRespawnText(Mathf.Ceil(respawnDuration - elapsedTime));
             yield return null;
         }
-
+        
         StopRespawning();
+        rigidbody.isKinematic = false;
 
         Revive();
+    }
+
+
+    protected void SetPlayerSize()
+    {
+        float playerSize = PlayerPrefs.GetFloat("SphereDiameter");
+
+        Vector3 playerScale = new Vector3(playerSize, playerSize, playerSize);
+
+        rigidbody.transform.localScale= playerScale;
     }
 
     /// <summary>
