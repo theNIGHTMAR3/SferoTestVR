@@ -17,8 +17,6 @@ public class PlayerPCController : Player
         Move(playerMovement);
     }
 
-
-
     protected override IEnumerator DieCoroutine()
     {
         Vector3 originalPosition = rigidbody.position;
