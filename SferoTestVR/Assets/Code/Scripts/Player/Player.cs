@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
 
 
     /// <summary>
-    /// Add force to sphere from Vector2
+    /// Add force to sphere from Vector2 (world direction)
     /// </summary>
     protected void Move(Vector2 direction)
     {

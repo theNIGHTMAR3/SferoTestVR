@@ -8,6 +8,7 @@ public class PlayerVRHome : Player
     //vr variables
     InputDevice rightController, leftController;
     bool gotDevices = false;
+    [SerializeField]GameObject rightHand;
 
 
     protected override void Start()
@@ -32,7 +33,11 @@ public class PlayerVRHome : Player
         {
             if (walkInput.magnitude > 0.2)
             {
-                Move(walkInput);
+                Vector3 direction = rightHand.transform.forward * walkInput.y + rightHand.transform.right * walkInput.x;
+                float length = direction.magnitude;
+                direction.y = 0;
+                direction *= length/direction.magnitude;
+                Move(direction * moveSpeed);
             }                        
         }        
     }
