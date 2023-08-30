@@ -6,6 +6,7 @@ public class Gate : MonoBehaviour
 {
 
     [SerializeField] private GameObject gateObject;
+    [SerializeField] private GameObject gateCollider;    
 
     /// <summary>
     /// holds info whether the gate is opened. also sets the start value/position
@@ -58,7 +59,7 @@ public class Gate : MonoBehaviour
 
 
     IEnumerator Open()
-    {
+    {        
         busy = true;
 
         float startTime = Time.time;
@@ -69,6 +70,7 @@ public class Gate : MonoBehaviour
             t=(Time.time - startTime)/openingTime;            
             lerpedY = Mathf.Lerp(0, height,positionCurve.Evaluate(t)) ;
             gateObject.transform.localPosition = new Vector3(0, lerpedY, 0);
+            gateCollider.transform.localPosition = new Vector3(0, lerpedY, 0);
             yield return null;
         }
 
@@ -80,6 +82,7 @@ public class Gate : MonoBehaviour
 
     IEnumerator Close()
     {
+        gateCollider.transform.localPosition = Vector3.zero;
         busy = true;
 
         float startTime = Time.time;
@@ -93,7 +96,7 @@ public class Gate : MonoBehaviour
             yield return null;
         }
 
-        gateObject.transform.localPosition = new Vector3(0, 0, 0);
+        gateObject.transform.localPosition = Vector3.zero;
         busy = false;
         isOpenned = false;
     }
