@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  sensitivity: 5
 --- !u!1001 &1823566319476305746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34,17 +33,17 @@ PrefabInstance:
     - target: {fileID: 1633092262298304665, guid: 06d413db8587f1e40a3bc086b507b4b5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.7687416
+      value: -16.647
       objectReference: {fileID: 0}
     - target: {fileID: 1633092262298304665, guid: 06d413db8587f1e40a3bc086b507b4b5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.96
+      value: 1.454
       objectReference: {fileID: 0}
     - target: {fileID: 1633092262298304665, guid: 06d413db8587f1e40a3bc086b507b4b5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.15840648
+      value: -40.54
       objectReference: {fileID: 0}
     - target: {fileID: 1633092262298304665, guid: 06d413db8587f1e40a3bc086b507b4b5,
         type: 3}
@@ -85,6 +84,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerPCSetup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884078341190772357, guid: 06d413db8587f1e40a3bc086b507b4b5,
+        type: 3}
+      propertyPath: m_Drag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884078341190772357, guid: 06d413db8587f1e40a3bc086b507b4b5,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5421408459714512833, guid: 06d413db8587f1e40a3bc086b507b4b5,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1.05
       objectReference: {fileID: 0}
     - target: {fileID: 6973887091395152857, guid: 06d413db8587f1e40a3bc086b507b4b5,
         type: 3}

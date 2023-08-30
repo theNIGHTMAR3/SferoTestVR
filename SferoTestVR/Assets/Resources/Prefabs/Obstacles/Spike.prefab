@@ -44,17 +44,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2ad1ca0313216654eacb1a8aad28a658,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: -7.296867
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ad1ca0313216654eacb1a8aad28a658,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -9.1382474e-17
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ad1ca0313216654eacb1a8aad28a658,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4.1155005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ad1ca0313216654eacb1a8aad28a658,
         type: 3}
@@ -95,6 +95,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spike
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2ad1ca0313216654eacb1a8aad28a658,
+        type: 3}
+      propertyPath: m_TagString
+      value: Threat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ad1ca0313216654eacb1a8aad28a658, type: 3}

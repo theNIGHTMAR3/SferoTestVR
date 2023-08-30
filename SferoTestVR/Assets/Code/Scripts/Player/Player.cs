@@ -180,6 +180,9 @@ public class Player : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// sets player scale
+    /// </summary>  
     protected void SetPlayerSize()
     {
         float playerSize = PlayerPrefs.GetFloat("SphereDiameter");
