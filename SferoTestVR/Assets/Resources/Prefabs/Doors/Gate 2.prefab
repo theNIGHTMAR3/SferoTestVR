@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636469102698505642}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.71, z: 4}
+  m_LocalPosition: {x: 0, y: 1.71, z: 3.52}
   m_LocalScale: {x: 8, y: 4, z: 1}
   m_Children:
   - {fileID: 1877753568340203789}
@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gateObject: {fileID: 6054922290060041199}
+  gateCollider: {fileID: 3615709790075657707}
   isOpenned: 0
   shouldBeOpened: 1
   height: 6.9
@@ -234,6 +235,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gate 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3034709486524692881, guid: ccf6a0f8b26130741b554d96d3f10faf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388192776232949215, guid: ccf6a0f8b26130741b554d96d3f10faf,
+        type: 3}
+      propertyPath: m_Name
+      value: GateCollider
+      objectReference: {fileID: 0}
     - target: {fileID: 6787555486046357453, guid: ccf6a0f8b26130741b554d96d3f10faf,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -250,6 +261,12 @@ Transform:
 --- !u!1 &6054922290060041199 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6543463417360929755, guid: ccf6a0f8b26130741b554d96d3f10faf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1065218895747500084}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3615709790075657707 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4388192776232949215, guid: ccf6a0f8b26130741b554d96d3f10faf,
     type: 3}
   m_PrefabInstance: {fileID: 1065218895747500084}
   m_PrefabAsset: {fileID: 0}
