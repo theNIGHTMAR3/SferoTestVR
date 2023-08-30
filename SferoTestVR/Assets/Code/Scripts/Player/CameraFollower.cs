@@ -5,7 +5,6 @@ using static UnityEngine.GraphicsBuffer;
 
 public class CameraFollower : MonoBehaviour
 {
-    public float sensitivity = 5f;
 
     private GameObject player;
    
@@ -15,6 +14,7 @@ public class CameraFollower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Sensitivity: "+PlayerPrefs.GetFloat("Sensitivity"));
         player = GameObject.FindGameObjectWithTag("Player");
 
         // make sure cursor is locked and invisible
@@ -27,8 +27,8 @@ public class CameraFollower : MonoBehaviour
     {
         transform.position = player.transform.position;
 
-        mouseRotation.x += Input.GetAxis("Mouse X") * sensitivity;
-        mouseRotation.y += Input.GetAxis("Mouse Y") * sensitivity;
+        mouseRotation.x += Input.GetAxis("Mouse X") * PlayerPrefs.GetFloat("Sensitivity");
+        mouseRotation.y += Input.GetAxis("Mouse Y") * PlayerPrefs.GetFloat("Sensitivity");
         mouseRotation.y = Mathf.Clamp(mouseRotation.y, -90f, 90f);
         transform.localRotation = Quaternion.Euler(-mouseRotation.y, mouseRotation.x, 0);
 
