@@ -88,4 +88,23 @@ public static class MapConfigManager
 
     }
 
+
+    /// <summary>
+    /// saves rooms (given as string names) and saves it as
+    /// string list in a file
+    /// </summary>    
+    public static void SaveLocally(List<string> rooms)
+    {
+        StreamWriter streamWriter = new StreamWriter(MapLoader.CONFIG_FILE);
+        
+
+        foreach (string room in rooms)
+        {
+            streamWriter.WriteLine(room);
+        }
+
+        streamWriter.Close();
+
+    }
+
 }

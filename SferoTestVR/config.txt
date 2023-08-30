@@ -1,1 +1,2 @@
-Ramp Jump
+Straight Moving Platform
+Mini Moving Platforms

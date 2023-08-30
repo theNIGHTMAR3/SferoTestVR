@@ -79,12 +79,14 @@ public class CustomTransformInspector : Editor
             disableMethod.Invoke(defaultEditor, null);
         DestroyImmediate(defaultEditor);
     }
-
+    
     public override void OnInspectorGUI()
     {
         EditorGUILayout.LabelField("Local Space", EditorStyles.boldLabel);
         defaultEditor.OnInspectorGUI();
 
+        /* it created GUI bugs, refreshes prefabs for unknown reason :/
+         * 
         //Show World Space Transform
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("World Space", EditorStyles.boldLabel);
@@ -104,8 +106,9 @@ public class CustomTransformInspector : Editor
         transform.localRotation = localRotation;
         transform.localScale = localScale;
         GUI.enabled = true;
+        */
     }
-
+    
     void OnSceneGUI()
     {
         // get the chosen game object
