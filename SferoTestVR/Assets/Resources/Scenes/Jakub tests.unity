@@ -386,6 +386,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameMaster
       objectReference: {fileID: 0}
+    - target: {fileID: 783438594428962941, guid: 3015d1c214918cb4d8fc0a8b3356fb66,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919488281533093933, guid: 3015d1c214918cb4d8fc0a8b3356fb66,
         type: 3}
       propertyPath: m_IsActive
