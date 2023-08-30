@@ -1,34 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
-using UnityEngine;using UnityEngine.SceneManagement;
-
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
     protected Rigidbody rigidbody;
     protected Camera camera;
     protected CameraFollower cameraScript;
-    protected UnityEngine.Vector2 playerInput;
+    protected Vector2 playerInput;
 
     public float moveSpeed = 10f;
-    public float sensitivity = 5f;
-
    
     private Vector3 lastCheckpointPos;
     private Quaternion savedRotation;
 
-    private bool isAlive = true;
+    protected bool isAlive = false;
+    protected bool isRespawning = false;
+
+
+    protected float respawnHeight = 2f;
+    protected float respawnDuration = 4f;
 
 
     protected virtual void Start()
     {
-        camera = Camera.main; //get camera
-        rigidbody = GetComponent<Rigidbody>(); //get rigidbody
+        camera = Camera.main;
+        rigidbody = GetComponent<Rigidbody>();
         cameraScript = camera.GetComponent<CameraFollower>();
 
         // save player start position
         lastCheckpointPos = transform.position;
+
+        Debug.Log("SphereDiameter: "+PlayerPrefs.GetFloat("SphereDiameter"));
+        SetPlayerSize();
+        StartCoroutine(FreezePlayer(1));
     }
 
     /// <summary>
@@ -38,9 +48,14 @@ public class Player : MonoBehaviour
     {
         GetInput();
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && isAlive)
         {
             Die();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q) && isRespawning)
+        {
+            StopRespawning();
         }
 
     }
@@ -79,23 +94,20 @@ public class Player : MonoBehaviour
     {
         if(isAlive) 
         {
+            isAlive = false;
+            UIManager.Instance.ShowDeathUI();
+            StartCoroutine(DieCoroutine());
             //TODO
             // animations
-            // death screen
             // saving path
             // other stuff
-
-            isAlive = false;
-
-            Revive();
         }
-   
     }
 
     /// <summary>
     /// starts revival coroutine/animation
     /// </summary>
-    private void Revive()
+    protected void Revive()
     {
         transform.position = lastCheckpointPos;
         cameraScript.SetCameraRotation(savedRotation);
@@ -129,13 +141,63 @@ public class Player : MonoBehaviour
     /// <summary>
     /// freezes player for given amount of seconds
     /// </summary> 
-    IEnumerator FreezePlayer(float seconds)
+    protected IEnumerator FreezePlayer(float seconds)
     {
         rigidbody.isKinematic = true;
         yield return new WaitForSeconds(seconds);
         rigidbody.isKinematic = false;
         isAlive = true;
     }
+
+    /// <summary>
+    /// handles logic after player dies
+    /// </summary>    
+    protected virtual IEnumerator DieCoroutine()
+    {
+        Vector3 originalPosition = rigidbody.position;
+        isRespawning = true;
+        float elapsedTime = 0;
+
+        rigidbody.isKinematic = true;
+        while (elapsedTime < respawnDuration)
+        {
+            if (!isRespawning)
+                break;
+
+            float t = elapsedTime / respawnDuration;
+            Vector3 newPos = Vector3.Lerp(originalPosition, originalPosition + Vector3.up * respawnHeight, t);
+            rigidbody.position = newPos;
+
+            elapsedTime += Time.deltaTime;
+            UIManager.Instance.UpdateRespawnText(Mathf.Ceil(respawnDuration - elapsedTime));
+            yield return null;
+        }
+        
+        StopRespawning();
+        rigidbody.isKinematic = false;
+
+        Revive();
+    }
+
+
+    protected void SetPlayerSize()
+    {
+        float playerSize = PlayerPrefs.GetFloat("SphereDiameter");
+
+        Vector3 playerScale = new Vector3(playerSize, playerSize, playerSize);
+
+        rigidbody.transform.localScale= playerScale;
+    }
+
+    /// <summary>
+    /// stops respawning procedure
+    /// </summary>    
+    protected void StopRespawning()
+    {
+        isRespawning = false;
+        UIManager.Instance.HideDeathUI();   
+    }
+
 
     /// <summary>
     /// method for getting input from the device
