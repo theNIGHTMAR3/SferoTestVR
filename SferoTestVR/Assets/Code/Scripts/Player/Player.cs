@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     protected Camera camera;
     protected CameraFollower cameraScript;
     protected Vector2 playerInput;
+    private GameObject playerSpawn;
 
     public float moveSpeed = 10f;
    
@@ -21,10 +22,15 @@ public class Player : MonoBehaviour
 
     protected bool isAlive = false;
     protected bool isRespawning = false;
-
+    protected bool hasWon = false;
 
     protected float respawnHeight = 2f;
     protected float respawnDuration = 4f;
+
+    private bool firstLife = true;
+
+    private int deathsCount = 0;
+    private float startTime;
 
 
     protected virtual void Start()
@@ -33,8 +39,10 @@ public class Player : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         cameraScript = camera.GetComponent<CameraFollower>();
 
-        // save player start position
-        lastCheckpointPos = transform.position;
+        // player starts game from spawn
+        playerSpawn = GameObject.FindGameObjectWithTag("Respawn");
+        SetNewCheckPoint(playerSpawn);
+        transform.position = lastCheckpointPos;
 
         Debug.Log("SphereDiameter: "+PlayerPrefs.GetFloat("SphereDiameter"));
         SetPlayerSize();
@@ -48,7 +56,7 @@ public class Player : MonoBehaviour
     {
         GetInput();
 
-        if(Input.GetKeyDown(KeyCode.Space) && isAlive)
+        if(Input.GetKeyDown(KeyCode.Space) && isAlive && !hasWon)
         {
             Die();
         }
@@ -56,6 +64,11 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && isRespawning)
         {
             StopRespawning();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && hasWon)
+        {
+            GoBackToMainMenu();
         }
 
     }
@@ -66,7 +79,7 @@ public class Player : MonoBehaviour
     protected void Move(Vector3 direction)
     {
 
-        if(isAlive)
+        if(isAlive && !hasWon)
         {
             Vector3 movement = direction;
             movement.y = 0;
@@ -94,6 +107,7 @@ public class Player : MonoBehaviour
     {
         if(isAlive) 
         {
+            deathsCount++;
             isAlive = false;
             UIManager.Instance.ShowDeathUI();
             StartCoroutine(DieCoroutine());
@@ -127,7 +141,7 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// checks of player collided with a trap
+    /// checks of player collided with an object
     /// </summary>    
     private void OnCollisionEnter(Collision collision)
     {
@@ -135,7 +149,13 @@ public class Player : MonoBehaviour
         {
             Die();
         }
-        
+
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+            Debug.Log("Player reached the end");
+            Win();
+        }
+
     }
 
     /// <summary>
@@ -145,6 +165,11 @@ public class Player : MonoBehaviour
     {
         rigidbody.isKinematic = true;
         yield return new WaitForSeconds(seconds);
+        if(firstLife)
+        {
+            firstLife= false;
+            startTime = Time.time;
+        }
         rigidbody.isKinematic = false;
         isAlive = true;
     }
@@ -196,6 +221,26 @@ public class Player : MonoBehaviour
     {
         isRespawning = false;
         UIManager.Instance.HideDeathUI();   
+    }
+
+    /// <summary>
+    /// logic when player finnishes the level
+    /// </summary>    
+    protected void Win()
+    {
+        hasWon = true;
+        UIManager.Instance.ShowWinningUI();
+        UIManager.Instance.SetSummaryText(Time.time-startTime,deathsCount);
+        StartCoroutine(FreezePlayer(5f));
+    }
+
+    /// <summary>
+    /// moves user to Main Menu
+    /// </summary>    
+    protected void GoBackToMainMenu()
+    {
+        cameraScript.UnlockCursor();
+        SceneManager.LoadScene("MainMenu");
     }
 
 
