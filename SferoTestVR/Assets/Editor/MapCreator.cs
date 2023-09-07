@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ using UnityEngine;
 public class MapCreator : EditorWindow
 {
 
-    List<RoomType> rooms = new List<RoomType>();
+    List<int> rooms = new List<int>();
     Vector2 scrollPos;
     
 
@@ -38,14 +39,14 @@ public class MapCreator : EditorWindow
         if (GUILayout.Button("Clear list"))
         {
             rooms.Clear();
-            SaveLocally();
+            MapConfigManager.SaveLocally(rooms);
         }
         GUILayout.EndHorizontal();
             
         if (GUILayout.Button("Add room"))
         {
-            rooms.Add(new RoomType());
-            SaveLocally();
+            rooms.Add(0);
+            MapConfigManager.SaveLocally(rooms);
         }
 
         DrawRoomsList();
@@ -64,7 +65,9 @@ public class MapCreator : EditorWindow
             deletedItem = DrawRoom(i);            
         }
         GUILayout.EndScrollView();
-    }
+    }    
+
+
 
     /// <summary>
     /// draw single room in the scroll view
@@ -78,12 +81,13 @@ public class MapCreator : EditorWindow
         GUILayout.BeginHorizontal();        
         EditorGUILayout.LabelField((index+1).ToString(), GUILayout.Width(20));
 
-        RoomType prevType = rooms[index];
-        rooms[index] =(RoomType) EditorGUILayout.EnumPopup(rooms[index]);
+        int prevType = rooms[index];
+        //rooms[index] =(RoomType) EditorGUILayout.EnumPopup(rooms[index]);
+        rooms[index] =EditorGUILayout.Popup(rooms[index], MapConfigManager.GetRoomsList().ToArray());
 
         if (prevType != rooms[index])
         {
-            SaveLocally();
+            MapConfigManager.SaveLocally(rooms);
             return false;
         }
         else
@@ -92,7 +96,7 @@ public class MapCreator : EditorWindow
             {
                 rooms.RemoveAt(index);
                 GUILayout.EndHorizontal();
-                SaveLocally();
+                MapConfigManager.SaveLocally(rooms);
                 return true;
             }
             else
@@ -111,37 +115,21 @@ public class MapCreator : EditorWindow
     {
 
     }
-    /// <summary>
-    /// Saves locally the map config file. Should be called after each change
-    /// </summary>
-    void SaveLocally()
-    {
-        Debug.Log(Application.streamingAssetsPath);
-        StreamWriter streamWriter = new StreamWriter(MapLoader.CONFIG_FILE);        
-
-        foreach(RoomType room in rooms)
-        {
-            streamWriter.WriteLine((int) room);
-        }
-
-        streamWriter.Close();
-
-    }
 
     void LoadConfig()
     {
         //check if config file exist
         if (File.Exists(MapLoader.CONFIG_FILE))
         {
-            rooms = new List<RoomType>();
+            List<string> roomsNames = MapConfigManager.GetRoomsList();
+            rooms = new List<int>();
             StreamReader streamReader = new StreamReader(MapLoader.CONFIG_FILE); //open the file
 
-            string line;
-            while ((line = streamReader.ReadLine()) != null) //read all lines
+            string room;
+            while ((room = streamReader.ReadLine()) != null) //read all lines
             {
-                //add rooms to the list
-                RoomType room = (RoomType)int.Parse(line);
-                rooms.Add(room);
+                //add rooms to the list                
+                rooms.Add(MapConfigManager.roomNameToIndex(room));
             }
 
             streamReader.Close();
