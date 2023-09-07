@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FourActionStateMachine : MonoBehaviour
 {
+    [SerializeField] float delay;
+
     [SerializeField] MachineState machineState = MachineState.ACTION1;
     float startTime = 0; // one variable to track "timers"
 
@@ -25,57 +27,58 @@ public class FourActionStateMachine : MonoBehaviour
     void Update()
     {
         float percentage;
+        float delayedTime = Time.time - delay;
         switch (machineState)
         {
             case MachineState.ACTION1:
-                if (Time.time > startTime + action1Time) //if ended
+                if (delayedTime > startTime + action1Time) //if ended
                 {
                     machineState = MachineState.ACTION2;
-                    startTime = Time.time;
+                    startTime = delayedTime;
                     OnAction2Start();
                 }
                 else
                 {
-                    percentage = (Time.time - startTime) / (action1Time);
+                    percentage = (delayedTime - startTime) / (action1Time);
                     Action1(percentage);
                 }
                 break;
             case MachineState.ACTION2:
-                if (Time.time > startTime + action2Time)//if ended
+                if (delayedTime > startTime + action2Time)//if ended
                 {
                     machineState = MachineState.ACTION3;
-                    startTime = Time.time;
+                    startTime = delayedTime;
                     OnAction3Start();
                 }
                 else
                 {
-                    percentage = (Time.time - startTime) / (action2Time);
+                    percentage = (delayedTime - startTime) / (action2Time);
                     Action2(percentage);
                 }
                 break;
             case MachineState.ACTION3:
-                if (Time.time > startTime + action3Time) //if ended
+                if (delayedTime > startTime + action3Time) //if ended
                 {
                     machineState = MachineState.ACTION4;
-                    startTime = Time.time;
+                    startTime = delayedTime;
                     OnAction4Start();
                 }
                 else
                 {
-                    percentage = (Time.time - startTime) / (action3Time);
+                    percentage = (delayedTime - startTime) / (action3Time);
                     Action3(percentage);
                 }
                 break;
             case MachineState.ACTION4:
-                if (Time.time > startTime + action4Time) //if ended
+                if (delayedTime > startTime + action4Time) //if ended
                 {
                     machineState = MachineState.ACTION1;
-                    startTime = Time.time;
+                    startTime = delayedTime;
                     OnAction1Start();
                 }
                 else
                 {
-                    percentage = (Time.time - startTime) / (action4Time);
+                    percentage = (delayedTime - startTime) / (action4Time);
                     Action4(percentage);
                 }
                 break;

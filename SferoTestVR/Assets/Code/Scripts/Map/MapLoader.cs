@@ -9,9 +9,12 @@ using System.Linq;
 public class MapLoader : MonoBehaviour
 {
     public const string CONFIG_FILE = "config.txt";
+
+    public const string FINAL_ROOMS_PATH = "Prefabs/Rooms/Final Rooms/";
+
     void Start()
     {
-        List<RoomType> roomTypes = LoadRooms();
+        List<string> roomTypes = LoadRooms();
         List<Room> rooms = InstantiateRooms(roomTypes);
         //technicaly functions as a linked list XD  
         //holds only rooms! It doesn't have corridors!
@@ -45,9 +48,11 @@ public class MapLoader : MonoBehaviour
     /// <param name="rooms"></param>
     void MoveRooms(List<ExtendedRoom> rooms)
     {
+        int index = 0;
         foreach (ExtendedRoom room in rooms)
         {
             room.room.transform.position = new Vector3(room.pos.x,0,room.pos.y) * 8; //multiply by U unit
+            room.room.index = index++;
 
             switch (room.directon)
             {
@@ -98,9 +103,9 @@ public class MapLoader : MonoBehaviour
     /// load rooms list from file
     /// </summary>
     /// <returns></returns>
-    List<RoomType> LoadRooms()
+    List<string> LoadRooms()
     {
-        List<RoomType> rooms = new List<RoomType>();
+        List<string> rooms = new List<string>();
         string configPath;
 
 #if UNITY_EDITOR
@@ -112,15 +117,13 @@ public class MapLoader : MonoBehaviour
 #endif
         
         if (File.Exists(configPath))
-        {
-            rooms = new List<RoomType>();
+        {            
             StreamReader streamReader = new StreamReader(configPath); //open the file
 
-            string line;
-            while ((line = streamReader.ReadLine()) != null) //read all lines
+            string room;
+            while ((room = streamReader.ReadLine()) != null) //read all lines
             {
-                //add rooms to the list
-                RoomType room = (RoomType)int.Parse(line);
+                //add rooms to the list                
                 rooms.Add(room);
             }
 
@@ -128,32 +131,33 @@ public class MapLoader : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Missing map config file!");
+            Debug.LogError("MapLoader: Missing map config file!");
         }
 
         return rooms;
     }
 
 
-    void InstantiateRoom(List<Room> rooms, string path)
+    void InstantiateRoom(List<Room> rooms, string name)
     {
-        Object roomObject = Resources.Load(path);
+        Object roomObject = Resources.Load(FINAL_ROOMS_PATH + name);
         Room room = GameObject.Instantiate((GameObject)roomObject).GetComponent<Room>();
         rooms.Add(room);
     }
 
-    List<Room> InstantiateRooms(List<RoomType> roomTypes)
+    List<Room> InstantiateRooms(List<string> roomNames)
     {
         List<Room> rooms = new List<Room>();
 
-        InstantiateRoom(rooms, RoomTypeConverter.GetStartRoomPath());        
+        //InstantiateRoom(rooms, FINAL_ROOMS_PATH + "Start Room");        
+        InstantiateRoom(rooms, "Start Room");        
 
-        foreach (RoomType roomType in roomTypes)
+        foreach (string roomName in roomNames)
         {
-            InstantiateRoom(rooms,roomType.GetPrefabPath());                        
+            InstantiateRoom(rooms,roomName);                        
         }
 
-        InstantiateRoom(rooms, RoomTypeConverter.GetEndRoomPath());
+        InstantiateRoom(rooms,"End Room");
 
         return rooms;
     }
