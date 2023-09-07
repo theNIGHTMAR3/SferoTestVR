@@ -512,6 +512,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3218278556538145239, guid: b526f8699d2b19746a93cda08cb6945c,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3218278556538145239, guid: b526f8699d2b19746a93cda08cb6945c,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4474953585152049290, guid: b526f8699d2b19746a93cda08cb6945c,
         type: 3}
       propertyPath: m_Name

@@ -205,9 +205,20 @@ public class Player : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// sets player scale
+    /// </summary>  
     protected void SetPlayerSize()
     {
         float playerSize = PlayerPrefs.GetFloat("SphereDiameter");
+
+        if(playerSize == 0)
+        {
+            Debug.LogWarning("PlayerPrefs: player size not set, setting it to 1.0");
+            PlayerPrefs.SetFloat("SphereDiameter", 1.0f);
+            PlayerPrefs.Save();
+            rigidbody.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
+        }
 
         Vector3 playerScale = new Vector3(playerSize, playerSize, playerSize);
 
