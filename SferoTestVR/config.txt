@@ -1,2 +1,2 @@
-Straight Moving Platform
-Mini Moving Platforms
+Narrow Path
+Narrow Path
