@@ -1,0 +1,136 @@
+/*-------------universal nodes------------------*/
+:root{
+    --pathWidth:400px;    
+    --pointDialogWidth: 175px;
+}
+
+
+body{
+    display: flex;
+    justify-content: center;   /* poziomo */
+    align-items: center; /* pionowo */
+    flex-direction: column;
+}
+
+h1{
+    text-align: center;
+}
+
+input[type=file]{    
+    display: none;
+}
+
+input[type=file] + label{  
+    margin-top: 25px;  
+    background-color: white;
+    
+    padding: 10px 5px;
+
+    border-width: 5px;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+
+}
+
+input[type=file] + label:hover{      
+    color: white;
+    background-color: black;        
+    border-color: gray;    
+}
+
+
+
+/*-----------------------------------------------*/
+
+#MainImageContainer{
+    height: 700px;
+    width: var(--pathWidth);;
+}
+
+.PathContainer{
+    display: flex;
+    justify-content: center;   /* poziomo */
+    align-items: center; /* pionowo */
+    flex-direction: column;
+
+    position: relative;
+}
+
+
+.Path {    
+    height:var(--pathWidth)*8/5;
+    width:  var(--pathWidth);
+}
+
+.PointsContainer{
+    position: relative;
+    
+}
+
+.Point{
+    position: absolute;
+    background-color: transparent;    
+    width: 10px;
+    height: 10px;    
+    
+    --posText: "posX: 10, posY: 20";
+    --velText: "velX: 2, velY: 20";
+}
+
+.Point:hover::before{
+    position: absolute;
+    top: -70px;
+    left: -90px;
+
+    content: var(--posText);
+    width: var(--pointDialogWidth);
+    height: 25px;
+    background-color: rgba(100, 100, 100, 0.5);
+}
+
+.Point:hover::after{
+    position: absolute;
+    top: -45px;
+    left: -90px;
+
+    content: var(--velText);
+    width: var(--pointDialogWidth);
+    height: 25px;
+    background-color: rgba(100, 100, 100, 0.5);
+}
+
+
+.Title{
+    font-size: x-large;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/*-----------------------Buttons----------------------------------*/
+
+.ButtonsContainer{
+    display: flex;
+    justify-content: center;   /* poziomo */
+    align-items: center; /* pionowo */
+    gap:150px;
+    
+}
+
+.Button{
+
+    font-size: 20px;
+
+    color: white;
+    background-color: black;
+
+    padding: 5px 40px;
+
+    border-radius: 20px;
+}
+
+.Button:hover{
+    color: black;
+    background-color: gray;
+}
