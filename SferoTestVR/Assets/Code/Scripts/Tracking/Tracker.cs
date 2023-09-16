@@ -57,14 +57,23 @@ public class Tracker : MonoBehaviour
         tracking = false;
         //save to the file (always?)
 
+        SaveToFile();
+        SVG.CreateSVG("Room " + room.index.ToString() + ".svg", records, pathTemplate.GetPathPoints(),room.length,room.width);
+    }
+
+    void SaveToFile()
+    {
         string filename = "Room " + room.index.ToString();
-        string filePath = Path.Combine(TrackMaster.folderPath, filename);        
+        string filePath = Path.Combine(TrackMaster.folderPath, filename);
 
         using (StreamWriter writer = new StreamWriter(File.Create(filePath)))
         {
 
             //write the room name
             writer.WriteLine(room.gameObject.name);
+
+            //write the room size
+            writer.WriteLine(room.width + " x " + room.length);
 
             //write the players path
             writer.WriteLine(records.Count);

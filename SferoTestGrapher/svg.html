@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <title>SferoTestVRGrapher</title>    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+
+    <link rel="stylesheet" href="style.css">
+    
+    
+    
+
+
+    <script src="svg.js"></script>
+</head>
+
+<body>
+
+    <h1>
+        SferoTestVR Grapher
+    </h1>
+
+    <div id = "MainImageContainer">
+        <div class="PathContainer">
+            <div class="Title">Load Directory</div>            
+
+        </div>
+        
+    </div>
+    <div class="ButtonsContainer">
+        <div class="Button" onclick="Prev()">Prev</div>        
+        <div class="Button" onclick="Next()">Next</div>
+    </div>
+    
+    <input type="file" id="filepicker" name="fileList" webkitdirectory multiple />
+    <label for="filepicker">Select folder with tracks</label>
+    <output id="output"></output>    
+	
+
+</body>
+</html>

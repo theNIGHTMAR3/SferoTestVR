@@ -8,8 +8,8 @@ using UnityEngine;
 /// </summary>
 public struct TrackRecord
 {
-    Vector2 pos;
-    Vector2 vel;
+    public Vector2 pos;
+    public Vector2 vel;
 
     public TrackRecord(Vector2 pos, Vector2 speed)
     {
