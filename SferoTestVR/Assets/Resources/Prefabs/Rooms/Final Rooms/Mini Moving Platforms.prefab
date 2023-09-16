@@ -55,7 +55,7 @@ Transform:
   - {fileID: 2842358830325236798}
   - {fileID: 2842358830105001457}
   m_Father: {fileID: 5354466642920117775}
-  m_RootOrder: 7
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &813925989683422809
 GameObject:
@@ -96,7 +96,7 @@ Transform:
   - {fileID: 3484577227416788272}
   - {fileID: 3864403213419638198}
   m_Father: {fileID: 5354466642920117775}
-  m_RootOrder: 5
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3458127752803373915
 GameObject:
@@ -141,7 +141,7 @@ Transform:
   - {fileID: 5756883486756114252}
   - {fileID: 7986526957259536012}
   m_Father: {fileID: 5354466642920117775}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &96761896629231236
 PrefabInstance:
@@ -4164,6 +4164,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 116184221479311060, guid: 452d7668b609477499bdb60e11806ebb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 786272596014988201, guid: 452d7668b609477499bdb60e11806ebb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1431592722494199139, guid: 452d7668b609477499bdb60e11806ebb,
         type: 3}
       propertyPath: m_RootOrder
@@ -4222,7 +4232,12 @@ PrefabInstance:
     - target: {fileID: 1771560981596295129, guid: 452d7668b609477499bdb60e11806ebb,
         type: 3}
       propertyPath: m_Name
-      value: 5x8_Room_Deep Variant
+      value: Mini Moving Platforms
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393182908489317390, guid: 452d7668b609477499bdb60e11806ebb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452d7668b609477499bdb60e11806ebb, type: 3}
