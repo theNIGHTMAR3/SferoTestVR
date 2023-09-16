@@ -17,9 +17,7 @@ public class CameraFollower : MonoBehaviour
         Debug.Log("Sensitivity: "+PlayerPrefs.GetFloat("Sensitivity"));
         player = GameObject.FindGameObjectWithTag("Player");
 
-        // make sure cursor is locked and invisible
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        LockCursor();
     }
 
     // Update is called once per frame
@@ -39,4 +37,24 @@ public class CameraFollower : MonoBehaviour
         mouseRotation.x = checkpointRotation.eulerAngles.y;
         mouseRotation.y = 0;
     }
+
+
+    /// <summary>
+    /// locks player cursor and makes it invisible
+    /// </summary>
+    public void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    /// <summary>
+    /// unlocks player cursor and makes it visible
+    /// </summary>
+    public void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
 }

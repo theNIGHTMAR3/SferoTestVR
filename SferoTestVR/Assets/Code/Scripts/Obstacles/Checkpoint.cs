@@ -8,16 +8,12 @@ public class Checkpoint : MonoBehaviour
 
     private bool used = false;
 
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-    }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && used == false)
         {
-            player.SetNewCheckPoint(gameObject);
+            other.gameObject.GetComponent<Player>().SetNewCheckPoint(gameObject);
             used = true;
         }
         
