@@ -1,1 +1,1 @@
-Elevator Variant
+Straight Moving Platform
