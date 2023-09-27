@@ -9,8 +9,8 @@ public class Boost : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * force);
+        {            
+            other.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * force);            
         }
     }
     

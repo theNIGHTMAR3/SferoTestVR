@@ -486,10 +486,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3218278556538145239, guid: b526f8699d2b19746a93cda08cb6945c,
+        type: 3}
+      propertyPath: m_Drag
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3218278556538145239, guid: b526f8699d2b19746a93cda08cb6945c,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4474953585152049290, guid: b526f8699d2b19746a93cda08cb6945c,
         type: 3}
       propertyPath: m_Name
       value: PlayerPCSetup
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940861035607271571, guid: b526f8699d2b19746a93cda08cb6945c,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 412f5160ca0ad504796386d35abcbae4,
+        type: 2}
+    - target: {fileID: 6194166308723659171, guid: b526f8699d2b19746a93cda08cb6945c,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b526f8699d2b19746a93cda08cb6945c, type: 3}
