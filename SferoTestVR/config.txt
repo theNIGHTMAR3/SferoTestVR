@@ -1,1 +1,3 @@
-Elevator Variant
+Narrow Path
+ShortFakePath
+Straight Moving Platform
