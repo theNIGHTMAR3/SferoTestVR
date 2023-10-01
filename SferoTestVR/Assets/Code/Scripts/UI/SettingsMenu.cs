@@ -16,6 +16,7 @@ public class SettingsMenu : MonoBehaviour
         sensitivityValue = gameObject.GetNamedChild("SensitivityValue").GetComponent<TextMeshProUGUI>();
         diameterValue = gameObject.GetNamedChild("DiameterValue").GetComponent<TextMeshProUGUI>();
     }
+
     public void SetSensitivity(float sensitivity)
     {
         PlayerPrefs.SetFloat("Sensitivity", sensitivity);
