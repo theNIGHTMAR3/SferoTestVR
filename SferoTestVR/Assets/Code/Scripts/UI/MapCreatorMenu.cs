@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+
 
 public class MapCreatorMenu : MonoBehaviour
 {
@@ -14,14 +17,18 @@ public class MapCreatorMenu : MonoBehaviour
 	public Transform availableRoomsPanel;
 	public Transform currentRoomsPanel;
 
-	private List<String> availableRooms;
-	private List<String> currentRooms;
+	private List<GameObject> availableRooms;
+	private List<string> availableRoomsString;
+	private List<GameObject> currentRooms;
+	private static int idCount = 0;
 
 
 	private void Start()
 	{
-		currentRooms = new List<String>();
-		availableRooms = MapConfigManager.GetRoomsList();
+		//currentRooms = new LinkedList<GameObject>();
+		currentRooms = new List<GameObject>();
+		availableRooms = new List<GameObject>();
+		availableRoomsString = MapConfigManager.GetRoomsList();
 		GenerateTiles();
 	}
 
@@ -32,7 +39,7 @@ public class MapCreatorMenu : MonoBehaviour
 	private void GenerateTiles()
 	{
 		DeleteContents(availableRoomsPanel);
-		foreach(string room in availableRooms)
+		foreach(string room in availableRoomsString)
 		{
 			GenerateAvailableRoomTile(room);	
 		}
@@ -44,7 +51,7 @@ public class MapCreatorMenu : MonoBehaviour
 	private void GenerateCurrentRoomTiles()
 	{
 		DeleteContents(currentRoomsPanel);
-		foreach (string room in currentRooms)
+		foreach (GameObject room in currentRooms)
 		{
 			GenerateCurrentRoomTile(room);
 		}
@@ -55,56 +62,73 @@ public class MapCreatorMenu : MonoBehaviour
 	/// </summary> 
 	private void GenerateAvailableRoomTile(string room)
 	{
-		GameObject tile = Instantiate(tilePrefab, availableRoomsPanel);
 
-		tile.GetComponentInChildren<RawImage>().texture = MapConfigManager.GetRoomImage(room);
+		GameObject tile = GenerateTile(room,availableRoomsPanel);
 
-		tile.GetComponent<Button>().targetGraphic = tile.GetComponentInChildren<RawImage>();
+		tile.GetComponent<RoomTile>().isSelected = false;
 
-		tile.GetComponentInChildren<TextMeshProUGUI>().text = room;
-
-
-		tile.GetComponent<Button>().onClick.AddListener(() => AddRoomToCurrentMap(room));
+		availableRooms.Add(tile);
 	}
 
 	/// <summary>
 	/// generates single current room tiles showing romm thumbnail and name
 	/// </summary> 
-	private void GenerateCurrentRoomTile(string room)
+	private void GenerateCurrentRoomTile(GameObject roomTile)
 	{
-		GameObject tile = Instantiate(tilePrefab, currentRoomsPanel);
+		GameObject tile = GenerateTile(roomTile.name,currentRoomsPanel);
 
-		tile.GetComponentInChildren<RawImage>().texture = MapConfigManager.GetRoomImage(room);
+		tile.GetComponent<RoomTile>().isSelected = true;
+		tile.GetComponent<RoomTile>().tileID = roomTile.GetComponent<RoomTile>().tileID;
+	}
 
-		tile.GetComponent<Button>().targetGraphic = tile.GetComponentInChildren<RawImage>();
+	/// <summary>
+	/// generates single room tiles
+	/// </summary> 
+	private GameObject GenerateTile(string room,Transform panel)
+	{
+		GameObject tile = Instantiate(tilePrefab, panel);
 
+		tile.name = room;
 		tile.GetComponentInChildren<TextMeshProUGUI>().text = room;
 
+		tile.GetComponentInChildren<RawImage>().texture = MapConfigManager.GetRoomImage(room);
+		tile.GetComponent<Button>().targetGraphic = tile.GetComponentInChildren<RawImage>();
 
-		tile.GetComponent<Button>().onClick.AddListener(() => RemoveRoomFromCurrentMap(room));
+		tile.GetComponent<Button>().onClick.AddListener(() => ClickedTile(tile));
+
+		return tile;
 	}
 
-
-
 	/// <summary>
-	/// Adds selected room to current map
+	/// Handles logic when clicked on tile
 	/// </summary> 
-	public void AddRoomToCurrentMap(string roomName)
+	public void ClickedTile(GameObject tile)
 	{
-		Debug.Log("Adding room: " + roomName+ " to current map");
-		currentRooms.Add(roomName);
-		GenerateCurrentRoomTiles();
-	}
+		if (tile == null) return;
 
+		// current room tile
+		if(tile.GetComponent<RoomTile>().isSelected)
+		{
+			GameObject toRemove = currentRooms.FirstOrDefault(r => r.GetComponent<RoomTile>().tileID == tile.GetComponent<RoomTile>().tileID);
 
-	/// <summary>
-	/// Rremoves selected roomt from current map
-	/// </summary> 
-	public void RemoveRoomFromCurrentMap(string roomName)
-	{
-		Debug.Log("Removing room: " + roomName + " from current map");
-		currentRooms.Remove(roomName);
-		GenerateCurrentRoomTiles();
+			currentRooms.Remove(toRemove);
+
+			Debug.Log("Removed room: " + tile.name + " from current map");
+
+			GenerateCurrentRoomTiles();
+		}
+		// available room tile
+		else
+		{
+			GameObject selectedTile = Instantiate(tile);
+			selectedTile.name = tile.name;
+			selectedTile.GetComponent<RoomTile>().tileID = idCount++;	
+			selectedTile.GetComponent<RoomTile>().isSelected = true;
+			currentRooms.Add(selectedTile);
+
+			Debug.Log("Added room: " + tile.name + " to current map");
+			GenerateCurrentRoomTiles();
+		}
 	}
 
 
@@ -115,9 +139,15 @@ public class MapCreatorMenu : MonoBehaviour
 	{
 		if (currentRooms.Count != 0)
 		{
-			string combinedString = string.Join(",", currentRooms);
+			List<string> selectedRooms = new List<string>();
+			foreach(GameObject room in currentRooms)
+			{
+				selectedRooms.Add(room.name);
+			}
+
+			string combinedString = string.Join(",", selectedRooms);
+			MapConfigManager.SaveLocally(selectedRooms);
 			Debug.Log("Generating map with given rooms: "+ combinedString);
-			MapConfigManager.SaveLocally(currentRooms);
 		}
 		else
 		{
@@ -146,20 +176,5 @@ public class MapCreatorMenu : MonoBehaviour
 		}
 	}
 
-
-
-	/*for (int i = 0; i<availableRooms.Count; i++)
-		{
-			GameObject tile = Instantiate(tilePrefab, contentParent);
-
-	tile.GetComponentInChildren<RawImage>().texture = MapConfigManager.GetRoomImage(availableRooms[i]);
-			
-			tile.GetComponentInChildren<TextMeshProUGUI>().text = availableRooms[i];
-
-
-
-			int roomIndex = i; // Aby przekazać poprawny indeks do funkcji
-							   //tile.GetComponent<Button>().onClick.AddListener(() => OnTileClicked(roomIndex));
-	}*/
 }
 

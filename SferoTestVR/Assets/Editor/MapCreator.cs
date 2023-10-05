@@ -129,7 +129,7 @@ public class MapCreator : EditorWindow
             while ((room = streamReader.ReadLine()) != null) //read all lines
             {
                 //add rooms to the list                
-                rooms.Add(MapConfigManager.roomNameToIndex(room));
+                rooms.Add(MapConfigManager.RoomNameToIndex(room));
             }
 
             streamReader.Close();
