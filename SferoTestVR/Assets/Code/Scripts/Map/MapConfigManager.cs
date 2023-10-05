@@ -47,7 +47,7 @@ public static class MapConfigManager
     /// <summary>
     /// converts the room file name without ".prefab" to the index in folder
     /// </summary>    
-    public static int roomNameToIndex(string name)
+    public static int RoomNameToIndex(string name)
     {
         List<string> roomsNames = GetRoomsList();
 
