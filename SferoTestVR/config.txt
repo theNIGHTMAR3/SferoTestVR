@@ -1,3 +1,7 @@
+Mini Moving Platforms
 Narrow Path
-ShortFakePath
+Ramp Jump
 Straight Moving Platform
+ShortFakePath
+
+
