@@ -9,13 +9,16 @@ public class CameraFollower : MonoBehaviour
     private GameObject player;
    
     private Vector2 mouseRotation;
+
+    private float sensitivity;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Sensitivity: "+PlayerPrefs.GetFloat("Sensitivity"));
         player = GameObject.FindGameObjectWithTag("Player");
+
+        SetSensitivity();
 
         LockCursor();
     }
@@ -25,14 +28,35 @@ public class CameraFollower : MonoBehaviour
     {
         transform.position = player.transform.position;
 
-        mouseRotation.x += Input.GetAxis("Mouse X") * PlayerPrefs.GetFloat("Sensitivity");
-        mouseRotation.y += Input.GetAxis("Mouse Y") * PlayerPrefs.GetFloat("Sensitivity");
+        mouseRotation.x += Input.GetAxis("Mouse X") * sensitivity;
+        mouseRotation.y += Input.GetAxis("Mouse Y") * sensitivity;
         mouseRotation.y = Mathf.Clamp(mouseRotation.y, -90f, 90f);
         transform.localRotation = Quaternion.Euler(-mouseRotation.y, mouseRotation.x, 0);
 
     }
 
-    public void SetCameraRotation(Quaternion checkpointRotation)
+	/// <summary>
+	/// sets player sensitivity at the start of the game
+	/// </summary>
+	private void SetSensitivity()
+	{
+		sensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        if(sensitivity == 0)
+        {
+			Debug.Log("PlayerPrefs: sensitivity not set, setting it to 1.0");
+			PlayerPrefs.SetFloat("Sensitivity", 1.0f);
+			PlayerPrefs.Save();
+		}
+        else
+        {
+			Debug.Log("Sensitivity: "+ sensitivity);
+		}
+	}
+
+	/// <summary>
+	/// restore camera rotation relevant to checkpoint 
+	/// </summary>
+	public void SetCameraRotation(Quaternion checkpointRotation)
     {
         mouseRotation.x = checkpointRotation.eulerAngles.y;
         mouseRotation.y = 0;
