@@ -86,7 +86,8 @@ public class Player : MonoBehaviour
             movement.Normalize();
             movement *= direction.magnitude;
 
-            rigidbody.AddForce(movement);
+            //rigidbody.AddForce(movement);
+            rigidbody.AddTorque(movement);
         }
     }
 
