@@ -151,6 +151,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Straight Moving Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 6994533299865071194, guid: d0a48197a19753640a11a22425104667,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9135435548433425786, guid: d0a48197a19753640a11a22425104667,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0a48197a19753640a11a22425104667, type: 3}
 --- !u!4 &1029043317622238713 stripped
@@ -329,6 +339,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112184108025014164, guid: 34fdb097e3ff22048ad55176efcfbd90,
+        type: 3}
+      propertyPath: delay
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 4112184108025014164, guid: 34fdb097e3ff22048ad55176efcfbd90,
         type: 3}
