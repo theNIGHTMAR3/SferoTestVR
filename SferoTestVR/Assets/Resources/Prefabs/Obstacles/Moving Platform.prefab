@@ -164,7 +164,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 2
 --- !u!114 &4112184108025014164
 MonoBehaviour:
@@ -182,8 +182,8 @@ MonoBehaviour:
   machineState: 0
   startPos: {fileID: 3463640041709355934}
   endPos: {fileID: 3463640040476988484}
-  movingTime: 1
-  stayTime: 1
+  movingTime: 10
+  stayTime: 5
 --- !u!114 &8754499106001728808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,12 +191,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6496976412713770784}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b85e17295bf1b9743b857d907b1bbe00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 0.351
+  strength: 0.88
 --- !u!1001 &4191866479022655125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -279,6 +279,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8617052771488911388, guid: 3d0451dd6a12eb64aa25bffbb025c753,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 412f5160ca0ad504796386d35abcbae4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d0451dd6a12eb64aa25bffbb025c753, type: 3}
 --- !u!1 &6496976412713770784 stripped

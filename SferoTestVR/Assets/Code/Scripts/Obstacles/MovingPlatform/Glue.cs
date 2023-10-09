@@ -25,8 +25,9 @@ public class Glue : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.transform.SetParent(transform);
+            other.transform.SetParent(transform.parent.transform);
             Debug.Log("GLUED");
+            
         }
     }
 

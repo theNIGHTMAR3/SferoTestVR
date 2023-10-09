@@ -11,11 +11,12 @@ namespace Platform
 
         public float movingTime = 1f;
         public float stayTime = 1f;
-                
+
+        Rigidbody rb;
 
         private void Start()
         {
-
+            //rb = GetComponent<Rigidbody>();
 
             //set timers using human readeable names
             action1Time = stayTime; //waiting at start
@@ -28,24 +29,28 @@ namespace Platform
         protected override void Action1(float percentage)
         {
             transform.position = Vector3.Lerp(startPos.transform.position, endPos.transform.position, 0);
+            //rb.MovePosition(Vector3.Lerp(startPos.transform.position, endPos.transform.position, 0));
         }
 
         //moving to end
         protected override void Action2(float percentage)
         {
             transform.position = Vector3.Lerp(startPos.transform.position, endPos.transform.position, percentage);
+            //rb.MovePosition(Vector3.Lerp(startPos.transform.position, endPos.transform.position, percentage));
         }
 
         //waiting at end
         protected override void Action3(float percentage)
         {
             transform.position = Vector3.Lerp(startPos.transform.position, endPos.transform.position, 1);
+            //rb.MovePosition(Vector3.Lerp(startPos.transform.position, endPos.transform.position, 1));
         }
 
         //moving to start
         protected override void Action4(float percentage)
         {
             transform.position = Vector3.Lerp(startPos.transform.position, endPos.transform.position, 1-percentage);
+            //rb.MovePosition(Vector3.Lerp(startPos.transform.position, endPos.transform.position, 1-percentage));
         }
     }
 
