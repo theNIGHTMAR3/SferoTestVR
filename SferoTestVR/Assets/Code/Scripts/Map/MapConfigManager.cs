@@ -66,9 +66,20 @@ public static class MapConfigManager
         Object roomObject = Resources.Load(MapLoader.FINAL_ROOMS_PATH + name);
 
         return AssetPreview.GetAssetPreview(roomObject);
-    #else   
-        return null;
-    #endif
+#else
+        Texture2D tex = null;
+	    byte[] fileData;
+        
+        var dirPath = "Previews";
+        string previewPath = Path.Combine(dirPath, name + ".png");
+
+	    if (File.Exists(previewPath)) 	{
+		    fileData = File.ReadAllBytes(previewPath);
+		    tex = new Texture2D(2, 2);
+		    tex.LoadImage(fileData); //..this will auto-resize the texture dimensions.
+	    }
+	    return tex;
+#endif
     }
 
 
