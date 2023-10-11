@@ -12,6 +12,7 @@ window.onload= function(){
         var first = true;
         const files = event.target.files;
         MainImageContainer.innerHTML="";
+		choicesNumber=files.length/2;
         for(var i=0;i<files.length;i+=2){
         //for (const file of files) {
             var path = files[i];

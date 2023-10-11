@@ -1,2 +1,6 @@
-Mini Moving Platforms
 Ramp Jump
+Mini Moving Platforms
+LasersWave
+ShortFakePath
+Narrow Path
+Straight Moving Platform
