@@ -128,19 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8949b9d9201edd744851801c00ec72fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6194166308723659171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8272393534468423217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27707d9c8c03a54895b3f22b5a6e4a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
 --- !u!1001 &1823566319476305746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -213,21 +200,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPCSetup
       objectReference: {fileID: 0}
-    - target: {fileID: 3884078341190772357, guid: 06d413db8587f1e40a3bc086b507b4b5,
-        type: 3}
-      propertyPath: m_Drag
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3884078341190772357, guid: 06d413db8587f1e40a3bc086b507b4b5,
-        type: 3}
-      propertyPath: m_AngularDrag
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3884078341190772357, guid: 06d413db8587f1e40a3bc086b507b4b5,
-        type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6973887091395152857, guid: 06d413db8587f1e40a3bc086b507b4b5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -243,12 +215,6 @@ PrefabInstance:
 --- !u!4 &1146011235011702731 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1633092262298304665, guid: 06d413db8587f1e40a3bc086b507b4b5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1823566319476305746}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8272393534468423217 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7747293004649075043, guid: 06d413db8587f1e40a3bc086b507b4b5,
     type: 3}
   m_PrefabInstance: {fileID: 1823566319476305746}
   m_PrefabAsset: {fileID: 0}

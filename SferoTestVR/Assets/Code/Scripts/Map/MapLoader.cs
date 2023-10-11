@@ -12,7 +12,7 @@ public class MapLoader : MonoBehaviour
 
     public const string FINAL_ROOMS_PATH = "Prefabs/Rooms/Final Rooms/";
 
-    void Start()
+    void Awake()
     {
         List<string> roomTypes = LoadRooms();
         List<Room> rooms = InstantiateRooms(roomTypes);
