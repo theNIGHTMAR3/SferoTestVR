@@ -9,11 +9,8 @@ EditorBuildSettings:
     path: Assets/Resources/Scenes/MainMenu.unity
     guid: 3384c28d45ed1b840bb3330430683948
   - enabled: 1
-    path: Assets/Resources/Scenes/Jakub tests.unity
-    guid: 2583acdf20256e04893d5563e72f068d
-  - enabled: 1
-    path: Assets/Resources/Scenes/Michal tests.unity
-    guid: b7d7516722a3ca6488e9508f94b4aeb5
+    path: Assets/Resources/Scenes/Dungeon.unity
+    guid: 5fb6f6d7ddc032f4baced01eb54d4439
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: ba79b5ff942130c45a50e824dd3a4c44,
       type: 2}

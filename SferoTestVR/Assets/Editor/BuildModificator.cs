@@ -12,6 +12,10 @@ public class BuildModificator : IPostprocessBuildWithReport
     public void OnPostprocessBuild(BuildReport report)
     {        
         string folder = Path.GetDirectoryName(report.summary.outputPath);                
+        if(File.Exists(folder + "/" + MapLoader.CONFIG_FILE))
+        {
+            File.Delete(folder + "/" + MapLoader.CONFIG_FILE);
+        }
         File.Copy(MapLoader.CONFIG_FILE, folder+"/"+ MapLoader.CONFIG_FILE);
     }
 }

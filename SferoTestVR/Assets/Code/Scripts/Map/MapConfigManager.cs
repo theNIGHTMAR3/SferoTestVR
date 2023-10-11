@@ -61,10 +61,14 @@ public static class MapConfigManager
     /// project window
     /// </summary>    
     public static Texture2D GetRoomImage(string name)
-    {        
+    {
+    #if UNITY_EDITOR
         Object roomObject = Resources.Load(MapLoader.FINAL_ROOMS_PATH + name);
 
         return AssetPreview.GetAssetPreview(roomObject);
+    #else   
+        return null;
+    #endif
     }
 
 
