@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public float moveSpeed = 10f;
    
     private Vector3 lastCheckpointPos;
-    private Quaternion savedRotation;
+    protected  Quaternion savedRotation;
 
     protected bool isAlive = false;
     protected bool isRespawning = false;
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
             movement.y = 0;
             movement.Normalize();
             movement *= direction.magnitude;
-
+            movement = Quaternion.Euler(0, 90, 0) * movement; //rotate by 90 degrees
             //rigidbody.AddForce(movement);
             rigidbody.AddTorque(movement);
         }
@@ -122,10 +122,9 @@ public class Player : MonoBehaviour
     /// <summary>
     /// starts revival coroutine/animation
     /// </summary>
-    protected void Revive()
+    virtual protected void Revive()
     {
-        transform.position = lastCheckpointPos;
-        cameraScript.SetCameraRotation(savedRotation);
+        transform.position = lastCheckpointPos;        
         transform.rotation = Quaternion.Euler(-90,savedRotation.eulerAngles.y,0);
 
         StartCoroutine(FreezePlayer(1f));
