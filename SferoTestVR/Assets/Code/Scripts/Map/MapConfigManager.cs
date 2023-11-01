@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using UnityEditor;
 using UnityEngine;
 
@@ -62,16 +63,28 @@ public static class MapConfigManager
     /// </summary>    
     public static Texture2D GetRoomImage(string name)
     {
-    #if UNITY_EDITOR
+        Debug.Log("GetRoomImage");
+#if UNITY_EDITOR
         Object roomObject = Resources.Load(MapLoader.FINAL_ROOMS_PATH + name);
 
-        return AssetPreview.GetAssetPreview(roomObject);
+        Texture2D preview = null;
+        preview = AssetPreview.GetAssetPreview(roomObject);
+        while (AssetPreview.IsLoadingAssetPreview(roomObject.GetInstanceID()))
+        {
+            //wait
+        }        
+        
+
+        return preview;
 #else
         Texture2D tex = null;
 	    byte[] fileData;
         
-        var dirPath = "Previews";
+        var dirPath = "/Previews";
         string previewPath = Path.Combine(dirPath, name + ".png");
+
+        Debug.Log(previewPath);
+        Debug.Log(Directory.GetCurrentDirectory());
 
 	    if (File.Exists(previewPath)) 	{
 		    fileData = File.ReadAllBytes(previewPath);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
@@ -20,6 +21,9 @@ public class BuildModificator : IPostprocessBuildWithReport
         File.Copy(MapLoader.CONFIG_FILE, folder+"/"+ MapLoader.CONFIG_FILE);
         #endregion
 
+#if UNITY_EDITOR
+        int a = 2;
+#endif
 
         #region create directory with prefab images
 
@@ -27,13 +31,17 @@ public class BuildModificator : IPostprocessBuildWithReport
         foreach (var room in rooms)
         {
             Object roomObject = Resources.Load(MapLoader.FINAL_ROOMS_PATH + room);
-            Texture2D preview = AssetPreview.GetAssetPreview(roomObject);
+            Texture2D preview = null;            
+            preview = AssetPreview.GetAssetPreview(roomObject);
+            while (AssetPreview.IsLoadingAssetPreview(roomObject.GetInstanceID()))
+            {
+                //wait
+            }
 
-            //first Make sure you're using RGB24 as your texture format
-            Texture2D texture = new Texture2D(preview.width, preview.height, TextureFormat.RGB24, false);
+            //first Make sure you're using RGB24 as your texture format            
 
             //then Save To Disk as PNG
-            byte[] bytes = texture.EncodeToPNG();
+            byte[] bytes = preview.EncodeToPNG();
             var dirPath = folder + "/Previews";
             if (!Directory.Exists(dirPath))
             {
