@@ -35,7 +35,7 @@ public class BuildModificator : IPostprocessBuildWithReport
             preview = AssetPreview.GetAssetPreview(roomObject);
             while (AssetPreview.IsLoadingAssetPreview(roomObject.GetInstanceID()))
             {
-                //wait
+                preview = AssetPreview.GetAssetPreview(roomObject);
             }
 
             //first Make sure you're using RGB24 as your texture format            
