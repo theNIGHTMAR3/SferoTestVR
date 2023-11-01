@@ -16,8 +16,9 @@ public class PlayerVRHome : Player
         base.Start();
 
         //vr setup
-        StartCoroutine(setupVR());
+        StartCoroutine(setupVR());        
     }
+
 
     /// <summary>
     /// gets input from controllers
