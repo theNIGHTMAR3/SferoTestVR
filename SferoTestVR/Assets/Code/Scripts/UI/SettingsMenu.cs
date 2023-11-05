@@ -11,7 +11,25 @@ public class SettingsMenu : MonoBehaviour
     private TextMeshProUGUI sensitivityValue;
     private TextMeshProUGUI diameterValue;
 
-    private void Start()
+
+	private void Awake()
+	{
+		if(!PlayerPrefs.HasKey("Sensitivity"))
+        {
+			Debug.Log("Sensitivity not set, setting it to 1.0");
+			PlayerPrefs.SetFloat("Sensitivity", 1.0f);
+			PlayerPrefs.Save();
+		}
+
+		if (!PlayerPrefs.HasKey("SphereDiameter"))
+		{
+			Debug.Log("SphereDiameter not set, setting it to 1.0");
+			PlayerPrefs.SetFloat("SphereDiameter", 1.0f);
+			PlayerPrefs.Save();
+		}
+	}
+
+	private void Start()
     {
         sensitivityValue = gameObject.GetNamedChild("SensitivityValue").GetComponent<TextMeshProUGUI>();
         diameterValue = gameObject.GetNamedChild("DiameterValue").GetComponent<TextMeshProUGUI>();
