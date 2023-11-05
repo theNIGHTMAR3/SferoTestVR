@@ -40,8 +40,8 @@ public class CameraFollower : MonoBehaviour
 	/// </summary>
 	private void SetSensitivity()
 	{
-		sensitivity = PlayerPrefs.GetFloat("Sensitivity");
-        if(sensitivity == 0)
+		
+        if(!PlayerPrefs.HasKey("Sensitivity"))
         {
 			Debug.Log("PlayerPrefs: sensitivity not set, setting it to 1.0");
 			PlayerPrefs.SetFloat("Sensitivity", 1.0f);
@@ -51,6 +51,7 @@ public class CameraFollower : MonoBehaviour
         {
 			Debug.Log("Sensitivity: "+ sensitivity);
 		}
+		sensitivity = PlayerPrefs.GetFloat("Sensitivity");
 	}
 
 	/// <summary>
