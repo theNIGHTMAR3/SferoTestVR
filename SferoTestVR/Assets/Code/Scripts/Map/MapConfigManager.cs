@@ -72,6 +72,7 @@ public static class MapConfigManager
         while (AssetPreview.IsLoadingAssetPreview(roomObject.GetInstanceID()))
         {
             //wait
+            preview = AssetPreview.GetAssetPreview(roomObject);
         }        
         
 
