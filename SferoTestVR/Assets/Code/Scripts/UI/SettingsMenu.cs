@@ -8,13 +8,20 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    private TextMeshProUGUI sensitivityValue;
+	public Slider sensitivitySlider;
+	public Slider diameterSlider;
+
+	private TextMeshProUGUI sensitivityValue;
     private TextMeshProUGUI diameterValue;
 
+   
 
 	private void Awake()
 	{
-		if(!PlayerPrefs.HasKey("Sensitivity"))
+		sensitivityValue = gameObject.GetNamedChild("SensitivityValue").GetComponent<TextMeshProUGUI>();
+		diameterValue = gameObject.GetNamedChild("DiameterValue").GetComponent<TextMeshProUGUI>();
+
+		if (!PlayerPrefs.HasKey("Sensitivity"))
         {
 			Debug.Log("Sensitivity not set, setting it to 1.0");
 			PlayerPrefs.SetFloat("Sensitivity", 1.0f);
@@ -27,12 +34,16 @@ public class SettingsMenu : MonoBehaviour
 			PlayerPrefs.SetFloat("SphereDiameter", 1.0f);
 			PlayerPrefs.Save();
 		}
+
+		sensitivityValue.text = PlayerPrefs.GetFloat("Sensitivity").ToString();
+		sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
+		diameterValue.text = PlayerPrefs.GetFloat("SphereDiameter").ToString("0.0").Replace(',', '.');
+		diameterSlider.value = PlayerPrefs.GetFloat("SphereDiameter");
 	}
 
 	private void Start()
     {
-        sensitivityValue = gameObject.GetNamedChild("SensitivityValue").GetComponent<TextMeshProUGUI>();
-        diameterValue = gameObject.GetNamedChild("DiameterValue").GetComponent<TextMeshProUGUI>();
+        
     }
 
     public void SetSensitivity(float sensitivity)
