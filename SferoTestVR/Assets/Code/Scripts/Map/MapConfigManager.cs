@@ -68,11 +68,7 @@ public static class MapConfigManager
             //wait
             preview = AssetPreview.GetAssetPreview(roomObject);
         }        
-        
-
         return preview;
-
-
 #else
         Texture2D tex = null;
         byte[] fileData;
@@ -88,12 +84,11 @@ public static class MapConfigManager
 
         if (File.Exists(previewPath))
         {
-            do
-            {
-                fileData = File.ReadAllBytes(previewPath);
-                tex = new Texture2D(2, 2);
-                tex.LoadImage(fileData); //..this will auto-resize the texture dimensions.
-            } while (!tex.IsRequestedMipmapLevelLoaded()); //how to check if the texture is loaded?
+            
+            fileData = File.ReadAllBytes(previewPath);            
+            tex = new Texture2D(2, 2);            
+            //tex.LoadImage(fileData);
+            ImageConversion.LoadImage(tex, fileData);                
         }
         return tex;
 #endif
