@@ -28,7 +28,7 @@ public class MapCreatorMenu : MonoBehaviour
 		//currentRooms = new LinkedList<GameObject>();
 		currentRooms = new List<GameObject>();
 		availableRooms = new List<GameObject>();
-		availableRoomsString = MapConfigManager.GetRoomsList();
+		availableRoomsString = MapConfigManager.GetRoomsList();		
 		GenerateTiles();
 	}
 
