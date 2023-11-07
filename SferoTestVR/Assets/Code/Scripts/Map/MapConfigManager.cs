@@ -24,20 +24,13 @@ public static class MapConfigManager
     {
         List<string> rooms = new List<string>();
 
-#if UNITY_EDITOR
-        var files = from file in Directory.EnumerateFiles("Assets/Resources/Prefabs/Rooms/Final Rooms/") select file;
-#else
-        //different folder
-        var files = from file in Directory.EnumerateFiles("Resources/Prefabs/Rooms/Final Rooms/") select file;
-#endif
-        foreach (var file in files)
+        var roomsPrefabs = Resources.LoadAll("Prefabs/Rooms/Final Rooms");
+        foreach (var room in roomsPrefabs)
         {
-            if (Path.GetExtension(file) != ".meta")
-            {
-                string roomName = Path.GetFileName(file);
-                roomName = roomName.Substring(0, roomName.Length - 7); //remove ".prefab"
-                rooms.Add(roomName);
-            }
+            
+            string roomName = room.name;            
+            rooms.Add(roomName);
+            
         }
 
         return rooms;
@@ -65,6 +58,7 @@ public static class MapConfigManager
     {
         Debug.Log("GetRoomImage");
 #if UNITY_EDITOR
+        
         Object roomObject = Resources.Load(MapLoader.FINAL_ROOMS_PATH + name);
 
         Texture2D preview = null;
@@ -74,25 +68,29 @@ public static class MapConfigManager
             //wait
             preview = AssetPreview.GetAssetPreview(roomObject);
         }        
-        
-
         return preview;
 #else
         Texture2D tex = null;
-	    byte[] fileData;
-        
-        var dirPath = "/Previews";
+        byte[] fileData;
+
+
+        string currentDirectiory = Directory.GetCurrentDirectory();
+        var dirPath = Path.Combine(currentDirectiory, "Previews");
         string previewPath = Path.Combine(dirPath, name + ".png");
 
+        Debug.Log(dirPath);
         Debug.Log(previewPath);
         Debug.Log(Directory.GetCurrentDirectory());
 
-	    if (File.Exists(previewPath)) 	{
-		    fileData = File.ReadAllBytes(previewPath);
-		    tex = new Texture2D(2, 2);
-		    tex.LoadImage(fileData); //..this will auto-resize the texture dimensions.
-	    }
-	    return tex;
+        if (File.Exists(previewPath))
+        {
+            
+            fileData = File.ReadAllBytes(previewPath);            
+            tex = new Texture2D(2, 2);            
+            //tex.LoadImage(fileData);
+            ImageConversion.LoadImage(tex, fileData);                
+        }
+        return tex;
 #endif
     }
 
