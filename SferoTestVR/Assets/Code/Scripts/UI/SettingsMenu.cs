@@ -8,9 +8,11 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
+	public Slider audioSlider;
 	public Slider sensitivitySlider;
 	public Slider diameterSlider;
 
+	private TextMeshProUGUI audioValue;
 	private TextMeshProUGUI sensitivityValue;
     private TextMeshProUGUI diameterValue;
 
@@ -18,8 +20,16 @@ public class SettingsMenu : MonoBehaviour
 
 	private void Awake()
 	{
+		audioValue = gameObject.GetNamedChild("AudioValue").GetComponent<TextMeshProUGUI>();
 		sensitivityValue = gameObject.GetNamedChild("SensitivityValue").GetComponent<TextMeshProUGUI>();
 		diameterValue = gameObject.GetNamedChild("DiameterValue").GetComponent<TextMeshProUGUI>();
+
+		if (!PlayerPrefs.HasKey("Audio"))
+		{
+			Debug.Log("Audio not set, setting it to 1.0");
+			PlayerPrefs.SetFloat("Audio", 1.0f);
+			PlayerPrefs.Save();
+		}
 
 		if (!PlayerPrefs.HasKey("Sensitivity"))
         {
@@ -35,6 +45,8 @@ public class SettingsMenu : MonoBehaviour
 			PlayerPrefs.Save();
 		}
 
+		audioValue.text = PlayerPrefs.GetFloat("Audio").ToString("0.0").Replace(',', '.');
+		audioSlider.value = PlayerPrefs.GetFloat("Audio");
 		sensitivityValue.text = PlayerPrefs.GetFloat("Sensitivity").ToString();
 		sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
 		diameterValue.text = PlayerPrefs.GetFloat("SphereDiameter").ToString("0.0").Replace(',', '.');
@@ -46,7 +58,17 @@ public class SettingsMenu : MonoBehaviour
         
     }
 
-    public void SetSensitivity(float sensitivity)
+	public void SetAudio(float volume)
+	{
+		float roundedVolume = (float)Math.Round(volume, 1);
+
+		PlayerPrefs.SetFloat("Audio", roundedVolume);
+		PlayerPrefs.Save();
+		audioValue.text = roundedVolume.ToString("0.0").Replace(',', '.');
+		Debug.Log("Changed audio volume to " + roundedVolume);
+	}
+
+	public void SetSensitivity(float sensitivity)
     {
         PlayerPrefs.SetFloat("Sensitivity", sensitivity);
         PlayerPrefs.Save();
