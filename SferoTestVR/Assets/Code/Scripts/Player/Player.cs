@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
         SetNewCheckPoint(playerSpawn);
         transform.position = lastCheckpointPos;
 
-        Debug.Log("SphereDiameter: "+PlayerPrefs.GetFloat("SphereDiameter"));
         SetPlayerSize();
         StartCoroutine(FreezePlayer(1));
     }
@@ -210,17 +209,16 @@ public class Player : MonoBehaviour
     /// </summary>  
     protected void SetPlayerSize()
     {
-        float playerSize = PlayerPrefs.GetFloat("SphereDiameter");
-
-        if(playerSize == 0)
+        if(!PlayerPrefs.HasKey("SphereDiameter"))
         {
             Debug.LogWarning("PlayerPrefs: player size not set, setting it to 1.0");
             PlayerPrefs.SetFloat("SphereDiameter", 1.0f);
             PlayerPrefs.Save();
             rigidbody.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
         }
+		float playerSize = PlayerPrefs.GetFloat("SphereDiameter");
 
-        Vector3 playerScale = new Vector3(playerSize, playerSize, playerSize);
+		Vector3 playerScale = new Vector3(playerSize, playerSize, playerSize);
 
         rigidbody.transform.localScale= playerScale;
     }

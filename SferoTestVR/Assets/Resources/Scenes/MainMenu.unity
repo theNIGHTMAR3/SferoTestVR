@@ -610,6 +610,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6abc7a5085aeb84b906b3de7fd01864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensitivitySlider: {fileID: 1879670000}
+  diameterSlider: {fileID: 1979901665}
 --- !u!1 &209215172
 GameObject:
   m_ObjectHideFlags: 0
