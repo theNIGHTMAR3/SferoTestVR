@@ -7,10 +7,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2331191341766500094, guid: ad128e1d77428af469dc7583b1036f55,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2675955487065230027, guid: ad128e1d77428af469dc7583b1036f55,
         type: 3}
       propertyPath: m_Name
-      value: Lava Base
+      value: Lava Small
       objectReference: {fileID: 0}
     - target: {fileID: 3339214047573223350, guid: ad128e1d77428af469dc7583b1036f55,
         type: 3}
