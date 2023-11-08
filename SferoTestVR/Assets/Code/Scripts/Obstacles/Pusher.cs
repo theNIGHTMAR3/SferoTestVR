@@ -11,6 +11,9 @@ public class Pusher : FourActionStateMachine
     [SerializeField] float extensionRange = 1f;
     [SerializeField] GameObject bars;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] AudioClip spikesMoves;
+
     //timers
     [SerializeField] float extendingTime = 0.25f;
     [SerializeField] float extendedTime = 0.25f;
@@ -43,10 +46,16 @@ public class Pusher : FourActionStateMachine
     protected override void Action2(float percentage)
     {
         SetPositionAndBarsScale(percentage);
+        
     }
 
-    //waiting to shorten
-    protected override void Action3(float percentage)
+	protected override void OnAction2Start()
+	{
+		audioSource.PlayOneShot(spikesMoves);
+	}
+
+	//waiting to shorten
+	protected override void Action3(float percentage)
     {
         SetPositionAndBarsScale(1);
     }
@@ -55,9 +64,14 @@ public class Pusher : FourActionStateMachine
     protected override void Action4(float percentage)
     {
         SetPositionAndBarsScale(1 - percentage);
-    }
+	}
 
-    void SetPositionAndBarsScale(float percentage)
+	protected override void OnAction4Start()
+	{
+		audioSource.PlayOneShot(spikesMoves);
+	}
+
+	void SetPositionAndBarsScale(float percentage)
     {
         transform.localPosition = Vector3.Lerp(Vector3.zero, endPos, percentage);
 
