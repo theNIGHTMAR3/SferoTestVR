@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2006086005404554664}
   - component: {fileID: 2006086005404554667}
   - component: {fileID: 2006086005404554666}
-  - component: {fileID: 4355557478924055124}
+  - component: {fileID: 1230314500111139308}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Threat
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4355557478924055124
+--- !u!114 &1230314500111139308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,10 +103,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2006086005404554677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c75daf928a4e4429f43db049487c28, type: 3}
+  m_Script: {fileID: 11500000, guid: dd6ddf4957581c04592e25569db939d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lavaSizzle: {fileID: 8300000, guid: f730121f749006849ba8a4ee6b960f97, type: 3}
+  audioClip: {fileID: 8300000, guid: f730121f749006849ba8a4ee6b960f97, type: 3}
+  audioSource: {fileID: 2331191341766500094}
+  playOnPlayer: 1
 --- !u!1 &2675955487065230027
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +153,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dce9c98b7454a844bbf7b13a2524a272, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -195,7 +197,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
