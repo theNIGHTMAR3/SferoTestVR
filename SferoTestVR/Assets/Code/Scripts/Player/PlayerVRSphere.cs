@@ -35,6 +35,14 @@ public class PlayerVRSphere : Player
          
     }
 
+
+    protected override void Update()
+    {
+        base.Update();    
+        if (virtuSphere != null)
+            virtuSphere.onUpdate();
+    }
+
     /// <summary>
     /// function to analyze input from the sphere. Called in update!
     /// </summary>
@@ -43,11 +51,15 @@ public class PlayerVRSphere : Player
         if (sphereInput != null)
         {
             //get sphere veloticy direction
-            
-            Vector2 vel = new Vector2(
+
+            Quaternion directionQuat = Quaternion.Euler(0.0f, sphereInput.getDirection() + 180.0f, 0.0f);
+            Vector3 moveVector = directionQuat * new Vector3(0.0f, 0.0f, sphereInput.getVelocity());
+            Vector2 vel = new Vector2(moveVector.x, moveVector.z);
+
+            /*Vector2 vel = new Vector2(
                 sphereInput.getVelocityVectorX(),
                 sphereInput.getVelocityVectorY()
-                );
+                );*/
             
             //MAY NEED SOME ADJUSTMENTS f.e.: multiplier or even rotation
             vel *= speedMultiplier;
