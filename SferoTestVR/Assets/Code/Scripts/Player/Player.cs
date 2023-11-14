@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     private float startTime;
 
 
+    protected Vector3 addedTorque = Vector3.zero;
     protected virtual void Start()
     {
         camera = Camera.main;
@@ -84,9 +85,13 @@ public class Player : MonoBehaviour
             movement.y = 0;
             movement.Normalize();
             movement *= direction.magnitude;
-            movement = Quaternion.Euler(0, 90, 0) * movement; //rotate by 90 degrees
-            //rigidbody.AddForce(movement);
+            movement = Quaternion.Euler(0, 90, 0) * movement; //rotate by 90 degrees            
             rigidbody.AddTorque(movement);
+            addedTorque = movement;
+        }
+        else
+        {
+            addedTorque = Vector3.zero;
         }
     }
 
@@ -96,7 +101,11 @@ public class Player : MonoBehaviour
     /// </summary>
     protected void Move(Vector2 direction)
     {
-        rigidbody.AddForce(new Vector3(direction.x, 0, direction.y));
+        //rigidbody.AddForce(new Vector3(direction.x, 0, direction.y));
+        Vector3 movement = new Vector3(direction.x,0,direction.y);                
+        movement = Quaternion.Euler(0, 90, 0) * movement; //rotate by 90 degrees            
+        rigidbody.AddTorque(movement);
+        addedTorque = movement;
     }
 
 
