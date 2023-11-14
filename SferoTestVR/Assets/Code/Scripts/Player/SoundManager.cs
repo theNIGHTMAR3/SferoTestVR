@@ -22,6 +22,8 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+		playerSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
+
 		if (!PlayerPrefs.HasKey("Audio"))
 		{
 			Debug.Log("Audio not set, setting it to 1.0");
