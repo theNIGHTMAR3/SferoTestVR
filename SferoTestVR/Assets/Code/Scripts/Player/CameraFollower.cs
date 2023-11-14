@@ -49,7 +49,7 @@ public class CameraFollower : MonoBehaviour
 		}
         else
         {
-			Debug.Log("Sensitivity: "+ sensitivity);
+			Debug.Log("Sensitivity: "+ PlayerPrefs.GetFloat("Sensitivity"));
 		}
 		sensitivity = PlayerPrefs.GetFloat("Sensitivity");
 	}

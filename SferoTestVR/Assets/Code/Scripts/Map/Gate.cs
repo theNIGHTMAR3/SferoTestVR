@@ -8,6 +8,9 @@ public class Gate : MonoBehaviour
     [SerializeField] private GameObject gateObject;
     [SerializeField] private GameObject gateCollider;    
 
+    [SerializeField] private AudioSource audioSource;    
+    [SerializeField] private AudioClip gateClosingClip;    
+
     /// <summary>
     /// holds info whether the gate is opened. also sets the start value/position
     /// </summary>
@@ -82,6 +85,7 @@ public class Gate : MonoBehaviour
 
     IEnumerator Close()
     {
+        audioSource.PlayOneShot(gateClosingClip);
         gateCollider.transform.localPosition = Vector3.zero;
         busy = true;
 

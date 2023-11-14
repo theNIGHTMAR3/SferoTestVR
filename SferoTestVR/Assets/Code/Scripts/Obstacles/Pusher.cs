@@ -12,7 +12,7 @@ public class Pusher : FourActionStateMachine
     [SerializeField] GameObject bars;
 
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] AudioClip spikesMoves;
+    [SerializeField] AudioClip pusherExtending;
 
     //timers
     [SerializeField] float extendingTime = 0.25f;
@@ -22,8 +22,13 @@ public class Pusher : FourActionStateMachine
 
     Vector3 endPos;
 
-    // Start is called before the first frame update
-    void Start()
+	private void Awake()
+	{
+		audioSource = GetComponent<AudioSource>();
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
         endPos = new Vector3(0,0, extensionRange);
 
@@ -51,7 +56,7 @@ public class Pusher : FourActionStateMachine
 
 	protected override void OnAction2Start()
 	{
-		audioSource.PlayOneShot(spikesMoves);
+		audioSource.PlayOneShot(pusherExtending);
 	}
 
 	//waiting to shorten
@@ -68,7 +73,7 @@ public class Pusher : FourActionStateMachine
 
 	protected override void OnAction4Start()
 	{
-		audioSource.PlayOneShot(spikesMoves);
+		audioSource.PlayOneShot(pusherExtending);
 	}
 
 	void SetPositionAndBarsScale(float percentage)
