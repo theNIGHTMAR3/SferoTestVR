@@ -49,6 +49,54 @@ public class PlayerVRSphere : Player
 
     }
 
+
+
+    /***
+     * Big disclaimer what's going on with natural movement assist
+     * 
+     * Basically, engines do whatever they can to keep the spheres speed. The only way 
+     * to get the change the player want to make can be made from engines currents. For 
+     * example if player wants to break, the engines will try harder, and the current will increase.
+     * 
+     * To calculate players influence (let's call it Δplayer), we can use the folloging equation:
+     * 
+     * sfere_speed = engine_speed + Δplayer
+     * 
+     * thus:
+     * 
+     * Δplayer = sfere_speed - engine_speed
+     * 
+     * 
+     * where all variables above are vectors indicating the movement, speed direction 
+     * 
+     * engine_speed vector is an approximation how fast would the sphere rotate without the player's influence, but keeping the 
+     * the same current
+     * 
+     * Each tick we simply do this transformation:
+     * 
+     * sfere_speed += Δplayer, which can be expanded to:
+     * sfere_speed = 2*sfere_speed - engine_speed, or
+     * sfere_speed += sfere_speed - engine_speed
+     * 
+     * 
+     * 
+     * 
+     * Now more complex issue - the influence of inclined surfaces
+     * 
+     * The spheres speed should technicaly increase on the incline if left alone.
+     * To calculate the the influence of the environment, we simply check what was the
+     * difference of angular speed between two frames, also taking into account the players influence.
+     * 
+     * Moreover! The the way we can simulate that is easy!
+     * 
+     * We need to tweak the equation just a little bit:
+     * 
+     * sfere_speed += Δplayer + incline_speed
+     * 
+     * and it should work!
+     */
+
+
     /// <summary>
     /// function to analyze input from the sphere. Called in update!
     /// </summary>
@@ -58,32 +106,25 @@ public class PlayerVRSphere : Player
         {
             //get sphere veloticy direction
             Quaternion directionQuat = Quaternion.Euler(0.0f, sphereInput.getDirection(), 0.0f);
-            Vector3 sphereDirection = directionQuat * new Vector3(0.0f, 0.0f, sphereInput.getVelocity());
-
-            //MAY NEED SOME ADJUSTMENTS f.e.: multiplier or even rotation
-            sphereDirection *= speedMultiplier;
+            Vector3 sphereDirection = directionQuat * new Vector3(0.0f, 0.0f, sphereInput.getVelocity());            
 
             //take into account accumulate torque (f.e. from terrain slope)
-            Vector3 accumulatedTorque = GetAccumulatedTorque();
+            Vector3 accumulatedTorque = GetAccumulatedTorque(); // may need some multipliers
 
             //get velocity from from engines currents
             Vector3 engineVelocity = EstimateEnginesVelocity();
 
-            Vector3 playerVelocity = sphereDirection - engineVelocity;
+            Vector3 Δplayer = sphereDirection - engineVelocity;
 
-            Vector3 newSphereVelocity = engineVelocity + playerVelocity + accumulatedTorque; //May need some multipliers               
-            virtuSphere.setSpherePose(newSphereVelocity.magnitude, Vector3.SignedAngle(Vector3.right, newSphereVelocity, Vector3.forward)); //is forward in this up vector?
+            sphereDirection += Δplayer + accumulatedTorque; 
+            virtuSphere.setSpherePose(sphereDirection.magnitude, Vector3.SignedAngle(Vector3.right, sphereDirection, Vector3.forward)); //is forward in this up vector?
 
             //simple rotate the player the same way
-            Move(sphereDirection);
-            
-
-
+            Move(sphereDirection * speedMultiplier);            
         }
         else
-        {
-            //home tests for sphere
-            //tests keeping player in the same position (negating slopes)            
+        {            
+            //home tests keeping player in the same position (negating slopes)            
 
             //take into account accumulate torque (f.e. from terrain slope)
             Vector3 accumulatedTorque = GetAccumulatedTorque();          
@@ -170,14 +211,8 @@ public class PlayerVRSphere : Player
 
 
             //get rotating direction
-            Vector3 mot0Dir = new Vector3(
-                1* Mathf.Sign(mot0.getMotorVelocity()),
-                0,
-                1* Mathf.Sign(mot0.getMotorVelocity()));
-            Vector3 mot1Dir = new Vector3(
-                1 * Mathf.Sign(mot0.getMotorVelocity()),
-                0,
-                -1 * Mathf.Sign(mot0.getMotorVelocity()));
+            Vector3 mot0Dir = new Vector3(1,0,1) * Mathf.Sign(mot0.getMotorVelocity());
+            Vector3 mot1Dir = new Vector3(1,0,-1 ) * Mathf.Sign(mot0.getMotorVelocity());
 
             //multiply by current
             mot0Dir *= mot0.getMotorCurrent();
@@ -230,7 +265,7 @@ public class PlayerVRSphere : Player
         //convert it to 3d Vector
         Vector3 TorqueToDirection = Quaternion.Euler(0, -90, 0) * accumulatedTorque;
 
-
+        //save for the next frame
         angularVelocity = rigidbody.angularVelocity;
         return TorqueToDirection;
 
