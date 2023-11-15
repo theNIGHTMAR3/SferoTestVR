@@ -14,6 +14,11 @@ public class Player : MonoBehaviour
     protected CameraFollower cameraScript;
     protected Vector2 playerInput;
     private GameObject playerSpawn;
+    
+
+    [SerializeField] protected AudioSource playerRollingAudioSource;
+	[SerializeField] protected float minSpeedSound = 0.5f;
+    [SerializeField] protected float maxSpeedSound = 5.0f;
 
     public float moveSpeed = 10f;
    
@@ -40,8 +45,8 @@ public class Player : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         cameraScript = camera.GetComponent<CameraFollower>();
 
-        // player starts game from spawn
-        playerSpawn = GameObject.FindGameObjectWithTag("Respawn");
+		// player starts game from spawn
+		playerSpawn = GameObject.FindGameObjectWithTag("Respawn");
         SetNewCheckPoint(playerSpawn);
         transform.position = lastCheckpointPos;
 
@@ -71,7 +76,8 @@ public class Player : MonoBehaviour
             GoBackToMainMenu();
         }
 
-    }
+        CalculateRollingVolume();
+	}
 
     /// <summary>
     /// Add force to sphere from Vector3
@@ -101,18 +107,29 @@ public class Player : MonoBehaviour
     /// </summary>
     protected void Move(Vector2 direction)
     {
+
         //rigidbody.AddForce(new Vector3(direction.x, 0, direction.y));
         Vector3 movement = new Vector3(direction.x,0,direction.y);                
         movement = Quaternion.Euler(0, 90, 0) * movement; //rotate by 90 degrees            
         rigidbody.AddTorque(movement);
         addedTorque = movement;
+
     }
 
+	/// <summary>
+	/// ckecks if player stands on the ground
+	/// </summary>
+	protected bool IsGrounded()
+	{
+        // 0.4f overlap to return grounded when on ramp, need a change later
+		return Physics.Raycast(rigidbody.transform.position, Vector3.down, rigidbody.transform.localScale.x+0.4f);
+	}
 
-    /// <summary>
-    /// starts death coroutine/animation, and after that Revive method
-    /// </summary>
-    public void Die()
+
+	/// <summary>
+	/// starts death coroutine/animation, and after that Revive method
+	/// </summary>
+	public void Die()
     {
         if(isAlive) 
         {
@@ -260,6 +277,33 @@ public class Player : MonoBehaviour
         cameraScript.UnlockCursor();
         SceneManager.LoadScene("MainMenu");
     }
+
+	/// <summary>
+	/// Calculates volume and pitch of sphere rolling sound
+	/// </summary> 
+	protected void CalculateRollingVolume()
+    {
+
+		float currentPlayerSpeed = rigidbody.velocity.magnitude;
+
+		float normalizedSpeed = Mathf.Clamp01((currentPlayerSpeed - minSpeedSound) / (maxSpeedSound - minSpeedSound));
+
+        playerRollingAudioSource.volume = normalizedSpeed;
+        playerRollingAudioSource.pitch = Mathf.Lerp(1.0f, 2.0f, normalizedSpeed);
+
+
+		if (currentPlayerSpeed > minSpeedSound && IsGrounded())
+		{
+			if (!playerRollingAudioSource.isPlaying)
+			{
+				playerRollingAudioSource.Play();
+			}
+		}
+		else
+		{
+			playerRollingAudioSource.Stop();
+		}
+	}
 
 
     /// <summary>
