@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27707d9c8c03a54895b3f22b5a6e4a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRollingAudioSource: {fileID: 6248598579544636696}
+  minSpeedSound: 0.5
+  maxSpeedSound: 5
   moveSpeed: 10
 --- !u!1 &4151987354444058714
 GameObject:
@@ -244,6 +247,12 @@ Transform:
 --- !u!1 &8272393534468423217 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7747293004649075043, guid: 06d413db8587f1e40a3bc086b507b4b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1823566319476305746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &6248598579544636696 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5762884222654403146, guid: 06d413db8587f1e40a3bc086b507b4b5,
     type: 3}
   m_PrefabInstance: {fileID: 1823566319476305746}
   m_PrefabAsset: {fileID: 0}
