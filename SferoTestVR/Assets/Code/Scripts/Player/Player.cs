@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// not modified in derived class
     /// </summary>
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         GetInput();
 

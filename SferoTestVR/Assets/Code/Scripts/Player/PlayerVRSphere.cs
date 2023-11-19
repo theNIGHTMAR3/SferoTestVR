@@ -22,7 +22,10 @@ public class PlayerVRSphere : Player
 
     //natural movement
     Vector2 estimatedDirection;
-    
+	[SerializeField] bool naturalMovementOn = true;
+
+
+    bool emergencyState = false;
     protected override void Start()
     {
         base.Start();
@@ -41,9 +44,9 @@ public class PlayerVRSphere : Player
     }
 
 
-    protected override void Update()
+    protected override void FixedUpdate()
     {
-        base.Update();    
+        base.FixedUpdate();    
         if (virtuSphere != null)
             virtuSphere.onUpdate();
 
@@ -97,40 +100,82 @@ public class PlayerVRSphere : Player
      */
 
 
+    int counter = 0;
     /// <summary>
     /// function to analyze input from the sphere. Called in update!
     /// </summary>
     protected override void GetInput()
     {
-        if (sphereInput != null)
+        if (counter == 0)
         {
-            //get sphere veloticy direction
-            Quaternion directionQuat = Quaternion.Euler(0.0f, sphereInput.getDirection(), 0.0f);
-            Vector3 sphereDirection = directionQuat * new Vector3(0.0f, 0.0f, sphereInput.getVelocity());            
+            if (!emergencyState)
+            {
+                if (naturalMovementOn)
+                {
+                    if (sphereInput != null)
+                    {
+                        //get sphere veloticy direction
+                        Quaternion directionQuat = Quaternion.Euler(0.0f, sphereInput.getDirection(), 0.0f);
+                        Vector3 sphereDirection = directionQuat * new Vector3(0.0f, 0.0f, sphereInput.getVelocity());
 
-            //take into account accumulate torque (f.e. from terrain slope)
-            Vector3 accumulatedTorque = GetAccumulatedTorque(); // may need some multipliers
+                        //take into account accumulate torque (f.e. from terrain slope)
+                        Vector3 accumulatedTorque = GetAccumulatedTorque(); // may need some multipliers
 
-            //get velocity from from engines currents
-            Vector3 engineVelocity = EstimateEnginesVelocity();
+                        //get velocity from from engines currents
+                        Vector3 engineVelocity = EstimateEnginesVelocity();
 
-            Vector3 Δplayer = sphereDirection - engineVelocity;
+                        Vector3 Δplayer = sphereDirection - engineVelocity;
 
-            sphereDirection += Δplayer + accumulatedTorque; 
-            virtuSphere.setSpherePose(sphereDirection.magnitude, Vector3.SignedAngle(Vector3.right, sphereDirection, Vector3.forward)); //is forward in this up vector?
+                        Vector3 actualSphereVelocity = new Vector3(sphereInput.getVelocityVectorX(), sphereInput.getVelocityVectorY(), sphereInput.getVelocityVectorZ());
+                        Debug.Log("Actual: " + actualSphereVelocity + " Estimated: " + engineVelocity);
 
-            //simple rotate the player the same way
-            Move(sphereDirection * speedMultiplier);            
+                        sphereDirection += Δplayer + accumulatedTorque / 30.0f;
+                        virtuSphere.setSpherePose(sphereDirection.magnitude, Vector3.SignedAngle(Vector3.right, sphereDirection, Vector3.forward)); //is forward in this up vector?
+
+                        //simple rotate the player the same way
+                        Move(sphereDirection * speedMultiplier);
+                    }
+                    else
+                    { /*
+                //home tests keeping player in the same position (negating slopes)            
+
+                //take into account accumulate torque (f.e. from terrain slope)
+                Vector3 accumulatedTorque = GetAccumulatedTorque();
+
+                //simple rotate the player the other way
+                Move(-accumulatedTorque);
+				*/
+                    }
+
+
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        emergencyState = true;
+                        virtuSphere.setSpherePose(0, 0);
+                        Debug.Log("EMERGENCY BREAK!!");
+                    }
+                }
+                else if (sphereInput != null)
+                {
+                    //get sphere veloticy direction
+                    Quaternion directionQuat = Quaternion.Euler(0.0f, sphereInput.getDirection(), 0.0f);
+                    Vector3 sphereDirection = directionQuat * new Vector3(0.0f, 0.0f, sphereInput.getVelocity());
+
+                    //simple rotate the player the same way
+                    Move(sphereDirection * speedMultiplier);
+                }
+            }
+            else
+            {
+                virtuSphere.setSpherePose(0, 0);
+            }
         }
         else
-        {            
-            //home tests keeping player in the same position (negating slopes)            
-
-            //take into account accumulate torque (f.e. from terrain slope)
-            Vector3 accumulatedTorque = GetAccumulatedTorque();          
-
-            //simple rotate the player the other way
-            Move(-accumulatedTorque);
+        {
+            //counter++;
+            //if(counter == 20) {
+            //    counter = 0;
+            //}
         }
     }
 
@@ -159,6 +204,7 @@ public class PlayerVRSphere : Player
     {
         Debug.Log("SPHERE CONNECTED");
         virtuSphere.requestSpherePoseUpdates(20);
+        virtuSphere.requestMotorStateUpdates(20);
     }
 
     private void onDisconnected()
@@ -170,26 +216,26 @@ public class PlayerVRSphere : Player
     #region Natural Movement
 
         /* id guessing!
-                                                     /|\ z
-                **************                        |
-            **********************                    |
-         ****************************                 -----> x
-      ***********            ***********
-     ********    ⎺⎺/|             ********
-   ********      /                 ********
-  *******     |⎺⎺|           |⎺⎺|      *******
- *******      |2|           |1|       *******
+                                                          
+                **************                         
+            **********************                     
+         ****************************                 -----> z
+      ***********            ***********              |  
+     ********    ⎺⎺/|             ********             |
+   ********      /                 ********          \|/
+  *******     |⎺⎺|           |⎺⎺|      *******          x
+ *******      |3|           |4|       *******
  ******       |_|           |_|        ******
-******                         \        ******
-******                         _\|        ******   --------------> forward
-******                                  ******
-******                        ⎺⎺/|       ******
-******                        /         ******
+******                        \         ******
+******                        _\|         ******   --------------> forward
+******       _                          ******
+******      |\                          ******
+******        \                         ******
  ******       |⎺⎺|           |⎺⎺|        ******
- *******      |3|           |0|       *******
+ *******      |1|           |2|       *******
   *******     |_|           |_|     *******
-   ********      \                 ********
-     ********    _\|             ********
+   ********                 /      ********
+     ********             |/_    ********
       ***********            ***********
          ****************************
             **********************
@@ -206,23 +252,24 @@ public class PlayerVRSphere : Player
     {        
         if (motors.Count == 4)
         {
-            MotorStateEvent mot0 = motors[0];
-            MotorStateEvent mot1 = motors[1];
+            MotorStateEvent mot2 = motors[2];
+            MotorStateEvent mot4 = motors[4];
 
+            Debug.Log("Vel[2]= " + mot2.getMotorVelocity() + " Curr[2]= " + mot2.getMotorCurrent() + "Vel[4]= " + mot4.getMotorVelocity() + " Curr[4]= " + mot4.getMotorCurrent());
 
             //get rotating direction
-            Vector3 mot0Dir = new Vector3(1,0,1) * Mathf.Sign(mot0.getMotorVelocity());
-            Vector3 mot1Dir = new Vector3(1,0,-1 ) * Mathf.Sign(mot0.getMotorVelocity());
+            Vector3 mot2Dir = new Vector3(1,0,-1) * Mathf.Sign(mot2.getMotorVelocity());
+            Vector3 mot4Dir = new Vector3(1,0,1 ) * Mathf.Sign(mot4.getMotorVelocity());
 
             //multiply by current
-            mot0Dir *= mot0.getMotorCurrent();
-            mot1Dir *= mot1.getMotorCurrent();
+            mot2Dir *= Mathf.Abs(mot2.getMotorCurrent());
+            mot4Dir *= Mathf.Abs(mot4.getMotorCurrent());
 
             //combine
-            Vector3 estimatedDirection = mot0Dir + mot1Dir;
+            Vector3 estimatedDirection = mot2Dir + mot4Dir;
 
             //multiply by some factor
-            estimatedDirection *= 1;
+            estimatedDirection *= 0.1F;
 
             return estimatedDirection;
         }
