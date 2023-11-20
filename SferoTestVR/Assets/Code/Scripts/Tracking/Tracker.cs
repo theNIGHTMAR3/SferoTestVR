@@ -61,6 +61,16 @@ public class Tracker : MonoBehaviour
         SVG.CreateSVG("Room " + room.index.ToString() + ".svg", records, pathTemplate.GetPathPoints(),room.length,room.width);
     }
 
+
+    class TrackFile
+    {
+        public string roomName;
+        public string roomDimensions;
+        public List<TrackRecord> records;
+        public List<Vector2> points;
+    }
+
+
     void SaveToFile()
     {
         string filename = "Room " + room.index.ToString();
@@ -68,7 +78,7 @@ public class Tracker : MonoBehaviour
 
         using (StreamWriter writer = new StreamWriter(File.Create(filePath)))
         {
-
+            /*
             //write the room name
             writer.WriteLine(room.gameObject.name);
 
@@ -93,7 +103,18 @@ public class Tracker : MonoBehaviour
             {
                 writer.WriteLine(point);
             }
+            */
+
+            TrackFile trackFile = new TrackFile();
+            trackFile.roomName = room.gameObject.name;
+            trackFile.roomDimensions = room.width + " x " + room.length;
+            trackFile.records = records;
+            trackFile.points = pathTemplate.GetPathPoints();
+
+            string stringjson = JsonUtility.ToJson(trackFile);
+            writer.Write(stringjson);
             writer.Close();
+            
         }
     }
 

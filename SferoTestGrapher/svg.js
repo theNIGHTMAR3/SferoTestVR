@@ -17,12 +17,7 @@ window.onload= function(){
         //for (const file of files) {
             var path = files[i];
             var svg = files[i+1];            
-            var relativePathSvg =  `${svg.webkitRelativePath}`;                                    
-
-
-                        
-
-            
+            var relativePathSvg =  `${svg.webkitRelativePath}`;                                                                        
 
             StartFileReader(path, relativePathSvg,first);
             first=false;
@@ -37,24 +32,23 @@ function StartFileReader(path,relativePathSvg,first){
         "load",
         () => {
             var wholeText = reader.result;
+
+            var trackData = JSON.parse(wholeText);
+
             //split each line
             var lines = wholeText.split('\n');
 
-            var roomName = lines[0];
-            var roomSize = lines[1];
-            var pointsNUmber = parseInt(lines[2]);
-            var pointsArray=[];
-            for(var j=0;j<pointsNUmber;j++){
-                rowVals = lines[j+3].split(' ');
+            var roomName = trackData.roomName;
+            var roomSize = trackData.roomDimensions;            
+            var pointsArray=trackData.records;
 
-
-                pointsArray[j]=[];
-                pointsArray[j][0]=parseFloat(rowVals[0].replace(',','.')).toFixed(2);
-                pointsArray[j][1]=parseFloat(rowVals[1].replace(',','.')).toFixed(2);
-                pointsArray[j][2]=parseFloat(rowVals[2].replace(',','.')).toFixed(2);
-                pointsArray[j][3]=parseFloat(rowVals[3].replace(',','.')).toFixed(2);
-
-            }
+            pointsArray.forEach(point =>{
+                point['pos']['x']=parseFloat(point['pos']['x']).toFixed(2);
+                point['pos']['y']=parseFloat(point['pos']['y']).toFixed(2);
+                point['vel']['x']=parseFloat(point['vel']['x']).toFixed(2);
+                point['vel']['y']=parseFloat(point['vel']['y']).toFixed(2);
+            });
+            
 
             CreatePathCointaner(roomName, roomSize, relativePathSvg, pointsArray,first);        
         },
@@ -101,11 +95,11 @@ function CreatePathCointaner(roomNameStr, roomSizeStr, svgSrc, pointsArray,shown
         width=parseInt(width);
         var height = width*8/5;
 
-        pointNode.style.left = pointPos[0]/40 * width + width/2 -5 +"px";
-        pointNode.style.bottom = pointPos[1]/64 * height -5 +"px";
+        pointNode.style.left = pointPos['pos']['x']/40 * width + width/2 -5 +"px";
+        pointNode.style.bottom = pointPos['pos']['y']/64 * height -5 +"px";
         
-        pointNode.style.setProperty('--posText','"'+"posX: "+pointPos[0]+", posY: "+pointPos[1]+'"');
-        pointNode.style.setProperty('--velText','"'+"velX: "+pointPos[2]+", velY: "+pointPos[3]+'"');
+        pointNode.style.setProperty('--posText','"'+"posX: "+pointPos['pos']['x']+", posY: "+pointPos['pos']['y']+'"');
+        pointNode.style.setProperty('--velText','"'+"velX: "+pointPos['vel']['x']+", velY: "+pointPos['vel']['y']+'"');
         //style it correctly
     });        
 }
@@ -125,3 +119,4 @@ function Prev(){
         MainImageContainer.children[actualChoice].style.display= "block";
     }
 }
+
