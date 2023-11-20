@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerPCController : Player
 {
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         Vector3 cameraForward= Camera.main.transform.forward;
 
         cameraForward.y = 0f;

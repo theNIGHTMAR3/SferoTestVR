@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ using UnityEngine;
 /// <summary>
 /// holds 2D position and speed. vertical position in game is ignored
 /// </summary>
+[Serializable]
 public struct TrackRecord
 {
     public Vector2 pos;
