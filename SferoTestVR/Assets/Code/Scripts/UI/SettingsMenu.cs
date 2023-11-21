@@ -6,11 +6,17 @@ using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
+
 public class SettingsMenu : MonoBehaviour
 {
 	public Slider audioSlider;
 	public Slider sensitivitySlider;
 	public Slider diameterSlider;
+	public Dropdown playerModeDropdown;
+
+
 
 	private TextMeshProUGUI audioValue;
 	private TextMeshProUGUI sensitivityValue;
@@ -45,12 +51,20 @@ public class SettingsMenu : MonoBehaviour
 			PlayerPrefs.Save();
 		}
 
+		if (!PlayerPrefs.HasKey("PlayerMode"))
+		{
+			Debug.Log("PlayerMode not set, setting it to PlayerPC");
+			PlayerPrefs.SetInt("PlayerMode", (int)PlayerMode.PlayerPC);
+			PlayerPrefs.Save();
+		}
+
 		audioValue.text = PlayerPrefs.GetFloat("Audio").ToString("0.0").Replace(',', '.');
 		audioSlider.value = PlayerPrefs.GetFloat("Audio");
 		sensitivityValue.text = PlayerPrefs.GetFloat("Sensitivity").ToString();
 		sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
 		diameterValue.text = PlayerPrefs.GetFloat("SphereDiameter").ToString("0.0").Replace(',', '.');
 		diameterSlider.value = PlayerPrefs.GetFloat("SphereDiameter");
+		playerModeDropdown.value = PlayerPrefs.GetInt("PlayerMode");
 	}
 
 	private void Start()
@@ -85,5 +99,13 @@ public class SettingsMenu : MonoBehaviour
         diameterValue.text = roundedDiameter.ToString("0.0").Replace(',','.');
         Debug.Log("Changed sphere diameter to " + roundedDiameter);
     }
+
+	public void SetPlayerMode(int mode)
+	{
+		PlayerPrefs.SetInt("PlayerMode", mode);
+		Debug.Log("Changed player mode to "+ Enum.GetName(typeof(PlayerMode), mode));
+
+		PlayerPrefs.Save();
+	}
 
 }
