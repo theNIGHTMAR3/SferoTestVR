@@ -40,9 +40,9 @@ function StartFileReader(path,relativePathSvg,first){
 
             var roomName = trackData.roomName;
             var roomSize = trackData.roomDimensions;            
-            var pointsArray=trackData.records;
+            var records=trackData.records;
 
-            pointsArray.forEach(point =>{
+            records.forEach(point =>{
                 point['pos']['x']=parseFloat(point['pos']['x']).toFixed(2);
                 point['pos']['y']=parseFloat(point['pos']['y']).toFixed(2);
                 point['vel']['x']=parseFloat(point['vel']['x']).toFixed(2);
@@ -50,7 +50,7 @@ function StartFileReader(path,relativePathSvg,first){
             });
             
 
-            CreatePathCointaner(roomName, roomSize, relativePathSvg, pointsArray,first);        
+            CreatePathCointaner(roomName, roomSize, relativePathSvg, records,first);        
         },
         false,
     );
@@ -61,7 +61,7 @@ function StartFileReader(path,relativePathSvg,first){
 
 
 
-function CreatePathCointaner(roomNameStr, roomSizeStr, svgSrc, pointsArray,shown){    
+function CreatePathCointaner(roomNameStr, roomSizeStr, svgSrc, records,shown){    
     var pathContainer = document.createElement("div");
     pathContainer.className="PathContainer";
     pathContainer.style.display=shown?"block":"none";
@@ -86,7 +86,7 @@ function CreatePathCointaner(roomNameStr, roomSizeStr, svgSrc, pointsArray,shown
     pointsContainer.className="PointsContainer";    
     pathContainer.appendChild(pointsContainer);
 
-    pointsArray.forEach(pointPos => {
+    records.forEach(record => {
         pointNode = document.createElement("div");
         pointNode.className="Point";
         pointsContainer.appendChild(pointNode);
@@ -95,12 +95,94 @@ function CreatePathCointaner(roomNameStr, roomSizeStr, svgSrc, pointsArray,shown
         width=parseInt(width);
         var height = width*8/5;
 
-        pointNode.style.left = pointPos['pos']['x']/40 * width + width/2 -5 +"px";
-        pointNode.style.bottom = pointPos['pos']['y']/64 * height -5 +"px";
+        pointNode.style.left = record['pos']['x']/40 * width + width/2 -5 +"px";
+        pointNode.style.bottom = record['pos']['y']/64 * height -5 +"px";
         
-        pointNode.style.setProperty('--posText','"'+"posX: "+pointPos['pos']['x']+", posY: "+pointPos['pos']['y']+'"');
-        pointNode.style.setProperty('--velText','"'+"velX: "+pointPos['vel']['x']+", velY: "+pointPos['vel']['y']+'"');
+        pointNode.style.setProperty('--posText','"'+"posX: "+record['pos']['x']+", posY: "+record['pos']['y']+'"');
+        pointNode.style.setProperty('--velText','"'+"velX: "+record['vel']['x']+", velY: "+record['vel']['y']+'"');
         //style it correctly
+
+
+
+        var div = document.createElement('div');
+        div.className="List";
+        div.innerHTML=`        
+            <div>Data</div>
+            <ul>
+                <div class="List">
+                    <div>pos</div>
+                    <ul>
+                        <li>x:`+record.pos.x+`</li>
+                        <li>y:`+record.pos.y+`</li>
+                    </ul>
+                </div>
+
+                <div class="List">
+                    <div>vel</div>
+                    <ul>
+                        <li>x:`+record.vel.x+`</li>
+                        <li>y:`+record.vel.y+`</li>
+                    </ul>
+                </div>
+
+                <div class="List">
+                    <div>sphereRecord</div>
+                    <ul>
+                        <li>timestamp:`+record.sphereRecord.timestamp+`</li>
+                        <li>velocity:`+record.sphereRecord.velocity+`</li>
+                        <li>direction:`+record.sphereRecord.direction+`</li>
+                        <li>velocityVectorX:`+record.sphereRecord.velocityVectorX+`</li>
+                        <li>velocityVectorY:`+record.sphereRecord.velocityVectorY+`</li>
+                        <li>velocityVectorZ:`+record.sphereRecord.velocityVectorZ+`</li>
+                    </ul>
+                </div>
+
+                <div class="List">
+                    <div>motorRecords</div>
+                    <ul>
+                        <div class="List">
+                            <div>motor1</div>
+                            <ul>
+                                <li>motorCurrent:`+record.motorRecords.motor1.motorCurrent+`A</li>
+                                <li>motorVoltage:`+record.motorRecords.motor1.motorVoltage+`V</li>
+                                <li>motorVelocity:`+record.motorRecords.motor1.motorVelocity+`</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="List">
+                            <div>motor2</div>
+                            <ul>
+                            <li>motorCurrent:`+record.motorRecords.motor2.motorCurrent+`A</li>
+                            <li>motorVoltage:`+record.motorRecords.motor2.motorVoltage+`V</li>
+                            <li>motorVelocity:`+record.motorRecords.motor2.motorVelocity+`</li>
+                            </ul>
+                        </div>
+
+                        <div class="List">
+                            <div>motor3</div>
+                            <ul>
+                                <li>motorCurrent:`+record.motorRecords.motor3.motorCurrent+`A</li>
+                                <li>motorVoltage:`+record.motorRecords.motor3.motorVoltage+`V</li>
+                                <li>motorVelocity:`+record.motorRecords.motor3.motorVelocity+`</li>
+                            </ul>
+                        </div>
+
+                        <div class="List">
+                            <div>motor4</div>
+                            <ul>
+                                <li>motorCurrent:`+record.motorRecords.motor4.motorCurrent+`A</li>
+                                <li>motorVoltage:`+record.motorRecords.motor4.motorVoltage+`V</li>
+                                <li>motorVelocity:`+record.motorRecords.motor4.motorVelocity+`</li>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+            </ul>        
+        `        
+
+
+        pointNode.appendChild(div);
+
     });        
 }
 
