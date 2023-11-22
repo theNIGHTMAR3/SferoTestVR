@@ -76,8 +76,41 @@ input[type=file] + label:hover{
     
     --posText: "posX: 10, posY: 20";
     --velText: "velX: 2, velY: 20";
+
+
+
+
+    & > div{
+        position: fixed;
+        display: none;
+    }
+
+    &:hover > div{
+        display: block;
+        top: 40px;
+        right: 10px;
+        width: 300px;
+        height: 500px;
+    }
+
+
 }
 
+
+.List{
+    /*title*/
+    &>div{
+        
+    }
+
+    &>ul{
+        margin-left: 10px;
+    }
+}
+
+
+
+/*
 .Point:hover::before{
     position: absolute;
     top: -70px;
@@ -99,7 +132,7 @@ input[type=file] + label:hover{
     height: 25px;
     background-color: rgba(100, 100, 100, 0.5);
 }
-
+*/
 
 .Title{
     font-size: x-large;
