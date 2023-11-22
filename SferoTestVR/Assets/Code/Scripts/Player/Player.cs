@@ -207,7 +207,7 @@ public class Player : MonoBehaviour
         Vector3 originalPosition = rigidbody.position;
         isRespawning = true;
         float elapsedTime = 0;
-
+        StartCoroutine(FreezePlayer(respawnDuration));
         rigidbody.isKinematic = true;
         while (elapsedTime < respawnDuration)
         {
