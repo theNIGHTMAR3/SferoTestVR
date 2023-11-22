@@ -87,46 +87,7 @@ public class PlayerVRSphere : Player
         if (virtuSphere != null)
             virtuSphere.onUpdate();
 
-    }
-
-    Vector3 accumulatedTorque = Vector3.zero;
-    bool emergencySend = false;
-    protected void SetSpherePos()
-    {
-        if (!emergencyState)
-        {
-            if (sphereInput != null)
-            {
-                //get sphere veloticy direction
-                Quaternion directionQuat = Quaternion.Euler(0.0f, sphereInput.getDirection(), 0.0f);
-                Vector3 sphereDirection = directionQuat * new Vector3(0.0f, 0.0f, sphereInput.getVelocity());
-
-                //get velocity from from engines currents
-                Vector3 engineVelocity = EstimateEnginesVelocity();
-
-                Vector3 Δplayer = sphereDirection - engineVelocity;
-
-                Vector3 actualSphereVelocity = new Vector3(sphereInput.getVelocityVectorX(), sphereInput.getVelocityVectorY(), sphereInput.getVelocityVectorZ());
-                Debug.Log("Actual: " + actualSphereVelocity + " Estimated: " + engineVelocity);
-
-                //torque seems to be 0 due to drag and angular drag
-
-                sphereDirection += Δplayer + accumulatedTorque / 30.0f;
-                virtuSphere.setSpherePose(sphereDirection.magnitude, Vector3.SignedAngle(Vector3.right, sphereDirection, Vector3.forward)); //is forward in this up vector?
-
-                accumulatedTorque = Vector3.zero;
-            }
-        }
-        else
-        {
-            if (!emergencySend)
-            {
-                virtuSphere.setSpherePose(0, 0);
-                emergencySend = true;
-                Debug.Log("EMERGENCY SPHERE STOP!!");
-            }
-        }
-    }
+    }    
 
     /***
      * Big disclaimer what's going on with natural movement assist
@@ -252,6 +213,45 @@ public class PlayerVRSphere : Player
 
     #region Natural Movement
 
+    Vector3 accumulatedTorque = Vector3.zero;
+    bool emergencySend = false;
+    protected void SetSpherePos()
+    {
+        if (!emergencyState)
+        {
+            if (sphereInput != null)
+            {
+                //get sphere veloticy direction
+                Quaternion directionQuat = Quaternion.Euler(0.0f, sphereInput.getDirection(), 0.0f);
+                Vector3 sphereDirection = directionQuat * new Vector3(0.0f, 0.0f, sphereInput.getVelocity());
+
+                //get velocity from from engines currents
+                Vector3 engineVelocity = EstimateEnginesVelocity();
+
+                Vector3 Δplayer = sphereDirection - engineVelocity;
+
+                Vector3 actualSphereVelocity = new Vector3(sphereInput.getVelocityVectorX(), sphereInput.getVelocityVectorY(), sphereInput.getVelocityVectorZ());
+                Debug.Log("Actual: " + actualSphereVelocity + " Estimated: " + engineVelocity);
+
+                sphereDirection += Δplayer + accumulatedTorque / 30.0f;
+                virtuSphere.setSpherePose(sphereDirection.magnitude, Vector3.SignedAngle(Vector3.right, sphereDirection, Vector3.forward)); //is forward in this up vector?
+
+                accumulatedTorque = Vector3.zero;
+            }
+        }
+        else
+        {
+            if (!emergencySend)
+            {
+                virtuSphere.setSpherePose(0, 0);
+                emergencySend = true;
+                Debug.Log("EMERGENCY SPHERE STOP!!");
+            }
+        }
+    }
+
+
+
         /* id guessing!
                                                           
                 **************                         
@@ -359,6 +359,46 @@ public class PlayerVRSphere : Player
         angularVelocity = rigidbody.angularVelocity;
         return TorqueToDirection;
 
+    }
+    #endregion
+
+    #region Tracking
+    public override MotorRecords GetMotorsRecords()
+    {
+        MotorRecord motor1 = new MotorRecord(
+            motors[1].getMotorCurrent(),
+            motors[1].getMotorVoltage(),
+            motors[1].getMotorVelocity()
+            );
+        MotorRecord motor2 = new MotorRecord(
+            motors[2].getMotorCurrent(),
+            motors[2].getMotorVoltage(),
+            motors[2].getMotorVelocity()
+            );
+        MotorRecord motor3 = new MotorRecord(
+            motors[3].getMotorCurrent(),
+            motors[3].getMotorVoltage(),
+            motors[3].getMotorVelocity()
+            );
+        MotorRecord motor4 = new MotorRecord(
+            motors[4].getMotorCurrent(),
+            motors[4].getMotorVoltage(),
+            motors[4].getMotorVelocity()
+            );
+
+
+        return new MotorRecords(motor1,motor2,motor3,motor4);
+    }
+
+    public override SphereRecord GetSphereRecord()
+    {        
+        return new SphereRecord(
+            sphereInput.getTimestamp(),
+            sphereInput.getVelocity(),
+            sphereInput.getDirection(),
+            sphereInput.getVelocityVectorX(),
+            sphereInput.getVelocityVectorY(),
+            sphereInput.getVelocityVectorZ());
     }
     #endregion
 }
