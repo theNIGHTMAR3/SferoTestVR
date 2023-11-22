@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using VirtuSphereClient.Events;
 
 public class Player : MonoBehaviour
 {
@@ -310,4 +311,22 @@ public class Player : MonoBehaviour
     /// method for getting input from the device
     /// </summary>
     protected virtual void GetInput() { }
+
+
+    public virtual MotorRecords GetMotorsRecords()
+    {
+        MotorRecords mock = new MotorRecords(            
+            new MotorRecord(11, 21, 31),
+            new MotorRecord(12, 22, 32),
+            new MotorRecord(13, 23, 33),
+            new MotorRecord(14, 24, 34)
+        );
+        return mock;
+    }
+
+    public virtual SphereRecord GetSphereRecord()
+    {
+        SphereRecord mock = new SphereRecord(0,10,180,15,30,45);        
+        return mock;
+    }
 }

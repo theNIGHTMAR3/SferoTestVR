@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using VirtuSphereClient;
+using VirtuSphereClient.Events;
 
 public class Tracker : MonoBehaviour
 {
@@ -9,18 +11,17 @@ public class Tracker : MonoBehaviour
     [SerializeField] PathTemplate pathTemplate;
 
     bool tracking = false;
-    GameObject player;
+    Player player;
     Rigidbody playerRb;
 
 
-    List<TrackRecord> records = new List<TrackRecord>();
-
+    List<TrackRecord> records;    
     float lastRecord = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").gameObject;
+        player = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Player>();
         playerRb = player.gameObject.GetComponent<Rigidbody>();
     }
 
@@ -38,7 +39,11 @@ public class Tracker : MonoBehaviour
 
                 records.Add(new TrackRecord(
                     new Vector2(playerPos.x, playerPos.z),
-                    new Vector2(playerVel.x, playerVel.z)));
+                    new Vector2(playerVel.x, playerVel.z),
+                    player.GetSphereRecord(),
+                    player.GetMotorsRecords()
+                    ));
+
             }
         }
     }
@@ -68,6 +73,8 @@ public class Tracker : MonoBehaviour
         public string roomDimensions;
         public List<TrackRecord> records;
         public List<Vector2> points;
+        public List<SpherePoseEvent> sphereEvents;        
+        public List<Dictionary<int, int>> motorsEvents;        
     }
 
 
@@ -110,6 +117,7 @@ public class Tracker : MonoBehaviour
             trackFile.roomDimensions = room.width + " x " + room.length;
             trackFile.records = records;
             trackFile.points = pathTemplate.GetPathPoints();
+
 
             string stringjson = JsonUtility.ToJson(trackFile);
             writer.Write(stringjson);
