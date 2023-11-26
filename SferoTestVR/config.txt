@@ -1,2 +1,3 @@
+Narrow Path
+Mini Moving Platforms
 Short Path With Spikes
-Ramp Jump
