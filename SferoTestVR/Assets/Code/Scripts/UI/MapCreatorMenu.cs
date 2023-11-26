@@ -25,10 +25,13 @@ public class MapCreatorMenu : MonoBehaviour
 
 	private void Start()
 	{
-		//currentRooms = new LinkedList<GameObject>();
 		currentRooms = new List<GameObject>();
 		availableRooms = new List<GameObject>();
-		availableRoomsString = MapConfigManager.GetRoomsList();		
+		availableRoomsString = MapConfigManager.GetRoomsList();	
+
+		// remove Start and End Rooms from MapCreator
+		availableRoomsString.Remove("Start Room");
+		availableRoomsString.Remove("End Room");
 		GenerateTiles();
 	}
 
@@ -75,6 +78,7 @@ public class MapCreatorMenu : MonoBehaviour
 	/// </summary> 
 	private void GenerateCurrentRoomTile(GameObject roomTile)
 	{
+
 		GameObject tile = GenerateTile(roomTile.name,currentRoomsPanel);
 
 		tile.GetComponent<RoomTile>().isSelected = true;
@@ -175,6 +179,8 @@ public class MapCreatorMenu : MonoBehaviour
 			Destroy(child.gameObject);
 		}
 	}
+
+
 
 }
 
