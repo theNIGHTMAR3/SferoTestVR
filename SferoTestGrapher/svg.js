@@ -13,24 +13,22 @@ window.onload= function(){
         const files = event.target.files;
         MainImageContainer.innerHTML="";
 		choicesNumber=files.length/2;
-        for(var i=0;i<files.length;i+=2){
-        //for (const file of files) {
+        for(var i=0;i<files.length;i+=2){        
             var path = files[i];
-            var svg = files[i+1];            
-            var relativePathSvg =  `${svg.webkitRelativePath}`;                                                                        
+            var svg = files[i+1];                        
 
-            StartFileReader(path, relativePathSvg,first);
+            StartFileReader(path, svg,first);
             first=false;
         }        
     });
 }
 
-function StartFileReader(path,relativePathSvg,first){
+function StartFileReader(trackFile,svgFile,first){
     const reader = new FileReader();
     //parse file with position and velocities
     reader.addEventListener(
         "load",
-        () => {
+            () => {
             var wholeText = reader.result;
 
             var trackData = JSON.parse(wholeText);
@@ -50,11 +48,11 @@ function StartFileReader(path,relativePathSvg,first){
             });
             
 
-            CreatePathCointaner(roomName, roomSize, relativePathSvg, records,first);        
+            CreatePathCointaner(roomName, roomSize, svgFile, records,first);        
         },
         false,
     );
-    reader.readAsText(path);
+    reader.readAsText(trackFile);
 }
 
 
@@ -78,9 +76,20 @@ function CreatePathCointaner(roomNameStr, roomSizeStr, svgSrc, records,shown){
     pathContainer.appendChild(roomSize);
 
     var image = document.createElement('img');
-    image.src = svgSrc;
+    //image.src = svgSrc;
     image.className="Path";
     pathContainer.appendChild(image);
+
+    const reader = new FileReader();
+    reader.addEventListener(
+        "load",
+            (e) => {
+                image.src = e.target.result;
+        },
+        false,
+    );
+    reader.readAsDataURL(svgSrc);
+
 
     var pointsContainer = document.createElement("div");
     pointsContainer.className="PointsContainer";    
