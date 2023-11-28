@@ -4842,7 +4842,7 @@ GameObject:
   - component: {fileID: 4893699025913078062}
   m_Layer: 0
   m_Name: BoxCollider
-  m_TagString: Untagged
+  m_TagString: Threat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4959,6 +4959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04efce2fe04d72d4c92cf73a02f89af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 0
   machineState: 0
   extendingTime: 0.25
   extendedTime: 3
