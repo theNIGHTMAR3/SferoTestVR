@@ -346,10 +346,10 @@ public class PlayerVRSphere : Player
         //          E0
         Vector3 playerAngularAcc = addedTorque;
 
-        //E1
+        //d
         Vector3 angularDrag = rigidbody.angularVelocity * rigidbody.drag;
 
-        //   (w1-w0)/deltaT - E0 + E1  
+        //   E1 = (w1-w0)/deltaT - E0 - d
         Vector3 accumulatedTorque =  angularAcc - playerAngularAcc - angularDrag;  
 
         //convert it to 3d Vector
