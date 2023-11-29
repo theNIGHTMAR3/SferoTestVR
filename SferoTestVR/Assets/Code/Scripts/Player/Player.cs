@@ -18,8 +18,12 @@ public class Player : MonoBehaviour
     
 
     [SerializeField] protected AudioSource playerRollingAudioSource;
+    [SerializeField] protected AudioSource hitAudioSource;
 	[SerializeField] protected float minSpeedSound = 0.5f;
     [SerializeField] protected float maxSpeedSound = 5.0f;
+
+
+    [SerializeField] protected AudioClip[] hitSounds;
 
     public float moveSpeed = 10f;
    
@@ -37,6 +41,8 @@ public class Player : MonoBehaviour
 
     private int deathsCount = 0;
     private float startTime;
+
+    private bool isOnFloor = false;
 
 
     protected Vector3 addedTorque = Vector3.zero;
@@ -182,12 +188,34 @@ public class Player : MonoBehaviour
             Win();
         }
 
-    }
+        if(!collision.gameObject.CompareTag("Floor") && !collision.gameObject.CompareTag("Threat") && !hitAudioSource.isPlaying)
+        {
+            CalculateHitVolume();
+		}
 
-    /// <summary>
-    /// freezes player for given amount of seconds
-    /// </summary> 
-    protected IEnumerator FreezePlayer(float seconds)
+	}
+
+	private void OnCollisionStay(Collision collision)
+	{
+		if (collision.gameObject.CompareTag("Floor") && !isOnFloor)
+		{
+			isOnFloor = true;
+		}
+	}
+
+	private void OnCollisionExit(Collision collision)
+	{
+		if (collision.gameObject.CompareTag("Floor"))
+		{
+            isOnFloor = false;
+		}
+	}
+
+
+	/// <summary>
+	/// freezes player for given amount of seconds
+	/// </summary> 
+	protected IEnumerator FreezePlayer(float seconds)
     {
         rigidbody.isKinematic = true;
         yield return new WaitForSeconds(seconds);
@@ -293,7 +321,7 @@ public class Player : MonoBehaviour
         playerRollingAudioSource.pitch = Mathf.Lerp(1.0f, 2.0f, normalizedSpeed);
 
 
-		if (currentPlayerSpeed > minSpeedSound && IsGrounded())
+		if (currentPlayerSpeed > minSpeedSound && isOnFloor)
 		{
 			if (!playerRollingAudioSource.isPlaying)
 			{
@@ -306,11 +334,26 @@ public class Player : MonoBehaviour
 		}
 	}
 
-
     /// <summary>
-    /// method for getting input from the device
-    /// </summary>
-    protected virtual void GetInput() { }
+    /// Calculates volume of sphere hit sound
+    /// </summary> 
+    protected void CalculateHitVolume()
+    {
+		AudioClip hit = hitSounds[Random.Range(0, hitSounds.Length)];
+
+		float currentPlayerSpeed = rigidbody.velocity.magnitude;
+
+		float normalizedSpeed = Mathf.Clamp01((currentPlayerSpeed - minSpeedSound) / (maxSpeedSound - minSpeedSound));
+
+
+        hitAudioSource.volume = normalizedSpeed;
+		hitAudioSource.PlayOneShot(hit);
+	}
+
+	/// <summary>
+	/// method for getting input from the device
+	/// </summary>
+	protected virtual void GetInput() { }
 
 
     public virtual MotorRecords GetMotorsRecords()

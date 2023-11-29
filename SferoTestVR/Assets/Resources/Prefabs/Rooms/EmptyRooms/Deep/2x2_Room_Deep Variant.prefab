@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &713118097202733136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4300467425150535373}
+  - component: {fileID: 527810781064274579}
+  - component: {fileID: 5904507902164564582}
+  m_Layer: 0
+  m_Name: FloorColliders
+  m_TagString: Floor
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4300467425150535373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713118097202733136}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2243279772572420377}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &527810781064274579
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713118097202733136}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 0, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.5}
+--- !u!65 &5904507902164564582
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713118097202733136}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 0, z: 1}
+  m_Center: {x: 0, y: 0, z: 15.5}
 --- !u!1 &857836959083482456
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,8 +71,6 @@ GameObject:
   - component: {fileID: 5485392415218394812}
   - component: {fileID: 8924701835391775927}
   - component: {fileID: 872292391666943350}
-  - component: {fileID: 3254905048625242107}
-  - component: {fileID: 6065125839160747542}
   - component: {fileID: 690303372337837196}
   m_Layer: 0
   m_Name: DeepColliders
@@ -89,32 +145,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0, y: 16, z: 14}
   m_Center: {x: -8, y: -8, z: 8}
---- !u!65 &3254905048625242107
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857836959083482456}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4, y: 0, z: 1}
-  m_Center: {x: 0, y: 0, z: 0.5}
---- !u!65 &6065125839160747542
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857836959083482456}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4, y: 0, z: 1}
-  m_Center: {x: 0, y: 0, z: 15.5}
 --- !u!65 &690303372337837196
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -157,6 +187,7 @@ Transform:
   m_Children:
   - {fileID: 4461870693338905566}
   - {fileID: 1154566680750565494}
+  - {fileID: 4300467425150535373}
   m_Father: {fileID: 7473456802444939422}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -1,1 +1,3 @@
-LasersWave
+Narrow Path
+Straight Moving Platform
+Short Path With Spikes
