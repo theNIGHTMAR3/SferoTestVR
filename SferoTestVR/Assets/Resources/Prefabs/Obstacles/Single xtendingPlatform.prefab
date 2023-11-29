@@ -105,6 +105,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Single xtendingPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f6db41f6d1f8b9d4db8589519076a3be,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6db41f6d1f8b9d4db8589519076a3be, type: 3}
 --- !u!1 &3592846873363560547 stripped

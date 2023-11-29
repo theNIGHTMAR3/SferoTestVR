@@ -30,6 +30,7 @@ Transform:
   - {fileID: 5455662555796362461}
   - {fileID: 2295158117136157364}
   - {fileID: 3003145542854451007}
+  - {fileID: 3272860401097240715}
   m_Father: {fileID: 4730969879512059034}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -262,6 +263,64 @@ MonoBehaviour:
   _width: 1
   _length: 1
   index: 0
+--- !u!1 &6375820693703624824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3272860401097240715}
+  - component: {fileID: 6221037728387038023}
+  - component: {fileID: 5767681246001624621}
+  m_Layer: 0
+  m_Name: FloorColliders
+  m_TagString: Floor
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3272860401097240715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375820693703624824}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3163058562573649931}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6221037728387038023
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375820693703624824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 0, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.5}
+--- !u!65 &5767681246001624621
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375820693703624824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 0, z: 1}
+  m_Center: {x: 0, y: 0, z: 7.5}
 --- !u!1 &7335072572936039583
 GameObject:
   m_ObjectHideFlags: 0
