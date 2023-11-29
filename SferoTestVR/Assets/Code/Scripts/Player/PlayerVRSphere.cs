@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿#define LOG
+
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using VirtuSphereClient;
@@ -8,10 +13,7 @@ using System.Linq;
 
 
 public class PlayerVRSphere : Player
-{
-
-    [SerializeField] float speedMultiplier = 1;
-
+{    
 
     //connection to sphere
     [SerializeField] string hostIP="127.0.0.1";
@@ -25,10 +27,9 @@ public class PlayerVRSphere : Player
     Dictionary<int, MotorStateEvent> motors = new Dictionary<int, MotorStateEvent>();
     Dictionary<int, SmoothQueue> motorCurrents = new Dictionary<int, SmoothQueue>();    
 
-    //natural movement
-    Vector2 estimatedDirection;
+    //natural movement    
 	[SerializeField] bool naturalMovementOn = true;
-
+    [SerializeField] float paramA=2, paramB=2;
 
     bool emergencyState = false;
 
@@ -124,39 +125,24 @@ public class PlayerVRSphere : Player
     /// </summary>
     protected override void GetInput()
     {        
-
-        if (naturalMovementOn)
+        if (sphereInput != null)
         {
-            if (sphereInput != null)
-            {
-                //get sphere veloticy direction                
-                Vector3 sphereDirection = sphereDirectionQueue.GetSmooth();
+            //get sphere veloticy direction                
+            Vector3 sphereDirection = sphereDirectionQueue.GetSmooth();
 
 
-                accumulatedTorque += GetAccumulatedTorque();
-
-                //simple rotate the player the same way
-                Move(sphereDirection * speedMultiplier);
-            }
-            //Debug.Log(GetAccumulatedTorque());
-
-            if (Input.GetKey(KeyCode.Space))
-            {
-                emergencyState = true;                
-                Debug.Log("EMERGENCY BREAK PRESSED!!");
-            }
-        }
-        else if (sphereInput != null)
-        {
-            //get sphere veloticy direction
-            Quaternion directionQuat = Quaternion.Euler(0.0f, sphereInput.getDirection(), 0.0f);
-            Vector3 sphereDirection = directionQuat * new Vector3(0.0f, 0.0f, sphereInput.getVelocity());
+            accumulatedTorque += GetAccumulatedTorque();
 
             //simple rotate the player the same way
-            Move(sphereDirection * speedMultiplier);
+            Move(sphereDirection);
         }
-        
-        
+        //Debug.Log(GetAccumulatedTorque());
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            emergencyState = true;                
+            Debug.Log("EMERGENCY BREAK PRESSED!!");
+        }  
     }
 
     
@@ -220,11 +206,14 @@ public class PlayerVRSphere : Player
                 Debug.DrawRay(transform.position - new Vector3(0.0f, 0.5f, 0.0f), engineVelocity, Color.blue, 0.05f);
 
                 Vector3 actualSphereVelocity = new Vector3(sphereInput.getVelocityVectorX(), sphereInput.getVelocityVectorY(), sphereInput.getVelocityVectorZ());
-                Debug.Log("Actual: " + actualSphereVelocity + " Estimated: " + engineVelocity);
+                //Debug.Log("Actual: " + actualSphereVelocity + " Estimated: " + engineVelocity);
 
                 sphereDirection += Δplayer; //+ accumulatedTorque / 30.0f;
-                virtuSphere.setSpherePose(sphereDirection.magnitude*0.5f, Vector3.SignedAngle(Vector3.forward, sphereDirection, Vector3.up)); //is forward in this up vector?
 
+                if (naturalMovementOn)
+                {
+                    virtuSphere.setSpherePose(sphereDirection.magnitude * 0.5f, Vector3.SignedAngle(Vector3.forward, sphereDirection, Vector3.up)); //is forward in this up vector?
+                }
                 //Debug.DrawRay(transform.position - new Vector3(0.0f, 0.5f, 0.0f), sphereDirection, Color.yellow, 0.05f);
 
                 accumulatedTorque = Vector3.zero;
@@ -255,7 +244,7 @@ public class PlayerVRSphere : Player
  *******      |3|           |4|       *******
  ******       |_|           |_|        ******
 ******                        \         ******
-******                        _\|         ******   --------------> forward
+******                        _\|        ******   --------------> forward
 ******       _                          ******
 ******      |\                          ******
 ******        \                         ******
@@ -274,6 +263,29 @@ public class PlayerVRSphere : Player
 
 
     /// <summary>
+    /// returns the strength on an engine relatively to its current
+    /// </summary>
+    /// <param name="current">absoulte value of a current</param>
+    /// <returns></returns>
+    private float EngineStrength(float current)
+    {        
+
+
+#if LINEAR
+        return current * paramA;
+#elif POWER
+        return Mathf.Pow(current,paramA)*paramB;
+#elif SQUARE_ROOT
+        return Mathf.Sqrt(current) * paramA;
+#elif LOG
+        return Mathf.Log(current,paramA) * paramB;
+#endif
+
+        return 0;
+    }
+
+
+    /// <summary>
     /// Estimates desired velocity basing on engines currents, and rotation directions.   
     /// </summary>
     private Vector3 EstimateEnginesVelocity()
@@ -286,21 +298,21 @@ public class PlayerVRSphere : Player
             float mot2Current = motorCurrents[mot2.getControllerId()].GetSmooth();
             float mot4Current = motorCurrents[mot4.getControllerId()].GetSmooth();            
 
-            Debug.Log("Vel[2]= " + mot2.getMotorVelocity() + " Curr[2]= " + mot2Current + "Vel[4]= " + mot4.getMotorVelocity() + " Curr[4]= " + mot4Current);
+            Debug.Log(  "Vel[2]= " + mot2.getMotorVelocity().ToString("00.0") + 
+                        " Curr[2]= " + mot2Current.ToString("00.0") + 
+                        " Vel[4]= " + mot4.getMotorVelocity().ToString("00.0") + 
+                        " Curr[4]= " + mot4Current.ToString("00.0"));
 
             //get rotating direction
             Vector3 mot2Dir = new Vector3(1,0,-1) * Mathf.Sign(mot2Current);
             Vector3 mot4Dir = new Vector3(1,0,1 ) * Mathf.Sign(mot4Current);
 
-            //multiply by current
-            mot2Dir *= Mathf.Abs(mot2Current);
-            mot4Dir *= Mathf.Abs(mot4Current);
+            //multiply by strength 
+            mot2Dir *= EngineStrength(Mathf.Abs(mot2Current));
+            mot4Dir *= EngineStrength(Mathf.Abs(mot4Current));
 
             //combine
-            Vector3 estimatedDirection = mot2Dir + mot4Dir;
-
-            //multiply by some factor
-            estimatedDirection *= 0.1F;
+            Vector3 estimatedDirection = mot2Dir + mot4Dir;            
 
             Debug.DrawRay(transform.position - new Vector3(0.0f, 0.75f, 0.0f), mot2Dir, Color.red, 0.05f);
             Debug.DrawRay(transform.position - new Vector3(0.0f, 0.75f, 0.0f), mot4Dir, Color.green, 0.05f);
@@ -354,9 +366,9 @@ public class PlayerVRSphere : Player
         return TorqueToDirection;
 
     }
-    #endregion
+#endregion
 
-    #region Tracking
+#region Tracking
     public override MotorRecords GetMotorsRecords()
     {
         MotorRecord motor1 = new MotorRecord(
@@ -394,5 +406,5 @@ public class PlayerVRSphere : Player
             sphereInput.getVelocityVectorY(),
             sphereInput.getVelocityVectorZ());
     }
-    #endregion
+#endregion
 }

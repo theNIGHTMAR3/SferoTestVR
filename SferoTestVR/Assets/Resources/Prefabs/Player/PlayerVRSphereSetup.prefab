@@ -874,10 +874,11 @@ MonoBehaviour:
   minSpeedSound: 0.5
   maxSpeedSound: 5
   moveSpeed: 10
-  speedMultiplier: 1
   hostIP: 127.0.0.1
   hostPort: 4445
   naturalMovementOn: 1
+  paramA: 2
+  paramB: 2
 --- !u!1 &7294267369972221911
 GameObject:
   m_ObjectHideFlags: 0
