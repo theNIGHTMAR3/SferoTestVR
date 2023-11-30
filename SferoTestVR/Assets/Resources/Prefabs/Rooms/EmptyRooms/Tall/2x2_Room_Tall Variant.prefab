@@ -30,7 +30,6 @@ GameObject:
   - component: {fileID: 4678472876956044123}
   - component: {fileID: 896078725300736119}
   - component: {fileID: 5377330013100383796}
-  - component: {fileID: 7131314537493246493}
   m_Layer: 0
   m_Name: BaseColliders
   m_TagString: Untagged
@@ -130,19 +129,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6, y: 8, z: 1}
   m_Center: {x: -5, y: 4, z: 15.5}
---- !u!65 &7131314537493246493
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2038291248778460260}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 16, y: 0, z: 16}
-  m_Center: {x: 0, y: 0, z: 8}
 --- !u!1 &5496633945339802911
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +229,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 16, y: 0, z: 14}
   m_Center: {x: 0, y: 24, z: 8}
+--- !u!1 &7140035194066512439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8412867061318033064}
+  - component: {fileID: 2034025979397039373}
+  m_Layer: 0
+  m_Name: FloorCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8412867061318033064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7140035194066512439}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1918710228274704112}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2034025979397039373
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7140035194066512439}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16, y: 0, z: 16}
+  m_Center: {x: 0, y: 0, z: 8}
 --- !u!1 &7969586473651274125
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,6 +302,7 @@ Transform:
   m_Children:
   - {fileID: 8317153128848509255}
   - {fileID: 6548733483042347404}
+  - {fileID: 8412867061318033064}
   m_Father: {fileID: 465227224478888451}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
