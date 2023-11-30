@@ -13,7 +13,7 @@ public class PlayerPCController : Player
         cameraForward.y = 0f;
         cameraForward.Normalize();
 
-        Vector3 playerMovement = (Camera.main.transform.right * playerInput.x + cameraForward * playerInput.y) * moveSpeed;
+        Vector3 playerMovement = (Camera.main.transform.right * playerInput.x + cameraForward * playerInput.y);
 
         Move(playerMovement);
     }

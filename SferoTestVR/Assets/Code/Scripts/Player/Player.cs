@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
             movement.Normalize();
             movement *= direction.magnitude;
             movement = Quaternion.Euler(0, 90, 0) * movement; //rotate by 90 degrees            
+            movement *= moveSpeed;
             rigidbody.AddTorque(movement);
             addedTorque = movement;
         }
@@ -118,6 +119,7 @@ public class Player : MonoBehaviour
         //rigidbody.AddForce(new Vector3(direction.x, 0, direction.y));
         Vector3 movement = new Vector3(direction.x,0,direction.y);                
         movement = Quaternion.Euler(0, 90, 0) * movement; //rotate by 90 degrees            
+        movement *= moveSpeed;
         rigidbody.AddTorque(movement);
         addedTorque = movement;
 
