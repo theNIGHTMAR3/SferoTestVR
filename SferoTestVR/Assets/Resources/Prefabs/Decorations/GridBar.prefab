@@ -100,6 +100,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridBar
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d5213ebb6701c1d4eb25e63c7537ab7d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5213ebb6701c1d4eb25e63c7537ab7d, type: 3}
 --- !u!1 &6178619830726034696 stripped

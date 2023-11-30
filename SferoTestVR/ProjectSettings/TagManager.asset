@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Threat
   - GM
+  - Floor
   layers:
   - Default
   - TransparentFX
