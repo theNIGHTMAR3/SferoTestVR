@@ -238,6 +238,43 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &5647272395748427398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5337215623949439511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b4a540685127a4880c169ce58f9c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7092527042147294104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5337215623949439511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0a142e37ff4db48a6d96bd1ce62b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRollingAudioSource: {fileID: 7956611561027866942}
+  hitAudioSource: {fileID: 0}
+  minSpeedSound: 0.5
+  maxSpeedSound: 5
+  hitSounds:
+  - {fileID: 8300000, guid: cb9aeb6ee44e19a408114e56870bf699, type: 3}
+  - {fileID: 8300000, guid: 72fd88b13af4f3f4c8ffdd9ab3a417c4, type: 3}
+  - {fileID: 8300000, guid: c20ff43bee17bde4d8301582996d29b7, type: 3}
+  moveSpeed: 10
+  speedMultiplier: 1
+  hostIP: 127.0.0.1
+  hostPort: 4445
+  naturalMovementOn: 1
 --- !u!1 &3097669870064262133
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,38 +883,6 @@ MonoBehaviour:
   m_SnapThresholdDistance: 10
   m_Reticle: {fileID: 0}
   m_StopLineAtFirstRaycastHit: 1
---- !u!114 &5647272395748427398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5337215623949439511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9b4a540685127a4880c169ce58f9c11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7092527042147294104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5337215623949439511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f0a142e37ff4db48a6d96bd1ce62b76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerRollingAudioSource: {fileID: 7956611561027866942}
-  minSpeedSound: 0.5
-  maxSpeedSound: 5
-  moveSpeed: 10
-  speedMultiplier: 1
-  hostIP: 127.0.0.1
-  hostPort: 4445
-  naturalMovementOn: 1
 --- !u!1 &7294267369972221911
 GameObject:
   m_ObjectHideFlags: 0
