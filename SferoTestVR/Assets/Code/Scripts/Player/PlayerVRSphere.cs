@@ -301,7 +301,8 @@ public class PlayerVRSphere : Player
             Debug.Log(  "Vel[2]= " + mot2.getMotorVelocity().ToString("00.0") + 
                         " Curr[2]= " + mot2Current.ToString("00.0") + 
                         " Vel[4]= " + mot4.getMotorVelocity().ToString("00.0") + 
-                        " Curr[4]= " + mot4Current.ToString("00.0"));
+                        " Curr[4]= " + mot4Current.ToString("00.0")+
+                        " sphere direction= " + sphereDirectionQueue.GetSmooth().ToString("00.0"));
 
             //get rotating direction
             Vector3 mot2Dir = new Vector3(1,0,-1) * Mathf.Sign(mot2Current);
