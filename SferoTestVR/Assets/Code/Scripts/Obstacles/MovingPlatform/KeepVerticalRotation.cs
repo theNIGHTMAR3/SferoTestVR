@@ -16,7 +16,7 @@ public class KeepVerticalRotation : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-
+        rb.isKinematic = false;
         //rb.constraints = RigidbodyConstraints.FreezePosition; // in case us forgot to set freezed positions!
     }
         

@@ -1,5 +1,4 @@
-Narrow Path
-Straight Moving Platform
+Elevator
 Short Path With Spikes
-
-
+ShortFakePath
+Straight Moving Platform
