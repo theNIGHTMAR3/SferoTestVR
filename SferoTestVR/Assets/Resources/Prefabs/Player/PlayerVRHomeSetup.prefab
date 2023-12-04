@@ -1286,8 +1286,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRollingAudioSource: {fileID: 7296772959690879616}
+  hitAudioSource: {fileID: 0}
   minSpeedSound: 0.5
   maxSpeedSound: 5
+  hitSounds: []
   moveSpeed: 10
   rightHand: {fileID: 2327905376125703065}
 --- !u!1 &5786709529749476398

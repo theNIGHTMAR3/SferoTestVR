@@ -793,6 +793,11 @@ PrefabInstance:
       propertyPath: movingTime
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8754499106001728808, guid: 34fdb097e3ff22048ad55176efcfbd90,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34fdb097e3ff22048ad55176efcfbd90, type: 3}
 --- !u!4 &4525501524063764666 stripped
@@ -866,7 +871,7 @@ PrefabInstance:
     - target: {fileID: 5398717157738796576, guid: 8ba5478336e8cf847a413facacdd8d97,
         type: 3}
       propertyPath: m_Name
-      value: Elevator Variant
+      value: Elevator
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ba5478336e8cf847a413facacdd8d97, type: 3}
@@ -1203,6 +1208,11 @@ PrefabInstance:
       propertyPath: movingTime
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8754499106001728808, guid: 34fdb097e3ff22048ad55176efcfbd90,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34fdb097e3ff22048ad55176efcfbd90, type: 3}
 --- !u!4 &945541216703631520 stripped
@@ -1533,6 +1543,11 @@ PrefabInstance:
       propertyPath: movingTime
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8754499106001728808, guid: 34fdb097e3ff22048ad55176efcfbd90,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34fdb097e3ff22048ad55176efcfbd90, type: 3}
 --- !u!4 &6618614810230691612 stripped
@@ -1718,6 +1733,11 @@ PrefabInstance:
       propertyPath: movingTime
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8754499106001728808, guid: 34fdb097e3ff22048ad55176efcfbd90,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34fdb097e3ff22048ad55176efcfbd90, type: 3}
 --- !u!4 &5339988722097025914 stripped
@@ -1827,6 +1847,11 @@ PrefabInstance:
         type: 3}
       propertyPath: movingTime
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8754499106001728808, guid: 34fdb097e3ff22048ad55176efcfbd90,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34fdb097e3ff22048ad55176efcfbd90, type: 3}
