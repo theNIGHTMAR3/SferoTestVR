@@ -1,4 +1,2 @@
-Elevator
+Narrow straight Path
 Short Path With Spikes
-ShortFakePath
-Straight Moving Platform

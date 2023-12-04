@@ -217,6 +217,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NarrowPlatform (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 8296539708268358578, guid: f015821c5a81d6e4c827bab70a7cde66,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 8676442264118128904, guid: f015821c5a81d6e4c827bab70a7cde66,
         type: 3}
       propertyPath: m_RootOrder
@@ -442,6 +447,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NarrowPlatform (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8296539708268358578, guid: f015821c5a81d6e4c827bab70a7cde66,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 8676442264118128904, guid: f015821c5a81d6e4c827bab70a7cde66,
         type: 3}
       propertyPath: m_RootOrder
@@ -516,6 +526,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NarrowPlatform (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296539708268358578, guid: f015821c5a81d6e4c827bab70a7cde66,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 8676442264118128904, guid: f015821c5a81d6e4c827bab70a7cde66,
         type: 3}
@@ -690,6 +705,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NarrowPlatform (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296539708268358578, guid: f015821c5a81d6e4c827bab70a7cde66,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 8676442264118128904, guid: f015821c5a81d6e4c827bab70a7cde66,
         type: 3}
@@ -1003,6 +1023,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NarrowPlatform (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8296539708268358578, guid: f015821c5a81d6e4c827bab70a7cde66,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 8676442264118128904, guid: f015821c5a81d6e4c827bab70a7cde66,
         type: 3}
       propertyPath: m_RootOrder
@@ -1077,6 +1102,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NarrowPlatform (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296539708268358578, guid: f015821c5a81d6e4c827bab70a7cde66,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 8676442264118128904, guid: f015821c5a81d6e4c827bab70a7cde66,
         type: 3}
@@ -1153,6 +1183,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NarrowPlatform (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 8296539708268358578, guid: f015821c5a81d6e4c827bab70a7cde66,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 8676442264118128904, guid: f015821c5a81d6e4c827bab70a7cde66,
         type: 3}
       propertyPath: m_RootOrder
@@ -1228,6 +1263,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NarrowPlatform (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8296539708268358578, guid: f015821c5a81d6e4c827bab70a7cde66,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 8676442264118128904, guid: f015821c5a81d6e4c827bab70a7cde66,
         type: 3}
       propertyPath: m_RootOrder
@@ -1302,6 +1342,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NarrowPlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296539708268358578, guid: f015821c5a81d6e4c827bab70a7cde66,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 8676442264118128904, guid: f015821c5a81d6e4c827bab70a7cde66,
         type: 3}
@@ -1452,6 +1497,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NarrowPlatform (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296539708268358578, guid: f015821c5a81d6e4c827bab70a7cde66,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 8676442264118128904, guid: f015821c5a81d6e4c827bab70a7cde66,
         type: 3}
@@ -1677,6 +1727,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NarrowPlatform (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296539708268358578, guid: f015821c5a81d6e4c827bab70a7cde66,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 8676442264118128904, guid: f015821c5a81d6e4c827bab70a7cde66,
         type: 3}
