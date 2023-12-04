@@ -1,8 +1,6 @@
 var choicesNumber = 2;
 var actualChoice = 0;
-
-
-
+ 
 window.onload= function(){
     const filepicker = document.getElementById("filepicker");
 
@@ -13,18 +11,25 @@ window.onload= function(){
         const files = event.target.files;
         MainImageContainer.innerHTML="";
 		choicesNumber=files.length/2;
+		ReadFiles(files,0,true);
+		
+		
         for(var i=0;i<files.length;i+=2){        
             var path = files[i];
             var svg = files[i+1];                        
-
-            StartFileReader(path, svg,first);
-            first=false;
+				
+		
+            //StartFileReader(path, svg,first);
+            first=false;			
         }        
     });
 }
 
-function StartFileReader(trackFile,svgFile,first){
-    const reader = new FileReader();
+function ReadFiles(files,index,first){
+	var trackFile=files[index+0];
+	var svgFile=files[index+1];
+	const reader = new FileReader();	
+	
     //parse file with position and velocities
     reader.addEventListener(
         "load",
@@ -48,11 +53,46 @@ function StartFileReader(trackFile,svgFile,first){
             });
             
 
-            CreatePathCointaner(roomName, roomSize, svgFile, records,first);        
+            CreatePathCointaner(roomName, roomSize, svgFile, records,first);   
+			ReadFiles(files,index+2,false);
         },
         false,
     );
-    reader.readAsText(trackFile);
+    reader.readAsText(trackFile);	
+}
+
+
+function StartFileReader(trackFile,svgFile,first){
+    const reader = new FileReader();	
+	
+    //parse file with position and velocities
+    reader.addEventListener(
+        "load",
+            () => {
+            var wholeText = reader.result;
+
+            var trackData = JSON.parse(wholeText);
+
+            //split each line
+            var lines = wholeText.split('\n');
+
+            var roomName = trackData.roomName;
+            var roomSize = trackData.roomDimensions;            
+            var records=trackData.records;
+
+            records.forEach(point =>{
+                point['pos']['x']=parseFloat(point['pos']['x']).toFixed(2);
+                point['pos']['y']=parseFloat(point['pos']['y']).toFixed(2);
+                point['vel']['x']=parseFloat(point['vel']['x']).toFixed(2);
+                point['vel']['y']=parseFloat(point['vel']['y']).toFixed(2);
+            });
+            
+
+            CreatePathCointaner(roomName, roomSize, svgFile, records,first);        						
+        },
+        false,
+    );
+    reader.readAsText(trackFile);	
 }
 
 
