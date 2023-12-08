@@ -17,8 +17,10 @@ public class Laser : FourActionStateMachine
     [SerializeField] GameObject collider;
     [SerializeField] ParticleSystem particles;
 
-    // Start is called before the first frame update
-    void Start()
+	[SerializeField] private AudioSource audioSource;
+
+	// Start is called before the first frame update
+	void Start()
     {        
         //set timers using human readeable names
         action1Time = shortenedTime; //waiting to extend
@@ -52,7 +54,9 @@ public class Laser : FourActionStateMachine
     protected override void OnAction2Start()
     {
         particles.Play();
-    }
+		//audioSource.PlayOneShot(laserShot);
+		audioSource.Play();
+	}
 
     /// <summary>
     /// extending laser 
@@ -82,10 +86,10 @@ public class Laser : FourActionStateMachine
         collider.transform.localScale = scale;
     }
 
-    /// <summary>
-    /// shortening laser 
-    /// </summary>    
-    protected override void Action4(float percentage)
+	/// <summary>
+	/// shortening laser 
+	/// </summary>    
+	protected override void Action4(float percentage)
     {
         laserLine.SetPosition(0, new Vector3(0, 0, percentage * range));
         laserLine.SetPosition(1, new Vector3(0, 0, range));
