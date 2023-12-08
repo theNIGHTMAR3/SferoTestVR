@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerPCController : Player
 {
 
-    protected override void FixedUpdate()
+	[SerializeField] protected CameraFollower cameraScript;
+
+
+	protected override void FixedUpdate()
     {
         base.FixedUpdate();
         Vector3 cameraForward= Camera.main.transform.forward;
@@ -30,4 +34,14 @@ public class PlayerPCController : Player
         cameraScript.SetCameraRotation(savedRotation);
         base.Revive();
     }
+
+	/// <summary>
+	/// moves user to Main Menu
+	/// </summary>    
+	protected override void GoBackToMainMenu()
+	{
+		cameraScript.UnlockCursor();
+		SceneManager.LoadScene("MainMenu");
+	}
+
 }

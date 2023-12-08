@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
 {
     protected Rigidbody rigidbody;
     protected Camera camera;
-    protected CameraFollower cameraScript;
     protected Vector2 playerInput;
     private GameObject playerSpawn;
     
@@ -50,7 +49,6 @@ public class Player : MonoBehaviour
     {
         camera = Camera.main;
         rigidbody = GetComponent<Rigidbody>();
-        cameraScript = camera.GetComponent<CameraFollower>();
 
 		// player starts game from spawn
 		playerSpawn = GameObject.FindGameObjectWithTag("Respawn");
@@ -303,9 +301,8 @@ public class Player : MonoBehaviour
     /// <summary>
     /// moves user to Main Menu
     /// </summary>    
-    protected void GoBackToMainMenu()
+    protected virtual void GoBackToMainMenu()
     {
-        cameraScript.UnlockCursor();
         SceneManager.LoadScene("MainMenu");
     }
 
