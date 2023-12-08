@@ -369,7 +369,7 @@ public class PlayerVRSphere : Player
     }
 #endregion
 
-#region Tracking
+    #region Tracking
     public override MotorRecords GetMotorsRecords()
     {
         MotorRecord motor1 = new MotorRecord(
