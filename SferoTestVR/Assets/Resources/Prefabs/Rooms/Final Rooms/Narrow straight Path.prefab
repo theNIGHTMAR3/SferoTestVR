@@ -841,6 +841,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Narrow straight Path
       objectReference: {fileID: 0}
+    - target: {fileID: 5864796720627075188, guid: d0a48197a19753640a11a22425104667,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 15.849112
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864796720627075188, guid: d0a48197a19753640a11a22425104667,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864796720627075188, guid: d0a48197a19753640a11a22425104667,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -8.075444
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898758438401606139, guid: d0a48197a19753640a11a22425104667,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 15.873321
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898758438401606139, guid: d0a48197a19753640a11a22425104667,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -8.063339
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0a48197a19753640a11a22425104667, type: 3}
 --- !u!114 &4203649744100932666 stripped
