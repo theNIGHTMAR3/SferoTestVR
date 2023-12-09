@@ -118,6 +118,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 72fd88b13af4f3f4c8ffdd9ab3a417c4, type: 3}
   - {fileID: 8300000, guid: c20ff43bee17bde4d8301582996d29b7, type: 3}
   moveSpeed: 20
+  cameraScript: {fileID: 5435992059145916912}
 --- !u!1 &4151987354444058714
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +318,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerPCSetup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884078341190772357, guid: 06d413db8587f1e40a3bc086b507b4b5,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4630642357894525000, guid: 06d413db8587f1e40a3bc086b507b4b5,
         type: 3}

@@ -137,9 +137,9 @@ public class MapCreatorMenu : MonoBehaviour
 
 
 	/// <summary>
-	/// generates map by saving locally room name list
+	/// saves locally rooms sequence name list
 	/// </summary> 
-	public void GenerateMap()
+	public void SaveRoomsSequence()
 	{
 		if (currentRooms.Count != 0)
 		{
@@ -151,11 +151,11 @@ public class MapCreatorMenu : MonoBehaviour
 
 			string combinedString = string.Join(",", selectedRooms);
 			MapConfigManager.SaveLocally(selectedRooms);
-			Debug.Log("Generating map with given rooms: "+ combinedString);
+			Debug.Log("Saving rooms sequence: "+ combinedString);
 		}
 		else
 		{
-			Debug.Log("Can not generate empty map");
+			Debug.Log("Can not save empty list");
 		}
 	}
 
