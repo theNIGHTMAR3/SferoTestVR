@@ -1,4 +1,4 @@
-﻿#define LOG
+﻿#define LINEAR
 
 
 
@@ -30,6 +30,9 @@ public class PlayerVRSphere : Player
     //natural movement    
 	[SerializeField] bool naturalMovementOn = true;
     [SerializeField] float paramA=2, paramB=2;
+    [Range(0,1.0f)]
+    [SerializeField] float sphereDrag=0.1f;
+
 
     bool emergencyState = false;
 
@@ -212,7 +215,7 @@ public class PlayerVRSphere : Player
 
                 if (naturalMovementOn)
                 {
-                    virtuSphere.setSpherePose(sphereDirection.magnitude * 0.5f, Vector3.SignedAngle(Vector3.forward, sphereDirection, Vector3.up)); //is forward in this up vector?
+                    virtuSphere.setSpherePose(sphereDirection.magnitude * (1.0f - sphereDrag), Vector3.SignedAngle(Vector3.forward, sphereDirection, Vector3.up)); //is forward in this up vector?
                 }
                 //Debug.DrawRay(transform.position - new Vector3(0.0f, 0.5f, 0.0f), sphereDirection, Color.yellow, 0.05f);
 
