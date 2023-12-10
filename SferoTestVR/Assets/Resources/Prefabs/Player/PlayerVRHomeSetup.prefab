@@ -1180,7 +1180,11 @@ MonoBehaviour:
   hitAudioSource: {fileID: 8495714297480445479}
   minSpeedSound: 0.5
   maxSpeedSound: 5
-  hitSounds: []
+  hitSounds:
+  - {fileID: 8300000, guid: 9e5d336188843fc458890910d55e2553, type: 3}
+  - {fileID: 8300000, guid: cb9aeb6ee44e19a408114e56870bf699, type: 3}
+  - {fileID: 8300000, guid: 72fd88b13af4f3f4c8ffdd9ab3a417c4, type: 3}
+  - {fileID: 8300000, guid: c20ff43bee17bde4d8301582996d29b7, type: 3}
   moveSpeed: 4
   rightHand: {fileID: 2327905376125703065}
 --- !u!1 &3433042034089310704
