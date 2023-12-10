@@ -30,7 +30,7 @@ public class PlayerVRHome : Player
     {
         Vector2 walkInput;
         //check knob value
-        if (rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.secondary2DAxis, out walkInput))
+        if (rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primary2DAxis, out walkInput))
         {
             if (walkInput.magnitude > 0.2)
             {
