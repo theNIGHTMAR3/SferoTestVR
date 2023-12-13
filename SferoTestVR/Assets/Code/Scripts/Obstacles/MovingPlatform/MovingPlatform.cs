@@ -14,7 +14,7 @@ namespace Platform
 
         Rigidbody rb;
 
-        private void Start()
+        protected override void Start()
         {
             //rb = GetComponent<Rigidbody>();
 
@@ -23,6 +23,7 @@ namespace Platform
             action2Time = movingTime; //moving to end
             action3Time = stayTime; //waiting at end
             action4Time = movingTime; //moving to start
+            base.Start();
         }        
 
         //waiting at start
