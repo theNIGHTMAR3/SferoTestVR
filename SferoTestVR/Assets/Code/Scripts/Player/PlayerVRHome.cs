@@ -75,11 +75,12 @@ public class PlayerVRHome : Player
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, rightHandedControllers);
         rightController = rightHandedControllers[0];
 
+        /*
         //get left controller
         var leftHandedControllers = new List<UnityEngine.XR.InputDevice>();
         desiredCharacteristics = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Left | UnityEngine.XR.InputDeviceCharacteristics.Controller;
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, leftHandedControllers);
         leftController = leftHandedControllers[0];
-
+        */
     }
 }

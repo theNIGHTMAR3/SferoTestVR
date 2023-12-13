@@ -20,7 +20,7 @@ public class Laser : FourActionStateMachine
 	[SerializeField] private AudioSource audioSource;
 
 	// Start is called before the first frame update
-	void Start()
+	override protected void Start()
     {        
         //set timers using human readeable names
         action1Time = shortenedTime; //waiting to extend
@@ -33,6 +33,8 @@ public class Laser : FourActionStateMachine
         var main = particles.main;
         main.startLifetime = extendedTime;
         main.startSize = width;
+
+        base.Start();
     }
 
 

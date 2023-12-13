@@ -28,7 +28,7 @@ public class Pusher : FourActionStateMachine
 	}
 
 	// Start is called before the first frame update
-	void Start()
+	protected override void Start()
     {
         endPos = new Vector3(0,0, extensionRange);
 
@@ -38,6 +38,7 @@ public class Pusher : FourActionStateMachine
         action3Time = extendedTime; //waiting to shorten
         action4Time = shorteningTime; //shortening
 
+        base.Start();
     }
 
 

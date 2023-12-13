@@ -31,6 +31,17 @@ public class Glue : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && other.transform != transform.parent.transform)
+        {
+            other.transform.SetParent(transform.parent.transform);
+            Debug.Log("GLUED");
+
+        }
+    }
+
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
