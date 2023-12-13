@@ -10,7 +10,7 @@ public class ExpandingPath : FourActionStateMachine
     [SerializeField] float stayTime=1;
     [SerializeField] float scaleDif=0.05f;    
 
-    private void Start()
+    protected override void Start()
     {
         for (int i = 0; i < platforms.Length; i++)
         {
@@ -25,6 +25,7 @@ public class ExpandingPath : FourActionStateMachine
         action3Time = stayTime; //waiting to shorten
         action4Time = extendingTime; //shortening
 
+        base.Start();
     }
 
     /// <summary>
