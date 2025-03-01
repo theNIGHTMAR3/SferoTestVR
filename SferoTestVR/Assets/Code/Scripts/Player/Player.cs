@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
         Vector3 angularVelocity = new Vector3(
             speed.y,
             0,
-            speed.x
+            -speed.x
             );
         rigidbody.angularVelocity = angularVelocity;
     }
