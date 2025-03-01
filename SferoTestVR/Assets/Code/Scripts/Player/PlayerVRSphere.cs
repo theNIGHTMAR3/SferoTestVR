@@ -23,7 +23,7 @@ public class PlayerVRSphere : Player
     //sphere measurements
     private VirtuSphere virtuSphere;
     SpherePoseEvent sphereInput;
-    SmoothVectorQueue sphereDirectionQueue = new SmoothVectorQueue();
+    Vector3 sphereDirection = Vector3.zero;
     Dictionary<int, MotorStateEvent> motors = new Dictionary<int, MotorStateEvent>();
     Dictionary<int, SmoothQueue> motorCurrents = new Dictionary<int, SmoothQueue>();    
 
@@ -130,14 +130,13 @@ public class PlayerVRSphere : Player
     {        
         if (sphereInput != null)
         {
-            //get sphere veloticy direction                
-            Vector3 sphereDirection = sphereDirectionQueue.GetSmooth();
+            //accumulatedTorque += GetAccumulatedTorque();
 
-
-            accumulatedTorque += GetAccumulatedTorque();
-
-            //simple rotate the player the same way
-            Move(sphereDirection);
+            if (playerControlsSelf)
+            {
+                //rotate the player 
+                Move(sphereDirection);
+            }
         }
         //Debug.Log(GetAccumulatedTorque());
 
@@ -157,7 +156,7 @@ public class PlayerVRSphere : Player
     {
         sphereInput = evt;        
 
-        sphereDirectionQueue.Push(new Vector3(evt.getVelocityVectorX(),0,evt.getVelocityVectorY()));
+        sphereDirection = new Vector3(evt.getVelocityVectorX(), 0, evt.getVelocityVectorY());
 
     }
 
@@ -187,6 +186,20 @@ public class PlayerVRSphere : Player
         Debug.Log("SPHERE DISCONNECTED");
     }
 
+    public override void SetPlayerControlsSelf(bool playerControlsSelf)
+    {
+        base.SetPlayerControlsSelf(playerControlsSelf);
+        if (playerControlsSelf)
+        {
+            // TODO Uncomment when new lib is added
+            //virtuSphere.setMotorPower(false); 
+        }
+        else
+        {
+            //virtuSphere.setMotorPower(true);
+        }
+    }
+
 
     #region Natural Movement
 
@@ -196,30 +209,11 @@ public class PlayerVRSphere : Player
     {
         if (!emergencyState)
         {
-            if (sphereInput != null)
-            {                
+            if (!playerControlsSelf)
+            {
+                virtuSphere.setSpherePose(sphereDirection.magnitude, Vector3.SignedAngle(Vector3.forward, sphereDirection, Vector3.up)); //is forward in this up vector?
                 
-                Vector3 sphereDirection = sphereDirectionQueue.GetSmooth();
-
-                //get velocity from from engines currents
-                Vector3 engineVelocity = EstimateEnginesVelocity();
-
-                Vector3 Δplayer = sphereDirection - engineVelocity;
-                Debug.DrawRay(transform.position - new Vector3(0.0f, 0.5f, 0.0f), sphereDirection, Color.yellow, 0.05f);
-                Debug.DrawRay(transform.position - new Vector3(0.0f, 0.5f, 0.0f), engineVelocity, Color.blue, 0.05f);
-
-                Vector3 actualSphereVelocity = new Vector3(sphereInput.getVelocityVectorX(), sphereInput.getVelocityVectorY(), sphereInput.getVelocityVectorZ());
-                //Debug.Log("Actual: " + actualSphereVelocity + " Estimated: " + engineVelocity);
-
-                sphereDirection += Δplayer; //+ accumulatedTorque / 30.0f;
-
-                if (naturalMovementOn)
-                {
-                    virtuSphere.setSpherePose(sphereDirection.magnitude * (1.0f - sphereDrag), Vector3.SignedAngle(Vector3.forward, sphereDirection, Vector3.up)); //is forward in this up vector?
-                }
-                //Debug.DrawRay(transform.position - new Vector3(0.0f, 0.5f, 0.0f), sphereDirection, Color.yellow, 0.05f);
-
-                accumulatedTorque = Vector3.zero;
+                //Debug.DrawRay(transform.position - new Vector3(0.0f, 0.5f, 0.0f), sphereDirection, Color.yellow, 0.05f);                
             }
         }
         else
@@ -234,7 +228,7 @@ public class PlayerVRSphere : Player
     }
 
 
-
+    #region old engine estimation
         /* id guessing!
                                                           
                 **************                         
@@ -305,7 +299,7 @@ public class PlayerVRSphere : Player
                         " Curr[2]= " + mot2Current.ToString("00.0") + 
                         " Vel[4]= " + mot4.getMotorVelocity().ToString("00.0") + 
                         " Curr[4]= " + mot4Current.ToString("00.0")+
-                        " sphere direction= " + sphereDirectionQueue.GetSmooth().ToString("00.0"));
+                        " sphere direction= " + sphereDirection.ToString("00.0"));
 
             //get rotating direction
             Vector3 mot2Dir = new Vector3(1,0,-1) * Mathf.Sign(mot2Current);
@@ -330,8 +324,9 @@ public class PlayerVRSphere : Player
         }
     }
 
-
-    Vector3 angularVelocity=Vector3.zero;
+    #endregion
+    
+    Vector3 angularVelocity =Vector3.zero;
     /// <summary>
     /// Function returning accumulated torque from the environment converted to 3d direction where the sphere should move
     /// w1 = w0+(E0 - E1)*deltaT
@@ -370,7 +365,8 @@ public class PlayerVRSphere : Player
         return TorqueToDirection;
 
     }
-#endregion
+
+    #endregion
 
     #region Tracking
     public override MotorRecords GetMotorsRecords()
