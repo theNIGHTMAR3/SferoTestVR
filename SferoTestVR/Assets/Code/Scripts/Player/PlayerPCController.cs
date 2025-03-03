@@ -12,14 +12,22 @@ public class PlayerPCController : Player
 	protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        Vector3 cameraForward= Camera.main.transform.forward;
+        if (playerControlsSelf)
+        {
+            Vector3 cameraForward = Camera.main.transform.forward;
 
-        cameraForward.y = 0f;
-        cameraForward.Normalize();
+            cameraForward.y = 0f;
+            cameraForward.Normalize();
 
-        Vector3 playerMovement = (Camera.main.transform.right * playerInput.x + cameraForward * playerInput.y);
+            Vector3 playerMovement = (Camera.main.transform.right * playerInput.x + cameraForward * playerInput.y);
 
-        Move(playerMovement);
+            SetRotationSpeed(playerMovement * moveSpeed);
+            //Move(playerMovement);
+        }
+        else
+        {
+
+        }
     }
 
 

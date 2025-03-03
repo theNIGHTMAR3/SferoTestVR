@@ -43,6 +43,10 @@ public class Player : MonoBehaviour
 
     private bool isOnFloor = false;
 
+    /// <summary> Bool whether it's the player, or the game controlling the sphere </summary>
+    protected bool playerControlsSelf = true;
+    
+
 
     protected Vector3 addedTorque = Vector3.zero;
     protected virtual void Start()
@@ -64,7 +68,14 @@ public class Player : MonoBehaviour
     /// </summary>
     protected virtual void FixedUpdate()
     {
-        GetInput();
+        if (playerControlsSelf)
+        {
+            GetInput();
+        }
+        else
+        {
+
+        }
 
         if(Input.GetKeyDown(KeyCode.Space) && isAlive && !hasWon)
         {
@@ -83,6 +94,38 @@ public class Player : MonoBehaviour
 
         CalculateRollingVolume();
 	}
+
+    virtual public void SetPlayerControlsSelf(bool playerControlsSelf)
+    {
+        this.playerControlsSelf = playerControlsSelf;
+    }
+
+    public Vector2 GetRigidBody2DVelocity()
+    {
+        Vector2 velocity = new Vector2(rigidbody.velocity.x, rigidbody.velocity.z);
+        return velocity;
+    }
+
+    /// Speed argument is not normalized!
+    public void SetRotationSpeed(Vector3 speed)
+    {
+        Vector2 speed2D = new Vector2(speed.x, speed.z);
+        SetRotationSpeed(speed2D);
+    }
+
+    /// <summary>
+    /// Sets sphere rotation based on the Vector2 global direction and its length
+    /// Speed argument is not normalized!
+    /// </summary>
+    virtual public void SetRotationSpeed(Vector2 speed)
+    {
+        Vector3 angularVelocity = new Vector3(
+            speed.y,
+            0,
+            -speed.x
+            );
+        rigidbody.angularVelocity = angularVelocity;
+    }
 
     /// <summary>
     /// Add force to sphere from Vector3
@@ -264,16 +307,20 @@ public class Player : MonoBehaviour
     /// </summary>  
     protected void SetPlayerSize()
     {
-        if(!PlayerPrefs.HasKey("SphereDiameter"))
+        /*if(!PlayerPrefs.HasKey("SphereDiameter"))
         {
             Debug.LogWarning("PlayerPrefs: player size not set, setting it to 1.0");
             PlayerPrefs.SetFloat("SphereDiameter", 1.0f);
             PlayerPrefs.Save();
             rigidbody.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
-        }
-		float playerSize = PlayerPrefs.GetFloat("SphereDiameter");
+        }*/
+        //float playerSize = PlayerPrefs.GetFloat("SphereDiameter");
 
-		Vector3 playerScale = new Vector3(playerSize, playerSize, playerSize);
+        // sphere model has radius of 1
+        // real sphere has radius of ~1.5 or 1.6
+        float playerSize = 1.5f;
+
+        Vector3 playerScale = new Vector3(playerSize, playerSize, playerSize);
 
         rigidbody.transform.localScale= playerScale;
     }
