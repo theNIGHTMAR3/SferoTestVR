@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
     /// </summary>    
     public void Move(Vector3 direction, float speedMultiplier = 1.0f)
     {
-        Debug.Log("move speed multiplier: " + speedMultiplier);
+
         if(isAlive && !hasWon)
         {
             Vector3 movement = direction;
@@ -214,6 +214,15 @@ public class Player : MonoBehaviour
     {
         lastCheckpointPos = newCheckpoint.transform.position;
         savedRotation = newCheckpoint.transform.rotation;
+    }
+
+    /// <summary>
+    /// Checks if player is alive
+    /// </summary>
+    /// <returns>Returns isAlive bool</returns>
+    public bool GetIsAlive()
+    {
+        return isAlive;
     }
 
     /// <summary>
