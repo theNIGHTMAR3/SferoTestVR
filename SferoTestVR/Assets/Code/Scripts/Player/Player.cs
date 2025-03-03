@@ -201,6 +201,7 @@ public class Player : MonoBehaviour
     {
         transform.position = lastCheckpointPos;        
         transform.rotation = Quaternion.Euler(-90,savedRotation.eulerAngles.y,0);
+        SetPlayerControlsSelf(true);
 
         StartCoroutine(FreezePlayer(1f));
     }
