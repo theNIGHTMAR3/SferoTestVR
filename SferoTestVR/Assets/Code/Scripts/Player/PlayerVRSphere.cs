@@ -33,7 +33,8 @@ public class PlayerVRSphere : Player
     [Range(0,1.0f)]
     [SerializeField] float sphereDrag=0.1f;
 
-    // sphere control 
+    // sphere control
+    // not used at the moment
     Vector2 forcedSpeed = Vector2.zero;
 
 
@@ -221,7 +222,8 @@ public class PlayerVRSphere : Player
             if (!playerControlsSelf)
             {
                 // set motors speed
-                virtuSphere.setSpherePose(forcedSpeed.magnitude, Vector3.SignedAngle(Vector3.forward, forcedSpeed, Vector3.up)); //is forward in this up vector?
+                Vector2 rbSpeed = rigidbody.velocity;
+                virtuSphere.setSpherePose(rbSpeed.magnitude, Vector3.SignedAngle(Vector3.forward, rbSpeed, Vector3.up)); //is forward in this up vector?
                 
                 //Debug.DrawRay(transform.position - new Vector3(0.0f, 0.5f, 0.0f), sphereDirection, Color.yellow, 0.05f);                
             }
