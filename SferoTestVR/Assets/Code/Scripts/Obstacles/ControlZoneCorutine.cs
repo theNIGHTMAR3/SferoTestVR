@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControlZone : MonoBehaviour
+public class ControlZoneCorutine : MonoBehaviour
 {
 
 	[SerializeField] private float moveSpeed = 0.1f;
@@ -24,6 +24,11 @@ public class ControlZone : MonoBehaviour
 		startPoint = GameObject.Find("StartPoint");
 	}
 
+	private void FixedUpdate()
+	{
+		
+	}
+
 
 	void OnTriggerEnter(Collider other)
 	{
@@ -37,10 +42,10 @@ public class ControlZone : MonoBehaviour
 			{
 				playerRb.velocity = Vector3.zero;
 				playerRb.angularVelocity = Vector3.zero;
-				playerController.hasControl = false;
+				playerController.SetPlayerControlsSelf(false);
 				isMoving = true;
 
-				// Najpierw doprowadzenie do StartPoint, potem do EndPoint
+
 				StartCoroutine(MoveToStartPoint());
 			}
 		}
@@ -51,10 +56,13 @@ public class ControlZone : MonoBehaviour
 	/// </summary> 
 	private IEnumerator MoveToStartPoint()
 	{
+
 		while (Vector3.Distance(playerRb.position, startPoint.transform.position) > 0.5f)
 		{
 			Vector3 direction = (startPoint.transform.position - playerRb.position).normalized;
 			playerController.Move(direction, moveSpeed);
+
+			//playerController.SetRotationSpeed(direction * moveSpeed);
 			yield return null;
 		}
 
@@ -67,10 +75,12 @@ public class ControlZone : MonoBehaviour
 	/// </summary> 
 	private IEnumerator MoveToEndPoint()
 	{
+
 		while (Vector3.Distance(playerRb.position, endPoint.transform.position) > 0.5f)
 		{
 			Vector3 direction = (endPoint.transform.position - playerRb.position).normalized;
 			playerController.Move(direction, moveSpeed);
+			//playerController.SetRotationSpeed(direction * moveSpeed);
 			yield return null;
 		}
 
@@ -79,8 +89,9 @@ public class ControlZone : MonoBehaviour
 
 	private void RestoreControl()
 	{
+	
 		isMoving = false;
-		playerController.hasControl = true;
+		playerController.SetPlayerControlsSelf(true);
 	}
 
 }

@@ -7,7 +7,6 @@ public class PlayerPCController : Player
 {
 
 	[SerializeField] protected CameraFollower cameraScript;
-    public bool hasControl = true;
 
 
 	protected override void FixedUpdate()
@@ -22,12 +21,8 @@ public class PlayerPCController : Player
 
             Vector3 playerMovement = (Camera.main.transform.right * playerInput.x + cameraForward * playerInput.y);
 
-            SetRotationSpeed(playerMovement * moveSpeed);
-            //Move(playerMovement);
-        }
-        else
-        {
-
+            //SetRotationSpeed(playerMovement * moveSpeed);
+            Move(playerMovement);
         }
 
     }
