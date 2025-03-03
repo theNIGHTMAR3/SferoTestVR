@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConstantVelocityZone : ControlZone
+public class ConstantVelocityZone : ControlZoneTest
 {
     [SerializeField] float multiplier = 0.8f;
     Vector2 speed;
