@@ -106,6 +106,12 @@ public class Player : MonoBehaviour
         return velocity;
     }
 
+    public void SetRotationSpeed(Vector3 speed)
+    {
+        Vector2 speed2D = new Vector2(speed.x, speed.z);
+        SetRotationSpeed(speed2D);
+    }
+
     /// <summary>
     /// Sets sphere rotation based on the Vector2 global direction and its length
     /// </summary>

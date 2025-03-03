@@ -21,7 +21,8 @@ public class PlayerPCController : Player
 
             Vector3 playerMovement = (Camera.main.transform.right * playerInput.x + cameraForward * playerInput.y);
 
-            Move(playerMovement);
+            SetRotationSpeed(playerMovement * moveSpeed);
+            //Move(playerMovement);
         }
         else
         {
