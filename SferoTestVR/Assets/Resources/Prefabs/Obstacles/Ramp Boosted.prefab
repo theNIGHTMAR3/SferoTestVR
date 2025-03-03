@@ -14,6 +14,64 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5281783237678825296, guid: 7fce66a7ddb153241a141a91b2b23e64, type: 3}
+--- !u!1 &6213077994116967689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 796911615493296693}
+  - component: {fileID: 8764206759439018769}
+  - component: {fileID: 5967506053430947603}
+  m_Layer: 0
+  m_Name: Boost
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &796911615493296693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213077994116967689}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4674509978914319687}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &8764206759439018769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213077994116967689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2fe5ae7f1024049a35461a0160bf99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 20
+--- !u!65 &5967506053430947603
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213077994116967689}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 2}
+  m_Center: {x: -0.5, y: 0, z: 0}
 --- !u!1001 &5140167872907676332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,7 +152,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e3060eb62f1fe049a0b021237dde224,
         type: 3}
       propertyPath: m_Name
-      value: Ramp 1
+      value: Ramp
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8e3060eb62f1fe049a0b021237dde224,
         type: 3}
@@ -106,6 +164,12 @@ PrefabInstance:
 --- !u!1 &5446227042100361213 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e3060eb62f1fe049a0b021237dde224,
+    type: 3}
+  m_PrefabInstance: {fileID: 5140167872907676332}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4674509978914319687 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e3060eb62f1fe049a0b021237dde224,
     type: 3}
   m_PrefabInstance: {fileID: 5140167872907676332}
   m_PrefabAsset: {fileID: 0}
