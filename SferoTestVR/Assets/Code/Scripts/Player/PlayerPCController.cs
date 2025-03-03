@@ -7,6 +7,7 @@ public class PlayerPCController : Player
 {
 
 	[SerializeField] protected CameraFollower cameraScript;
+    public bool hasControl = true;
 
 
 	protected override void FixedUpdate()
@@ -28,6 +29,7 @@ public class PlayerPCController : Player
         {
 
         }
+
     }
 
 

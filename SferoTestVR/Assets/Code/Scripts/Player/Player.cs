@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
         SetNewCheckPoint(playerSpawn);
         transform.position = lastCheckpointPos;
 
-        SetPlayerSize();
+		SetPlayerSize();
         StartCoroutine(FreezePlayer(1));
     }
 
@@ -130,9 +130,9 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Add force to sphere from Vector3
     /// </summary>    
-    protected void Move(Vector3 direction)
+    public void Move(Vector3 direction, float speedMultiplier = 1.0f)
     {
-
+        Debug.Log("move speed multiplier: " + speedMultiplier);
         if(isAlive && !hasWon)
         {
             Vector3 movement = direction;
@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
             movement.Normalize();
             movement *= direction.magnitude;
             movement = Quaternion.Euler(0, 90, 0) * movement; //rotate by 90 degrees            
-            movement *= moveSpeed;
+            movement *= moveSpeed*speedMultiplier;
             rigidbody.AddTorque(movement);
             addedTorque = movement;
         }
@@ -157,8 +157,8 @@ public class Player : MonoBehaviour
     protected void Move(Vector2 direction)
     {
 
-        //rigidbody.AddForce(new Vector3(direction.x, 0, direction.y));
-        Vector3 movement = new Vector3(direction.x,0,direction.y);                
+		//rigidbody.AddForce(new Vector3(direction.x, 0, direction.y));
+		Vector3 movement = new Vector3(direction.x,0,direction.y);                
         movement = Quaternion.Euler(0, 90, 0) * movement; //rotate by 90 degrees            
         movement *= moveSpeed;
         rigidbody.AddTorque(movement);
