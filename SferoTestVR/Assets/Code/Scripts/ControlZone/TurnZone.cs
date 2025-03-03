@@ -14,9 +14,11 @@ public class TurnZone : ControlZone
 
     [SerializeField]
     Transform endDirection;
+    [SerializeField] float middlePointsCount;
 
     float turnRadius = 0;
-    float speed = 0;
+    Vector3 circleCenter = Vector3.zero;
+
     private void Start()
     {
         float chordLength = Vector3.Distance(startDirection.position, endDirection.position);
@@ -26,24 +28,42 @@ public class TurnZone : ControlZone
                 endDirection.forward,
                 Vector3.up);
         turnRadius = chordLength / (2 * Mathf.Sin(angleDegreesBetweenDirections / 2 * Mathf.Deg2Rad));
+        turnRadius = Mathf.Abs(turnRadius); // sinus may be negative
+        CalcCenter();
+
+
+        CreateMiddlePoints();
     }
 
-    protected override void SetPlayerVelocity()
+    void CalcCenter()
     {
-        float angleDegreesBetweenStartAndPlayer =
+        circleCenter = startDirection.transform.position + Quaternion.Euler(0,90,0)*startDirection.transform.forward * turnRadius;
+        if( Mathf.Abs( Vector3.Distance(circleCenter, endDirection.transform.position) - turnRadius) > 0.01f)
+        {
+            circleCenter = startDirection.transform.position + Quaternion.Euler(0, -90, 0) * startDirection.transform.forward * turnRadius;
+        }
+    }
+
+    void CreateMiddlePoints()
+    {
+        float angleDegreesBetwenStartEndPoints =
             Vector3.SignedAngle(
-                startDirection.forward,
-                player.transform.position - startDirection.position,
+                startDirection.position - circleCenter,
+                endDirection.position - circleCenter,
                 Vector3.up);
-        Vector3 playerMoveDirection = 
-            Quaternion.Euler(0, angleDegreesBetweenStartAndPlayer, 0)
-            * startDirection.forward;
-        player.SetRotationSpeed(playerMoveDirection);
-    }
 
-    protected override void OnPlayerEnter()
-    {
-        base.OnPlayerEnter();
-        speed = player.GetRigidBody2DVelocity().magnitude;
+        Vector3 fromCenterToStart = startDirection.position - circleCenter;
+        for (int i = 0; i < middlePointsCount; i++)
+        {
+            GameObject middlePoint = new GameObject();
+            middlePoint.name = i.ToString();
+            middlePoint.transform.SetParent(transform);
+            middlePoint.transform.position = Quaternion.Euler(
+                0,
+                angleDegreesBetwenStartEndPoints * (i+1) / (middlePointsCount+1),
+                0
+                ) * fromCenterToStart + circleCenter;
+            middlePoints.Add(middlePoint);
+        }
     }
 }
