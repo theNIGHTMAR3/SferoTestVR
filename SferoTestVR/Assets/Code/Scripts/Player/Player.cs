@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Sets sphere rotation based on the Vector2 global direction and its length
     /// </summary>
-    public void SetRotationSpeed(Vector2 speed)
+    virtual public void SetRotationSpeed(Vector2 speed)
     {
         Vector3 angularVelocity = new Vector3(
             speed.y,

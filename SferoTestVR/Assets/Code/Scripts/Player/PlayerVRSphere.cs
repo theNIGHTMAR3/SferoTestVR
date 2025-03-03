@@ -33,6 +33,9 @@ public class PlayerVRSphere : Player
     [Range(0,1.0f)]
     [SerializeField] float sphereDrag=0.1f;
 
+    // sphere control 
+    Vector2 forcedSpeed = Vector2.zero;
+
 
     bool emergencyState = false;
 
@@ -134,7 +137,7 @@ public class PlayerVRSphere : Player
 
             if (playerControlsSelf)
             {
-                //rotate the player 
+                //rotate the virtual player 
                 Move(sphereDirection);
             }
         }
@@ -147,7 +150,6 @@ public class PlayerVRSphere : Player
         }  
     }
 
-    
     /// <summary>
     /// Function for async getting input from the sphere
     /// </summary>
@@ -203,6 +205,12 @@ public class PlayerVRSphere : Player
 
     #region Natural Movement
 
+    public override void SetRotationSpeed(Vector2 speed)
+    {
+        base.SetRotationSpeed(speed);
+        forcedSpeed = speed;
+    }
+
     Vector3 accumulatedTorque = Vector3.zero;
     bool emergencySend = false;
     protected void SetSpherePos()
@@ -211,7 +219,8 @@ public class PlayerVRSphere : Player
         {
             if (!playerControlsSelf)
             {
-                virtuSphere.setSpherePose(sphereDirection.magnitude, Vector3.SignedAngle(Vector3.forward, sphereDirection, Vector3.up)); //is forward in this up vector?
+                // set motors speed
+                virtuSphere.setSpherePose(forcedSpeed.magnitude, Vector3.SignedAngle(Vector3.forward, forcedSpeed, Vector3.up)); //is forward in this up vector?
                 
                 //Debug.DrawRay(transform.position - new Vector3(0.0f, 0.5f, 0.0f), sphereDirection, Color.yellow, 0.05f);                
             }
