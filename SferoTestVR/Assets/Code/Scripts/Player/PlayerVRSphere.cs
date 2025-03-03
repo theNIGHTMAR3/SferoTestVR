@@ -138,7 +138,8 @@ public class PlayerVRSphere : Player
             if (playerControlsSelf)
             {
                 //rotate the virtual player 
-                Move(sphereDirection);
+                SetRotationSpeed(sphereDirection);
+                //Move(sphereDirection);
             }
         }
         //Debug.Log(GetAccumulatedTorque());
