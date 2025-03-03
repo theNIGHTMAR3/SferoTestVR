@@ -106,6 +106,7 @@ public class Player : MonoBehaviour
         return velocity;
     }
 
+    /// Speed argument is not normalized!
     public void SetRotationSpeed(Vector3 speed)
     {
         Vector2 speed2D = new Vector2(speed.x, speed.z);
@@ -114,6 +115,7 @@ public class Player : MonoBehaviour
 
     /// <summary>
     /// Sets sphere rotation based on the Vector2 global direction and its length
+    /// Speed argument is not normalized!
     /// </summary>
     virtual public void SetRotationSpeed(Vector2 speed)
     {
