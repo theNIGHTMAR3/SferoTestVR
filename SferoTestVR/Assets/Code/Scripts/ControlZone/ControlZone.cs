@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class ControlZone : MonoBehaviour
 {
+	
 
 	[SerializeField] private float moveSpeed = 0.1f;
-	[SerializeField] private List<GameObject> middlePoints = new List<GameObject>();
+	[SerializeField] protected List<GameObject> middlePoints = new List<GameObject>();
 
-	private GameObject startPoint;
-	private GameObject endPoint;
+	[SerializeField] private GameObject startPoint;
+	[SerializeField] private GameObject endPoint;
 
 	private Queue<GameObject> pointsQueue = new Queue<GameObject>();
 
@@ -21,15 +22,7 @@ public class ControlZone : MonoBehaviour
 
 	// serialize dor debugging
 	[SerializeField] private GameObject targetPoint;
-
-
-
-	void Start()
-    {
-		// Automaticly find first and last point
-		startPoint = transform.parent.Find("StartPoint").gameObject;
-		endPoint = transform.parent.Find("EndPoint").gameObject;
-	}
+	
 
 
 	private void FixedUpdate()
