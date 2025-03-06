@@ -57,7 +57,7 @@ public class PlayerVRSphere : Player
 
         Debug.Log("STARTED CONNECTING");
         virtuSphere.connect(hostIP, hostPort);
-
+		SetPlayerControlsSelf(true);
 
         InvokeRepeating("SetSpherePos", 0, 0.05f); //call 20 times per second
         
@@ -160,7 +160,7 @@ public class PlayerVRSphere : Player
     {
         sphereInput = evt;        
 
-        sphereDirection = new Vector3(evt.getVelocityVectorX(), 0, evt.getVelocityVectorY());
+        sphereDirection = new Vector3(evt.getActualVelocityVectorX(), 0, evt.getActualVelocityVectorY());
 
     }
 
@@ -172,7 +172,7 @@ public class PlayerVRSphere : Player
     private void onMotorStateEvent(MotorStateEvent evt)
     {
         motors[evt.getControllerId()]= evt;
-        float current = evt.getMotorCurrent();
+        float current = evt.getMotorActualCurrent();
         if (Mathf.Abs(current) < 0.4f) current = 0;
         motorCurrents[evt.getControllerId()].Push(current);
     }
@@ -196,11 +196,11 @@ public class PlayerVRSphere : Player
         if (playerControlsSelf)
         {
             // TODO Uncomment when new lib is added
-            //virtuSphere.setMotorPower(false); 
+            virtuSphere.setMotorPower(false); 
         }
         else
         {
-            //virtuSphere.setMotorPower(true);
+            virtuSphere.setMotorPower(true);
         }
     }
 
@@ -222,9 +222,10 @@ public class PlayerVRSphere : Player
             if (!playerControlsSelf)
             {
                 // set motors speed
-                Vector2 rbSpeed = rigidbody.velocity;
+                Vector3 rbSpeed = rigidbody.velocity;
+                rbSpeed = Vector3.ClampMagnitude(rbSpeed, 0.5f);
                 virtuSphere.setSpherePose(rbSpeed.magnitude, Vector3.SignedAngle(Vector3.forward, rbSpeed, Vector3.up)); //is forward in this up vector?
-                
+                Debug.Log(rbSpeed*3.6f + " | " + Vector3.SignedAngle(Vector3.forward, rbSpeed, Vector3.up));                
                 //Debug.DrawRay(transform.position - new Vector3(0.0f, 0.5f, 0.0f), sphereDirection, Color.yellow, 0.05f);                
             }
         }
@@ -307,9 +308,9 @@ public class PlayerVRSphere : Player
             float mot2Current = motorCurrents[mot2.getControllerId()].GetSmooth();
             float mot4Current = motorCurrents[mot4.getControllerId()].GetSmooth();            
 
-            Debug.Log(  "Vel[2]= " + mot2.getMotorVelocity().ToString("00.0") + 
+            Debug.Log(  "Vel[2]= " + mot2.getMotorActualVelocity().ToString("00.0") + 
                         " Curr[2]= " + mot2Current.ToString("00.0") + 
-                        " Vel[4]= " + mot4.getMotorVelocity().ToString("00.0") + 
+                        " Vel[4]= " + mot4.getMotorActualVelocity().ToString("00.0") + 
                         " Curr[4]= " + mot4Current.ToString("00.0")+
                         " sphere direction= " + sphereDirection.ToString("00.0"));
 
@@ -384,24 +385,24 @@ public class PlayerVRSphere : Player
     public override MotorRecords GetMotorsRecords()
     {
         MotorRecord motor1 = new MotorRecord(
-            motors[1].getMotorCurrent(),
+            motors[1].getMotorActualCurrent(),
             motors[1].getMotorVoltage(),
-            motors[1].getMotorVelocity()
+            motors[1].getMotorActualVelocity()
             );
         MotorRecord motor2 = new MotorRecord(
-            motors[2].getMotorCurrent(),
+            motors[2].getMotorActualCurrent(),
             motors[2].getMotorVoltage(),
-            motors[2].getMotorVelocity()
+            motors[2].getMotorActualVelocity()
             );
         MotorRecord motor3 = new MotorRecord(
-            motors[3].getMotorCurrent(),
+            motors[3].getMotorActualCurrent(),
             motors[3].getMotorVoltage(),
-            motors[3].getMotorVelocity()
+            motors[3].getMotorActualVelocity()
             );
         MotorRecord motor4 = new MotorRecord(
-            motors[4].getMotorCurrent(),
+            motors[4].getMotorActualCurrent(),
             motors[4].getMotorVoltage(),
-            motors[4].getMotorVelocity()
+            motors[4].getMotorActualVelocity()
             );
 
 
@@ -414,9 +415,9 @@ public class PlayerVRSphere : Player
             sphereInput.getTimestamp(),
             sphereInput.getVelocity(),
             sphereInput.getDirection(),
-            sphereInput.getVelocityVectorX(),
-            sphereInput.getVelocityVectorY(),
-            sphereInput.getVelocityVectorZ());
+            sphereInput.getActualVelocityVectorX(),
+            sphereInput.getActualVelocityVectorY(),
+            sphereInput.getActualVelocityVectorZ());
     }
 #endregion
 }

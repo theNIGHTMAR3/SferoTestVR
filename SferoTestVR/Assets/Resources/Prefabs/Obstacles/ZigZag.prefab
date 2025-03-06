@@ -461,9 +461,17 @@ PrefabInstance:
       value: -14.48
       objectReference: {fileID: 0}
     - target: {fileID: 1864275921, guid: ecd19c1f156090a4cadb71dd8e57b22c, type: 3}
+      propertyPath: endPoint
+      value: 
+      objectReference: {fileID: 2927062260829372796}
+    - target: {fileID: 1864275921, guid: ecd19c1f156090a4cadb71dd8e57b22c, type: 3}
       propertyPath: moveSpeed
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1864275921, guid: ecd19c1f156090a4cadb71dd8e57b22c, type: 3}
+      propertyPath: startPoint
+      value: 
+      objectReference: {fileID: 2927062261521995108}
     - target: {fileID: 1864275921, guid: ecd19c1f156090a4cadb71dd8e57b22c, type: 3}
       propertyPath: middlePoints.Array.size
       value: 5
@@ -563,6 +571,18 @@ PrefabInstance:
 --- !u!4 &2927062261133788279 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5989233302838649438, guid: ecd19c1f156090a4cadb71dd8e57b22c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8899399194708010537}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2927062261521995108 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5989233303290360653, guid: ecd19c1f156090a4cadb71dd8e57b22c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8899399194708010537}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2927062260829372796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5989233301533501269, guid: ecd19c1f156090a4cadb71dd8e57b22c,
     type: 3}
   m_PrefabInstance: {fileID: 8899399194708010537}
   m_PrefabAsset: {fileID: 0}
