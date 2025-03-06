@@ -61,7 +61,7 @@ public class ControlZone : MonoBehaviour
 		if (other.CompareTag("Player") && !isMoving)
 		{
 			playerRb = other.GetComponent<Rigidbody>();
-			playerController = other.GetComponent<PlayerPCController>();
+			playerController = other.GetComponent<Player>();
 
 			if (playerRb != null && playerController != null)
 			{
