@@ -124,12 +124,12 @@ PrefabInstance:
     - target: {fileID: 5114745922366367136, guid: 06ef8ebf096732f47bc1954df6ce37ff,
         type: 3}
       propertyPath: moveSpeed
-      value: 0.2
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5114745922366367136, guid: 06ef8ebf096732f47bc1954df6ce37ff,
         type: 3}
       propertyPath: cylinderSpeed
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5195918221006396514, guid: 06ef8ebf096732f47bc1954df6ce37ff,
         type: 3}
