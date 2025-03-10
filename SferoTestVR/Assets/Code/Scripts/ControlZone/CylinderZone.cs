@@ -21,7 +21,7 @@ public class CylinderZone : ControlZone
     private void Start()
     {
         cylinderRadius = transform.lossyScale.x;
-        rotationAngleSpeed = cylinderRadius/cylinderSpeed;
+        rotationAngleSpeed = cylinderSpeed/cylinderRadius * Mathf.Rad2Deg;
         right = transform.right;
     }
 
