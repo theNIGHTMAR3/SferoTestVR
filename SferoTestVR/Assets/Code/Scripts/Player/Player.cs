@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
             0,
             -speed.x
             );
-        rigidbody.angularVelocity = angularVelocity;
+        rigidbody.angularVelocity = angularVelocity * 1.5f;
     }
 
     /// <summary>
