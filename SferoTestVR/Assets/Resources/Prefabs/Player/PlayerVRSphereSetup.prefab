@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1338789361107543971}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5131969759718492118}
   m_Father: {fileID: 5543317810466976035}
@@ -367,7 +367,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 72fd88b13af4f3f4c8ffdd9ab3a417c4, type: 3}
   - {fileID: 8300000, guid: c20ff43bee17bde4d8301582996d29b7, type: 3}
   - {fileID: 8300000, guid: 9e5d336188843fc458890910d55e2553, type: 3}
-  moveSpeed: 10
+  moveSpeed: 20
   hostIP: 127.0.0.1
   hostPort: 4445
   naturalMovementOn: 1
@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameObject: {fileID: 5337215623949439511}
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: -1.5, z: 0}
 --- !u!114 &5075071632818353492
 MonoBehaviour:
   m_ObjectHideFlags: 0

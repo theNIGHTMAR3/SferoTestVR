@@ -222,8 +222,13 @@ public class PlayerVRSphere : Player
             if (!playerControlsSelf)
             {
                 // set motors speed
+                float clamp_velocity = 0.75f;
                 Vector3 rbSpeed = rigidbody.velocity;
-                rbSpeed = Vector3.ClampMagnitude(rbSpeed, 0.5f);
+                if(rbSpeed.magnitude > clamp_velocity)
+                {
+                    Debug.Log("CLAMPING");
+                }
+                rbSpeed = Vector3.ClampMagnitude(rbSpeed, clamp_velocity);
                 virtuSphere.setSpherePose(rbSpeed.magnitude, Vector3.SignedAngle(Vector3.forward, rbSpeed, Vector3.up)); //is forward in this up vector?
                 Debug.Log(rbSpeed*3.6f + " | " + Vector3.SignedAngle(Vector3.forward, rbSpeed, Vector3.up));                
                 //Debug.DrawRay(transform.position - new Vector3(0.0f, 0.5f, 0.0f), sphereDirection, Color.yellow, 0.05f);                
