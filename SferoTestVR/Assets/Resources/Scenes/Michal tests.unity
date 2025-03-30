@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -620,7 +620,7 @@ PrefabInstance:
     - target: {fileID: 2942996450565948243, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7363109321227499252, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
         type: 3}
@@ -919,6 +919,11 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 1734965009027538199, guid: b526f8699d2b19746a93cda08cb6945c,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ef8d85c57bdbb9345bc88c08fcad048b, type: 3}
     - target: {fileID: 3218278556538145239, guid: b526f8699d2b19746a93cda08cb6945c,
         type: 3}
       propertyPath: m_Mass
@@ -1254,7 +1259,7 @@ PrefabInstance:
     - target: {fileID: 1648003666863157904, guid: 66b621b0f6cec564385501e019184130,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2131665209987377194, guid: 66b621b0f6cec564385501e019184130,
         type: 3}
@@ -1310,6 +1315,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885391221691629556, guid: 66b621b0f6cec564385501e019184130,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.053
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419768379036647303, guid: 66b621b0f6cec564385501e019184130,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868994987511248481, guid: 66b621b0f6cec564385501e019184130,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 21.303
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66b621b0f6cec564385501e019184130, type: 3}

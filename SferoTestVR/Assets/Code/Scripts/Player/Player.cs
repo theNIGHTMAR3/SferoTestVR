@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     
 
     [SerializeField] protected AudioSource playerRollingAudioSource;
+    
     [SerializeField] protected AudioSource hitAudioSource;
 	[SerializeField] protected float minSpeedSound = 0.5f;
     [SerializeField] protected float maxSpeedSound = 5.0f;
@@ -43,7 +44,9 @@ public class Player : MonoBehaviour
 
     private bool isOnFloor = false;
 
-    /// <summary> Bool whether it's the player, or the game controlling the sphere </summary>
+    /// <summary> 
+    /// Bool whether it's the player, or the game controlling the sphere 
+    /// </summary>
     protected bool playerControlsSelf = true;
     
 
@@ -241,7 +244,7 @@ public class Player : MonoBehaviour
             Win();
         }
 
-        if(!collision.gameObject.CompareTag("Floor") && !collision.gameObject.CompareTag("Threat") && !hitAudioSource.isPlaying)
+        if(!collision.gameObject.CompareTag("Floor") && !collision.gameObject.CompareTag("Threat") && !collision.gameObject.CompareTag("Mud") && !hitAudioSource.isPlaying)
         {
             CalculateHitVolume();
 		}
@@ -368,9 +371,7 @@ public class Player : MonoBehaviour
 	/// </summary> 
 	protected void CalculateRollingVolume()
     {
-
 		float currentPlayerSpeed = rigidbody.velocity.magnitude;
-
 		float normalizedSpeed = Mathf.Clamp01((currentPlayerSpeed - minSpeedSound) / (maxSpeedSound - minSpeedSound));
 
         playerRollingAudioSource.volume = normalizedSpeed;
@@ -390,10 +391,11 @@ public class Player : MonoBehaviour
 		}
 	}
 
-    /// <summary>
-    /// Calculates volume of sphere hit sound
-    /// </summary> 
-    protected void CalculateHitVolume()
+
+	/// <summary>
+	/// Calculates volume of sphere hit sound
+	/// </summary> 
+	protected void CalculateHitVolume()
     {
 		AudioClip hit = hitSounds[Random.Range(0, hitSounds.Length)];
 
