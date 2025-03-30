@@ -146,6 +146,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bars Straight
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 00dca8b9721e83b439eac6000111e5e1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00dca8b9721e83b439eac6000111e5e1, type: 3}
 --- !u!1 &6363300526405343622 stripped
