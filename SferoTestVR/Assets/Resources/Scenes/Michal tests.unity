@@ -547,26 +547,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 786041638867618352, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.313
-      objectReference: {fileID: 0}
-    - target: {fileID: 786041638867618352, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1227702132308484261, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.411
-      objectReference: {fileID: 0}
-    - target: {fileID: 1227702132351627268, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.252
-      objectReference: {fileID: 0}
     - target: {fileID: 2566012754507356649, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
         type: 3}
       propertyPath: m_RootOrder
@@ -585,7 +565,7 @@ PrefabInstance:
     - target: {fileID: 2566012754507356649, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -61.22
+      value: -61.47
       objectReference: {fileID: 0}
     - target: {fileID: 2566012754507356649, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
         type: 3}
@@ -627,20 +607,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ramps
       objectReference: {fileID: 0}
-    - target: {fileID: 4762463565119325242, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
+    - target: {fileID: 7363109321227499252, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
         type: 3}
-      propertyPath: motionSmothness
-      value: 0.7
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4992818946060001842, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
+    - target: {fileID: 7363109321227499252, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
         type: 3}
-      propertyPath: moveSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4992818946060001842, guid: 0320644c106baa04bb7cd81b8f2a2c4d,
-        type: 3}
-      propertyPath: motionSmothness
-      value: 0.91
+      propertyPath: m_LocalPosition.z
+      value: 19.19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0320644c106baa04bb7cd81b8f2a2c4d, type: 3}
