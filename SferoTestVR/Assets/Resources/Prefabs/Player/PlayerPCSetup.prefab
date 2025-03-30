@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRollingAudioSource: {fileID: 6248598579544636696}
+  playerMudAudioSource: {fileID: 1734965009027538199}
   hitAudioSource: {fileID: 16067302}
   minSpeedSound: 0.5
   maxSpeedSound: 5
@@ -254,6 +255,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 98321199533257285, guid: 06d413db8587f1e40a3bc086b507b4b5,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 98321199533257285, guid: 06d413db8587f1e40a3bc086b507b4b5,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ef8d85c57bdbb9345bc88c08fcad048b, type: 3}
     - target: {fileID: 664032089676289841, guid: 06d413db8587f1e40a3bc086b507b4b5,
         type: 3}
       propertyPath: m_TagString
@@ -355,6 +366,12 @@ Transform:
 --- !u!1 &8272393534468423217 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7747293004649075043, guid: 06d413db8587f1e40a3bc086b507b4b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1823566319476305746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1734965009027538199 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 98321199533257285, guid: 06d413db8587f1e40a3bc086b507b4b5,
     type: 3}
   m_PrefabInstance: {fileID: 1823566319476305746}
   m_PrefabAsset: {fileID: 0}

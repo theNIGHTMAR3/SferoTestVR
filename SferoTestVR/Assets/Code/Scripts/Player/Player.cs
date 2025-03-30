@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     
 
     [SerializeField] protected AudioSource playerRollingAudioSource;
+    [SerializeField] protected AudioSource playerMudAudioSource;
     [SerializeField] protected AudioSource hitAudioSource;
 	[SerializeField] protected float minSpeedSound = 0.5f;
     [SerializeField] protected float maxSpeedSound = 5.0f;
@@ -42,8 +43,11 @@ public class Player : MonoBehaviour
     private float startTime;
 
     private bool isOnFloor = false;
+    private bool isOnMud = false;
 
-    /// <summary> Bool whether it's the player, or the game controlling the sphere </summary>
+    /// <summary> 
+    /// Bool whether it's the player, or the game controlling the sphere 
+    /// </summary>
     protected bool playerControlsSelf = true;
     
 
@@ -93,6 +97,9 @@ public class Player : MonoBehaviour
         }
 
         CalculateRollingVolume();
+        CalculateMudVolume();
+
+
 	}
 
     virtual public void SetPlayerControlsSelf(bool playerControlsSelf)
@@ -241,7 +248,7 @@ public class Player : MonoBehaviour
             Win();
         }
 
-        if(!collision.gameObject.CompareTag("Floor") && !collision.gameObject.CompareTag("Threat") && !hitAudioSource.isPlaying)
+        if(!collision.gameObject.CompareTag("Floor") && !collision.gameObject.CompareTag("Threat") && !collision.gameObject.CompareTag("Mud") && !hitAudioSource.isPlaying)
         {
             CalculateHitVolume();
 		}
@@ -254,6 +261,11 @@ public class Player : MonoBehaviour
 		{
 			isOnFloor = true;
 		}
+
+		if (collision.gameObject.CompareTag("Mud") && !isOnMud)
+		{
+			isOnMud = true;
+		}
 	}
 
 	private void OnCollisionExit(Collision collision)
@@ -261,6 +273,11 @@ public class Player : MonoBehaviour
 		if (collision.gameObject.CompareTag("Floor"))
 		{
             isOnFloor = false;
+		}
+
+		if (collision.gameObject.CompareTag("Mud"))
+		{
+			isOnMud = false;
 		}
 	}
 
@@ -368,9 +385,7 @@ public class Player : MonoBehaviour
 	/// </summary> 
 	protected void CalculateRollingVolume()
     {
-
 		float currentPlayerSpeed = rigidbody.velocity.magnitude;
-
 		float normalizedSpeed = Mathf.Clamp01((currentPlayerSpeed - minSpeedSound) / (maxSpeedSound - minSpeedSound));
 
         playerRollingAudioSource.volume = normalizedSpeed;
@@ -390,10 +405,37 @@ public class Player : MonoBehaviour
 		}
 	}
 
-    /// <summary>
-    /// Calculates volume of sphere hit sound
-    /// </summary> 
-    protected void CalculateHitVolume()
+
+	/// <summary>
+	/// Calculates volume and pitch of mud sound
+	/// </summary> 
+	protected void CalculateMudVolume()
+	{
+		float currentPlayerSpeed = rigidbody.velocity.magnitude;
+        float normalizedSpeed = Mathf.Clamp01((currentPlayerSpeed - minSpeedSound/2) / (maxSpeedSound - minSpeedSound/2));
+
+		playerMudAudioSource.volume = normalizedSpeed;
+        playerMudAudioSource.pitch = Mathf.Lerp(1.0f, 2.0f, normalizedSpeed);
+
+		if ( isOnMud)
+		{
+			if (!playerMudAudioSource.isPlaying)
+			{
+				playerMudAudioSource.Play();
+                Debug.Log("Playing mud sound");
+			}
+		}
+		else
+		{
+			playerMudAudioSource.Stop();
+		}
+	}
+
+
+	/// <summary>
+	/// Calculates volume of sphere hit sound
+	/// </summary> 
+	protected void CalculateHitVolume()
     {
 		AudioClip hit = hitSounds[Random.Range(0, hitSounds.Length)];
 
