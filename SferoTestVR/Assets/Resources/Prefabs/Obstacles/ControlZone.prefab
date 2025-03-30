@@ -418,6 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.4
+  motionSmothness: 0.7
   middlePoints:
   - {fileID: 2002840201}
   - {fileID: 789806773}
