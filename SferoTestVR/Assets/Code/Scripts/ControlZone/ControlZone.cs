@@ -8,6 +8,7 @@ public class ControlZone : MonoBehaviour
 	
 
 	[SerializeField] private float moveSpeed = 0.1f;
+	[SerializeField] private float motionSmothness = 0.5f;
 	[SerializeField] protected List<GameObject> middlePoints = new List<GameObject>();
 
 	[SerializeField] private GameObject startPoint;
@@ -67,12 +68,14 @@ public class ControlZone : MonoBehaviour
 
 			if (playerRb != null && playerController != null)
 			{
-				playerRb.velocity = Vector3.zero;
-				playerRb.angularVelocity = Vector3.zero;
+				//playerRb.velocity = Vector3.zero;
+				//playerRb.angularVelocity = Vector3.zero;
 				playerController.SetPlayerControlsSelf(false);
 
 				CreatePointsList();
 				isMoving = true;
+				currentSpeed = playerRb.velocity.magnitude;
+
 			}
 		}
 	}
@@ -84,7 +87,16 @@ public class ControlZone : MonoBehaviour
 	private void MoveToTarget()
 	{
 		Vector3 direction = (targetPoint.transform.position - playerRb.position).normalized;
-		playerController.Move(direction, moveSpeed);
+		// smooth movement to the first point
+		if (targetPoint == startPoint)
+        {
+			currentSpeed = Mathf.Lerp(currentSpeed, moveSpeed, motionSmothness);
+			playerController.Move(direction, currentSpeed);
+		}
+		else
+		{	
+			playerController.Move(direction, moveSpeed);
+		}		
 	}
 
 
