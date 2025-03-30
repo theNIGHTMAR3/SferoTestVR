@@ -412,7 +412,7 @@ public class Player : MonoBehaviour
 	protected void CalculateMudVolume()
 	{
 		float currentPlayerSpeed = rigidbody.velocity.magnitude;
-        float normalizedSpeed = Mathf.Clamp01((currentPlayerSpeed - minSpeedSound/2) / (maxSpeedSound - minSpeedSound/2));
+        float normalizedSpeed = Mathf.Clamp01((currentPlayerSpeed - minSpeedSound/2.0f) / (maxSpeedSound - minSpeedSound/2.0f));
 
 		playerMudAudioSource.volume = normalizedSpeed;
         playerMudAudioSource.pitch = Mathf.Lerp(1.0f, 2.0f, normalizedSpeed);
@@ -422,7 +422,6 @@ public class Player : MonoBehaviour
 			if (!playerMudAudioSource.isPlaying)
 			{
 				playerMudAudioSource.Play();
-                Debug.Log("Playing mud sound");
 			}
 		}
 		else
