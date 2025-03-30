@@ -1,6 +1,1 @@
-Cylinder
-Narrow Path
 Bars room Variant
-Short Path With Spikes
-Straight Moving Platform
-Cylinder
