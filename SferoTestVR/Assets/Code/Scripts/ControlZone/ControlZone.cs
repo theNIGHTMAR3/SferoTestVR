@@ -20,10 +20,11 @@ public class ControlZone : MonoBehaviour
 	private float offset = 0.5f;
 	private bool isMoving = false;
 
-	// serialize dor debugging
+	private float currentSpeed = 0f;
+
+	// serialize for debugging
 	[SerializeField] private GameObject targetPoint;
 	
-
 
 	private void FixedUpdate()
 	{
@@ -51,6 +52,7 @@ public class ControlZone : MonoBehaviour
 			{
 				isMoving = false;
 				targetPoint = null;
+				RestoreControl();
 			}
 		}	
 	}
