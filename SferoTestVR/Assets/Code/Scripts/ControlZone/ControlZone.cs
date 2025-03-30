@@ -7,25 +7,25 @@ public class ControlZone : MonoBehaviour
 {
 	
 
+
 	[SerializeField] private float moveSpeed = 0.1f;
 	[SerializeField] private float motionSmoothness = 0.5f;
 	[SerializeField] protected List<GameObject> middlePoints = new List<GameObject>();
 
-	[SerializeField] private GameObject startPoint;
-	[SerializeField] private GameObject endPoint;
+	[SerializeField] protected GameObject startPoint;
+	[SerializeField] protected GameObject endPoint;
 
 	private Queue<GameObject> pointsQueue = new Queue<GameObject>();
 
-	private Rigidbody playerRb;
-	private Player playerController;
+	protected Rigidbody playerRb;
+	protected Player playerController;
 	private float offset = 0.5f;
-	private bool isMoving = false;
-
+	protected bool isMoving = false;
 	private float currentSpeed = 0f;
 
 	// serialize for debugging
 	[SerializeField] private GameObject targetPoint;
-	
+
 
 	private void FixedUpdate()
 	{
@@ -82,7 +82,7 @@ public class ControlZone : MonoBehaviour
 	/// <summary>
 	/// Moves player to set target point
 	/// </summary>
-	private void MoveToTarget()
+	virtual protected void MoveToTarget()
 	{
 		Vector3 direction = (targetPoint.transform.position - playerRb.position).normalized;
 		// smooth movement to the first point

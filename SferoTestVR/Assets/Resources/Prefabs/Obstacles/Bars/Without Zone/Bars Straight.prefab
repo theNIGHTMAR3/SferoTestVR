@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1342482131991581251}
   m_Layer: 0
   m_Name: Bars Straight
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,20 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &3594987646069219123
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6363300526405343622}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 4.3
-  m_Direction: 1
-  m_Center: {x: 1.5, y: 0, z: 0}
 --- !u!136 &2364144802961474089
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -59,6 +45,20 @@ CapsuleCollider:
   m_Height: 4.3
   m_Direction: 1
   m_Center: {x: -1.5, y: 0, z: 0}
+--- !u!136 &3594987646069219123
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6363300526405343622}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 4.3
+  m_Direction: 1
+  m_Center: {x: 1.5, y: 0, z: 0}
 --- !u!1001 &6093253527340016855
 PrefabInstance:
   m_ObjectHideFlags: 0
