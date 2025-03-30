@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.4
-  motionSmothness: 0.7
+  motionSmoothness: 0.7
   middlePoints: []
   startPoint: {fileID: 5989233303290360653}
   endPoint: {fileID: 5989233301533501269}

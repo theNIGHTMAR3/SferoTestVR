@@ -5,10 +5,7 @@ using UnityEngine;
 
 public class ControlZone : MonoBehaviour
 {
-	
-
-
-	[SerializeField] private float moveSpeed = 0.1f;
+	[SerializeField] protected float moveSpeed = 0.1f;
 	[SerializeField] private float motionSmoothness = 0.5f;
 	[SerializeField] protected List<GameObject> middlePoints = new List<GameObject>();
 
@@ -24,7 +21,7 @@ public class ControlZone : MonoBehaviour
 	private float currentSpeed = 0f;
 
 	// serialize for debugging
-	[SerializeField] private GameObject targetPoint;
+	[SerializeField] protected GameObject targetPoint;
 
 
 	private void FixedUpdate()
