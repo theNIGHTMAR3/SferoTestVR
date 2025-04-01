@@ -618,6 +618,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZigZag
       objectReference: {fileID: 0}
+    - target: {fileID: 8899399195428483576, guid: 7df048d33b656ca41b742bb72a06837a,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899399195428483576, guid: 7df048d33b656ca41b742bb72a06837a,
+        type: 3}
+      propertyPath: motionSmoothness
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7df048d33b656ca41b742bb72a06837a, type: 3}
 --- !u!1001 &6390207110501108329

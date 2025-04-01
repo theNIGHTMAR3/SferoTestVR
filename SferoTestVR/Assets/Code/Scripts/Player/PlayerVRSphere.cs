@@ -222,7 +222,7 @@ public class PlayerVRSphere : Player
             if (!playerControlsSelf)
             {
                 // set motors speed
-                float clamp_velocity = 0.75f;
+                float clamp_velocity = 1.2f;
                 Vector3 rbSpeed = rigidbody.velocity;
                 if(rbSpeed.magnitude > clamp_velocity)
                 {
