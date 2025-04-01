@@ -92,7 +92,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60
+  field of view: 110.10649
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -359,7 +359,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRollingAudioSource: {fileID: 7956611561027866942}
-  playerMudAudioSource: {fileID: 2364176748217643313}
   hitAudioSource: {fileID: 6178259271027423645}
   minSpeedSound: 0.5
   maxSpeedSound: 5
@@ -512,7 +511,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 110.10649
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -630,16 +629,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 98321199533257285, guid: 06d413db8587f1e40a3bc086b507b4b5,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 98321199533257285, guid: 06d413db8587f1e40a3bc086b507b4b5,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: ef8d85c57bdbb9345bc88c08fcad048b, type: 3}
     - target: {fileID: 1633092262298304665, guid: 06d413db8587f1e40a3bc086b507b4b5,
         type: 3}
       propertyPath: m_RootOrder
@@ -711,12 +700,6 @@ Transform:
 --- !u!1 &5337215623949439511 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7747293004649075043, guid: 06d413db8587f1e40a3bc086b507b4b5,
-    type: 3}
-  m_PrefabInstance: {fileID: 2419119807377032052}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &2364176748217643313 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 98321199533257285, guid: 06d413db8587f1e40a3bc086b507b4b5,
     type: 3}
   m_PrefabInstance: {fileID: 2419119807377032052}
   m_PrefabAsset: {fileID: 0}
