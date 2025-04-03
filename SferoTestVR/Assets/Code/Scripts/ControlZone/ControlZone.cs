@@ -86,6 +86,7 @@ public class ControlZone : MonoBehaviour
 		if (targetPoint == startPoint)
         {
 			currentSpeed = Mathf.Lerp(currentSpeed, moveSpeed, motionSmoothness);
+			//Debug.Log("currrent speed: " + currentSpeed);
 			playerController.Move(direction, currentSpeed);
 		}
 		else
