@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -305,6 +305,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -67.003006, y: -55.352, z: 76.961006}
+--- !u!1001 &2026483361
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2229001258362483789, guid: 06ef8ebf096732f47bc1954df6ce37ff,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229001258362483789, guid: 06ef8ebf096732f47bc1954df6ce37ff,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229001258362483789, guid: 06ef8ebf096732f47bc1954df6ce37ff,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229001258362483789, guid: 06ef8ebf096732f47bc1954df6ce37ff,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229001258362483789, guid: 06ef8ebf096732f47bc1954df6ce37ff,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229001258362483789, guid: 06ef8ebf096732f47bc1954df6ce37ff,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229001258362483789, guid: 06ef8ebf096732f47bc1954df6ce37ff,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229001258362483789, guid: 06ef8ebf096732f47bc1954df6ce37ff,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229001258362483789, guid: 06ef8ebf096732f47bc1954df6ce37ff,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229001258362483789, guid: 06ef8ebf096732f47bc1954df6ce37ff,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229001258362483789, guid: 06ef8ebf096732f47bc1954df6ce37ff,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4465713969456035676, guid: 06ef8ebf096732f47bc1954df6ce37ff,
+        type: 3}
+      propertyPath: m_Name
+      value: Cylinder Zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 5114745922366367136, guid: 06ef8ebf096732f47bc1954df6ce37ff,
+        type: 3}
+      propertyPath: cylinderSpeed
+      value: 6.28
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 06ef8ebf096732f47bc1954df6ce37ff, type: 3}
 --- !u!1001 &919488281853237186
 PrefabInstance:
   m_ObjectHideFlags: 0
