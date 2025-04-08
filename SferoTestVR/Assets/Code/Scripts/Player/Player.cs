@@ -10,6 +10,8 @@ using VirtuSphereClient.Events;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance { get; private set; }
+
     protected Rigidbody rigidbody;
     protected Camera camera;
     protected Vector2 playerInput;
@@ -52,6 +54,12 @@ public class Player : MonoBehaviour
 
 
     protected Vector3 addedTorque = Vector3.zero;
+
+    private void OnEnable()
+    {
+        Instance = this;
+    }
+
     protected virtual void Start()
     {
         camera = Camera.main;
