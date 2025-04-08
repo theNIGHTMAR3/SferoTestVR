@@ -20,8 +20,12 @@ public class CylinderZone : ControlZone
 
     private void Start()
     {
-        cylinderRadius = transform.lossyScale.x;
-        rotationAngleSpeed = cylinderSpeed/cylinderRadius * Mathf.Rad2Deg;
+        cylinderRadius = cylinderObject.transform.lossyScale.x/2;
+        rotationAngleSpeed = 
+            (Player.Instance.moveSpeed * cylinderSpeed) // relative speed to players speed
+            / cylinderRadius // to convert radial velocity
+            * Mathf.Rad2Deg // convert to degrees
+            / Mathf.PI; // no idea why, but the rotation looks ok with it????
         right = transform.right;
     }
 
