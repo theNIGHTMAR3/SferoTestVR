@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -465,7 +465,7 @@ PrefabInstance:
     - target: {fileID: 4394930467124523671, guid: 3a5b55dbf54cb0e47b49dfb7f8fcbc7d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4394930467124523671, guid: 3a5b55dbf54cb0e47b49dfb7f8fcbc7d,
         type: 3}
@@ -603,7 +603,7 @@ PrefabInstance:
     - target: {fileID: 2523142161638347112, guid: 57bb22589ff1a5845bccc54e46cc9482,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2523142161638347112, guid: 57bb22589ff1a5845bccc54e46cc9482,
         type: 3}
@@ -842,7 +842,7 @@ PrefabInstance:
     - target: {fileID: 1022592289626436075, guid: 6dfa483812db7874a8d57f005b4313c3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1022592289626436075, guid: 6dfa483812db7874a8d57f005b4313c3,
         type: 3}
@@ -894,11 +894,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8933845751607692615, guid: 6dfa483812db7874a8d57f005b4313c3,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dfa483812db7874a8d57f005b4313c3, type: 3}
 --- !u!1001 &4029832283838800833
@@ -926,7 +921,7 @@ PrefabInstance:
     - target: {fileID: 4029832283397559172, guid: 81f39979f5225f549b65f34bffaf8da0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4029832283397559172, guid: 81f39979f5225f549b65f34bffaf8da0,
         type: 3}
