@@ -596,6 +596,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ramps
       objectReference: {fileID: 0}
+    - target: {fileID: 6093892660081515589, guid: d0a48197a19753640a11a22425104667,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.07
+      objectReference: {fileID: 0}
     - target: {fileID: 6994533299865071194, guid: d0a48197a19753640a11a22425104667,
         type: 3}
       propertyPath: m_LocalPosition.y
