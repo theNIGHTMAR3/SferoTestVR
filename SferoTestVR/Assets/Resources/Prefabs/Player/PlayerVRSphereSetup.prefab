@@ -360,8 +360,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRollingAudioSource: {fileID: 7956611561027866942}
   hitAudioSource: {fileID: 6178259271027423645}
-  minSpeedSound: 0.5
-  maxSpeedSound: 5
+  minSpeedSound: 0.1
+  maxSpeedSound: 4
   hitSounds:
   - {fileID: 8300000, guid: cb9aeb6ee44e19a408114e56870bf699, type: 3}
   - {fileID: 8300000, guid: 72fd88b13af4f3f4c8ffdd9ab3a417c4, type: 3}
