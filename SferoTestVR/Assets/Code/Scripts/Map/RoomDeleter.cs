@@ -20,6 +20,7 @@ public class RoomDeleter : MonoBehaviour
         if (!deleted && other.gameObject.CompareTag("Player"))
         {
             MapLoader.Instance.DeleteRoom();
+            deleted = true;
         }
     }
 }
