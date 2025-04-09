@@ -8,14 +8,21 @@ using System.Linq;
 
 public class MapLoader : MonoBehaviour
 {
+    public static MapLoader Instance;
+
     public const string CONFIG_FILE = "config.txt";
 
     public const string FINAL_ROOMS_PATH = "Prefabs/Rooms/Final Rooms/";
 
+    List<Room> rooms;
+    List<GameObject> corridors = new List<GameObject>();
+
     void Awake()
     {
+        Instance = this;
+
         List<string> roomTypes = LoadRooms();
-        List<Room> rooms = InstantiateRooms(roomTypes);
+        rooms = InstantiateRooms(roomTypes);
         //technicaly functions as a linked list XD  
         //holds only rooms! It doesn't have corridors!
         List<ExtendedRoom> extendedRooms = rooms.Select(x => new ExtendedRoom(x)).ToList(); 
@@ -79,7 +86,8 @@ public class MapLoader : MonoBehaviour
             Corridor corridor = rooms[roomIndex].nextCorridor;
             Object corridorObject = Resources.Load(corridor.type.GetPrefabPath());
             GameObject corridorGameoBject = GameObject.Instantiate((GameObject)corridorObject);
-            corridorGameoBject.transform.position = new Vector3(corridor.pos.x, 0, corridor.pos.y) * 8;            
+            corridorGameoBject.transform.position = new Vector3(corridor.pos.x, 0, corridor.pos.y) * 8;
+            corridors.Add(corridorGameoBject);
 
             switch (corridor.directon)
             {
@@ -161,7 +169,30 @@ public class MapLoader : MonoBehaviour
 
         return rooms;
     }
-  
+
+
+
+    private bool firstIgnored = false; 
+    /// <summary>
+    /// Deletes rooms in the game.
+    /// Ignores first signal to delay the deletion process (second latest visited room is deleted)
+    /// </summary>
+    public void DeleteRoom()
+    {
+        if (firstIgnored)
+        {
+            var firstRoom = rooms[0];
+            var firstCorridor= corridors[0];
+            rooms.RemoveAt(0);
+            corridors.RemoveAt(0);
+            Destroy(firstRoom.gameObject);
+            Destroy(firstCorridor);
+        }
+        else
+        {
+            firstIgnored = true;
+        }
+    }
 }
 
 
@@ -331,9 +362,9 @@ public class ExtendedRoom
             case Directon.DOWN:
                 return new Vector2(0, -room.length) + pos;
             case Directon.RIGHT:
-                return new Vector2(room.width,0) + pos;
+                return new Vector2(room.length, 0) + pos;
             case Directon.LEFT:
-                return new Vector2(-room.width, 0) + pos;
+                return new Vector2(-room.length, 0) + pos;
 
             default:
                 return new Vector2(-1,-1);
