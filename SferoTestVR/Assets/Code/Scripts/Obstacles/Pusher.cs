@@ -21,11 +21,14 @@ public class Pusher : FourActionStateMachine
     [SerializeField] float shortenTime = 1;
 
     Vector3 endPos;
+    Rigidbody rb;
 
 	private void Awake()
 	{
 		audioSource = GetComponent<AudioSource>();
-	}
+        rb = GetComponent<Rigidbody>();
+
+    }
 
 	// Start is called before the first frame update
 	protected override void Start()
@@ -79,7 +82,8 @@ public class Pusher : FourActionStateMachine
 
 	void SetPositionAndBarsScale(float percentage)
     {
-        transform.localPosition = Vector3.Lerp(Vector3.zero, endPos, percentage);
+        var localPosition = Vector3.Lerp(Vector3.zero, endPos, percentage);
+        rb.MovePosition(transform.parent.TransformPoint(localPosition));
 
         bars.transform.localScale = new Vector3(1, 1, transform.localPosition.z / 0.1f);
 
