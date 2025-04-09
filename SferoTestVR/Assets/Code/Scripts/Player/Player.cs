@@ -237,7 +237,7 @@ public class Player : MonoBehaviour
     }
 
 	/// <summary>
-	/// Checks if player is ojn floot
+	/// Checks if player is on floor
 	/// </summary>
 	/// <returns>Returns isOnFloor bool</returns>
 	public bool GetIsOnFloor()
