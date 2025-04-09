@@ -236,10 +236,28 @@ public class Player : MonoBehaviour
         return isAlive;
     }
 
-    /// <summary>
-    /// checks of player collided with an object
-    /// </summary>    
-    private void OnCollisionEnter(Collision collision)
+	/// <summary>
+	/// Checks if player is ojn floot
+	/// </summary>
+	/// <returns>Returns isOnFloor bool</returns>
+	public bool GetIsOnFloor()
+	{
+		return isOnFloor;
+	}
+
+	/// <summary>
+	/// Sets player isOnFloor flag
+	/// </summary>
+	/// <param name="flag">Bool to set</param>
+	public void SetIsOnFloor(bool flag)
+	{
+		isOnFloor = flag;
+	}
+
+	/// <summary>
+	/// checks of player collided with an object
+	/// </summary>    
+	private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Threat"))
         {
