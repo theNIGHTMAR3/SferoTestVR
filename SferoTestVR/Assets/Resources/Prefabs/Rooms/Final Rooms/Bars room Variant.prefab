@@ -1365,6 +1365,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bars room Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6093892660081515589, guid: d0a48197a19753640a11a22425104667,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994533299865071194, guid: d0a48197a19753640a11a22425104667,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0a48197a19753640a11a22425104667, type: 3}
 --- !u!4 &2566012754507356649 stripped

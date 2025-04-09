@@ -5195,7 +5195,7 @@ PrefabInstance:
     - target: {fileID: 116184221479311060, guid: 452d7668b609477499bdb60e11806ebb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.89
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1121835804678320028, guid: 452d7668b609477499bdb60e11806ebb,
         type: 3}
@@ -5321,6 +5321,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Final room 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755031234189354187, guid: 452d7668b609477499bdb60e11806ebb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452d7668b609477499bdb60e11806ebb, type: 3}
