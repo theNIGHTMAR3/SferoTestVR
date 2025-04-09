@@ -331,9 +331,9 @@ public class ExtendedRoom
             case Directon.DOWN:
                 return new Vector2(0, -room.length) + pos;
             case Directon.RIGHT:
-                return new Vector2(room.width,0) + pos;
+                return new Vector2(room.length, 0) + pos;
             case Directon.LEFT:
-                return new Vector2(-room.width, 0) + pos;
+                return new Vector2(-room.length, 0) + pos;
 
             default:
                 return new Vector2(-1,-1);
