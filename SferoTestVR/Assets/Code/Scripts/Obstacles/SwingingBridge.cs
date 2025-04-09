@@ -11,13 +11,11 @@ public class SwingingBridge : MonoBehaviour
     [SerializeField] Transform bridgeElementsParent;
 
 
-    Quaternion startRot;
     float bridgeLength = 0;
     Vector3 bridgeNormal;
 
     private void Start()
     {
-        startRot = transform.localRotation;
         var firstElement = bridgeElementsParent.GetChild(0);
         var lastElement = bridgeElementsParent.GetChild(bridgeElementsParent.childCount - 1);
         bridgeLength = Vector3.Distance(
@@ -42,7 +40,7 @@ public class SwingingBridge : MonoBehaviour
             var t = projected.magnitude / bridgeLength;
             var intensity = t <= 0.5f ? 2*t : 2*(1 - t);
 
-            element.localRotation = startRot * Quaternion.Euler(
+            element.localRotation = Quaternion.Euler(
             0,
             0,
             Mathf.Sin(Time.time * swingFrequency) * swingAngle * intensity
