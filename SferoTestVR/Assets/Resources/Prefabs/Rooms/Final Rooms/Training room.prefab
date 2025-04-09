@@ -2769,7 +2769,7 @@ PrefabInstance:
     - target: {fileID: 8994382092929284028, guid: 8e2ea88f869bcec4fbbc2858b9bb02bc,
         type: 3}
       propertyPath: m_text
-      value: "Ten znak oznacza pocz\u0105tek ControlZone - starcisz kontrol\u0119
+      value: "Ten znak oznacza pocz\u0105tek ControlZone - stracisz kontrol\u0119
         nad poruszaniem si\u0119, to sfera b\u0119dzie Ciebie prowadzi\u0107.\n\n\n\nTen
         znak oznacza koniec ControlZone - odzyskasz mo\u017Cliwo\u015B\u0107 poruszania
         si\u0119. "
@@ -3029,7 +3029,7 @@ PrefabInstance:
       propertyPath: m_text
       value: "Witaj w pokoju treningowym!\nTutaj mo\u017Cesz zapozna\u0107 si\u0119
         ze sfer\u0105, jak si\u0119 w niej porusza\u0107 oraz co mo\u017Cesz spotka\u0107.
-        Cz\u0119\u015B\u0107 przeszk\xF3d wymaga od Ciebie ich w\u0142asnego przej\u015Bcie,
+        Cz\u0119\u015B\u0107 przeszk\xF3d wymaga od Ciebie ich w\u0142asnego przej\u015Bcia,
         a inne odbior\u0105 ci kontrol\u0119 sterowania i b\u0119dzie wymagane dostosowanie
         si\u0119 do ruch\xF3w kuli. W przypadku \u015Bmierci, na pocz\u0105tku ka\u017Cdego
         pokoju jest checkpoint."
