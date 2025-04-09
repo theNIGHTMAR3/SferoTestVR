@@ -18,6 +18,8 @@ public class CylinderZone : ControlZone
     float rotationAngleSpeed;
     Vector3 right;
 
+    private Player player;
+
     private void Start()
     {
         cylinderRadius = cylinderObject.transform.lossyScale.x/2;
@@ -27,6 +29,7 @@ public class CylinderZone : ControlZone
             * Mathf.Rad2Deg // convert to degrees
             / Mathf.PI; // no idea why, but the rotation looks ok with it????
         right = transform.right;
+        player = Player.Instance;
     }
 
     private void Update()
@@ -42,6 +45,10 @@ public class CylinderZone : ControlZone
         }
         else
         {
+            if(!player.GetIsOnFloor())
+            {
+                player.SetIsOnFloor(true);
+            }
             Vector3 cylinderInfluence = right * cylinderSpeed;
             Vector3 direction = (endPoint.transform.position - startPoint.transform.position).normalized;
 

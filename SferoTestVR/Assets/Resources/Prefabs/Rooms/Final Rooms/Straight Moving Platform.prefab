@@ -497,11 +497,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1029043317622238713}
     m_Modifications:
-    - target: {fileID: 3463640040476988485, guid: 34fdb097e3ff22048ad55176efcfbd90,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 36
-      objectReference: {fileID: 0}
     - target: {fileID: 3463640041318849781, guid: 34fdb097e3ff22048ad55176efcfbd90,
         type: 3}
       propertyPath: m_Name
@@ -511,21 +506,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463640041318849782, guid: 34fdb097e3ff22048ad55176efcfbd90,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463640041318849782, guid: 34fdb097e3ff22048ad55176efcfbd90,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463640041318849782, guid: 34fdb097e3ff22048ad55176efcfbd90,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3463640041318849782, guid: 34fdb097e3ff22048ad55176efcfbd90,
         type: 3}
@@ -576,21 +556,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4112184108025014164, guid: 34fdb097e3ff22048ad55176efcfbd90,
-        type: 3}
-      propertyPath: delay
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4112184108025014164, guid: 34fdb097e3ff22048ad55176efcfbd90,
-        type: 3}
-      propertyPath: stayTime
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4112184108025014164, guid: 34fdb097e3ff22048ad55176efcfbd90,
-        type: 3}
-      propertyPath: movingTime
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34fdb097e3ff22048ad55176efcfbd90, type: 3}

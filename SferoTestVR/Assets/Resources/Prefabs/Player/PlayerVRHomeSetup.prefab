@@ -883,10 +883,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRollingAudioSource: {fileID: 7296772959690879616}
-  playerMudAudioSource: {fileID: 3163768216566223503}
   hitAudioSource: {fileID: 8495714297480445479}
-  minSpeedSound: 0.5
-  maxSpeedSound: 5
+  minSpeedSound: 0.1
+  maxSpeedSound: 4
   hitSounds:
   - {fileID: 8300000, guid: 9e5d336188843fc458890910d55e2553, type: 3}
   - {fileID: 8300000, guid: cb9aeb6ee44e19a408114e56870bf699, type: 3}
@@ -1380,12 +1379,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3078976645051719882}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &3163768216566223503 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 98321199533257285, guid: 06d413db8587f1e40a3bc086b507b4b5,
-    type: 3}
-  m_PrefabInstance: {fileID: 3078976645051719882}
-  m_PrefabAsset: {fileID: 0}
 --- !u!82 &7296772959690879616 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 5762884222654403146, guid: 06d413db8587f1e40a3bc086b507b4b5,
@@ -1603,15 +1596,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f39979f5225f549b65f34bffaf8da0, type: 3}
---- !u!1 &1014132124426724840 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4029832283397559168, guid: 81f39979f5225f549b65f34bffaf8da0,
-    type: 3}
-  m_PrefabInstance: {fileID: 4178844398824748648}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1014132124426724844 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4029832283397559172, guid: 81f39979f5225f549b65f34bffaf8da0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4178844398824748648}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1014132124426724840 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4029832283397559168, guid: 81f39979f5225f549b65f34bffaf8da0,
     type: 3}
   m_PrefabInstance: {fileID: 4178844398824748648}
   m_PrefabAsset: {fileID: 0}
