@@ -125,9 +125,11 @@ public static class SVG
         rightEnd += record.pos;
         leftEnd += record.pos;
         endArrow += record.pos;
-        
-        svg.Add(CreateLine(xNamespace, startArrow.x, -startArrow.y,endArrow.x, -endArrow.y,"255,0,0"));
-        svg.Add(CreateLine(xNamespace, rightEnd.x, -rightEnd.y,endArrow.x,- endArrow.y, "255,0,0"));
-        svg.Add(CreateLine(xNamespace, leftEnd.x, -leftEnd.y,endArrow.x, -endArrow.y, "255,0,0"));        
+
+        string color = record.inControlZone ? "0,255,0" : "255,0,0";
+
+        svg.Add(CreateLine(xNamespace, startArrow.x, -startArrow.y,endArrow.x, -endArrow.y, color));
+        svg.Add(CreateLine(xNamespace, rightEnd.x, -rightEnd.y,endArrow.x,- endArrow.y, color));
+        svg.Add(CreateLine(xNamespace, leftEnd.x, -leftEnd.y,endArrow.x, -endArrow.y, color));        
     }
 }
