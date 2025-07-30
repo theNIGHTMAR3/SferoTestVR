@@ -41,7 +41,8 @@ public class Tracker : MonoBehaviour
                     new Vector2(playerPos.x, playerPos.z),
                     new Vector2(playerVel.x, playerVel.z),
                     player.GetSphereRecord(),
-                    player.GetMotorsRecords()
+                    player.GetMotorsRecords(),
+                    !player.playerControlsSelf
                     ));
 
             }

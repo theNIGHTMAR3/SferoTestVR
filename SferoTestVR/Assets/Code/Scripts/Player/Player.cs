@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     /// <summary> 
     /// Bool whether it's the player, or the game controlling the sphere 
     /// </summary>
-    protected bool playerControlsSelf = true;
+    public bool playerControlsSelf { get; protected set; } = true;
     
 
 
