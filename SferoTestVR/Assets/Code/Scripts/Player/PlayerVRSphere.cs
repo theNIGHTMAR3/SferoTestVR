@@ -72,6 +72,17 @@ public class PlayerVRSphere : Player
         }
     }
 
+    protected override void Update()
+    {
+        base.Update();
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            emergencyState = true;
+            Debug.Log("EMERGENCY BREAK PRESSED!!");
+        }
+    }
+
     protected override void FixedUpdate()
     {
         base.FixedUpdate();    
@@ -143,13 +154,7 @@ public class PlayerVRSphere : Player
                 //Move(sphereDirection);
             }
         }
-        //Debug.Log(GetAccumulatedTorque());
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            emergencyState = true;                
-            Debug.Log("EMERGENCY BREAK PRESSED!!");
-        }  
+        //Debug.Log(GetAccumulatedTorque());  
     }
 
     /// <summary>
@@ -204,6 +209,16 @@ public class PlayerVRSphere : Player
         }
     }
 
+
+    /// <summary>
+    /// When sphere player is revived clear the emergency flags.
+    /// </summary>
+    protected override void Revive()
+    {
+        base.Revive();
+        emergencyState = false;
+        emergencySend = false;
+    }
 
     #region Natural Movement
 
