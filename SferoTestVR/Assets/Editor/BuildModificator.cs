@@ -23,7 +23,6 @@ public class BuildModificator : IPreprocessBuildWithReport
         #endregion
 
 #if UNITY_EDITOR
-        int a = 2;
 #endif
 
         #region create directory with prefab images
