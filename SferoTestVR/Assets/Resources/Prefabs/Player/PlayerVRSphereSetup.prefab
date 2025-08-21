@@ -689,6 +689,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerVRSphereSetup
       objectReference: {fileID: 0}
+    - target: {fileID: 4630642357894525000, guid: 06d413db8587f1e40a3bc086b507b4b5,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06d413db8587f1e40a3bc086b507b4b5, type: 3}
 --- !u!4 &3979942264941773805 stripped
