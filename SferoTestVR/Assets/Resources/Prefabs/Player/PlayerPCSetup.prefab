@@ -336,6 +336,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4630642357894525000, guid: 06d413db8587f1e40a3bc086b507b4b5,
         type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630642357894525000, guid: 06d413db8587f1e40a3bc086b507b4b5,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630642357894525000, guid: 06d413db8587f1e40a3bc086b507b4b5,
+        type: 3}
+      propertyPath: DopplerLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630642357894525000, guid: 06d413db8587f1e40a3bc086b507b4b5,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630642357894525000, guid: 06d413db8587f1e40a3bc086b507b4b5,
+        type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
       value: 0.07952881
       objectReference: {fileID: 0}

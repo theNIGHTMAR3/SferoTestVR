@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
 	[SerializeField] protected float minSpeedSound = 0.5f;
     [SerializeField] protected float maxSpeedSound = 5.0f;
 
-
     [SerializeField] protected AudioClip[] hitSounds;
 
     public float moveSpeed = 10f;
