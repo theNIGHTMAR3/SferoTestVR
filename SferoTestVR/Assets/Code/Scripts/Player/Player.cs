@@ -74,21 +74,9 @@ public class Player : MonoBehaviour
         StartCoroutine(FreezePlayer(1));
     }
 
-    /// <summary>
-    /// not modified in derived class
-    /// </summary>
-    protected virtual void FixedUpdate()
+    protected virtual void Update()
     {
-        if (playerControlsSelf)
-        {
-            GetInput();
-        }
-        else
-        {
-
-        }
-
-        if(Input.GetKeyDown(KeyCode.Space) && isAlive && !hasWon)
+        if (Input.GetKeyDown(KeyCode.Space) && isAlive && !hasWon)
         {
             Die();
         }
@@ -102,6 +90,21 @@ public class Player : MonoBehaviour
         {
             GoBackToMainMenu();
         }
+    }
+
+    /// <summary>
+    /// not modified in derived class
+    /// </summary>
+    protected virtual void FixedUpdate()
+    {
+        if (playerControlsSelf)
+        {
+            GetInput();
+        }
+        else
+        {
+
+        }        
 
         CalculateRollingVolume();
 	}
