@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class PlayerSoundtrack : MonoBehaviour
@@ -13,11 +12,20 @@ public class PlayerSoundtrack : MonoBehaviour
 	private Queue<AudioClip> playlist = new Queue<AudioClip>();
 	private AudioClip lastPlayed;
 
-	private void Start()
+
+
+	private void Awake()
 	{
+		if (!PlayerPrefs.HasKey("Music"))
+		{
+			Debug.Log("Music volume not set, setting it to 0.5");
+			PlayerPrefs.SetFloat("Music", 0.5f);
+			PlayerPrefs.Save();
+		}
+		ChangeMusicVolume(PlayerPrefs.GetFloat("Music"));
+
 		StartNewRound();
 	}
-
 
 	private void Update()
 	{
@@ -38,9 +46,19 @@ public class PlayerSoundtrack : MonoBehaviour
 	/// </summary>
 	public void StartNewRound()
 	{
-		UnityEngine.Debug.Log("started new round");
+		Debug.Log("started new round");
 		GeneratePlaylist();
 		PlayNext();
+	}
+
+	/// <summary>
+	/// Changes sountracks volume
+	/// </summary>
+	/// <param name="volume">Volume to be set</param>
+	public void ChangeMusicVolume(float volume)
+	{
+		audioSource.volume = volume;
+		Debug.Log("Changed music volume to: " + volume);
 	}
 
 
@@ -107,5 +125,5 @@ public class PlayerSoundtrack : MonoBehaviour
 
 
 
-	
+
 }

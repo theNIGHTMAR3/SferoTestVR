@@ -12,21 +12,21 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
 	public Slider audioSlider;
+	public Slider musicSlider;
 	public Slider sensitivitySlider;
 	public Slider diameterSlider;
 	public Dropdown playerModeDropdown;
 
-
-
 	private TextMeshProUGUI audioValue;
+	private TextMeshProUGUI musicValue;
 	private TextMeshProUGUI sensitivityValue;
     private TextMeshProUGUI diameterValue;
 
-   
-
+  
 	private void Awake()
 	{
 		audioValue = gameObject.GetNamedChild("AudioValue").GetComponent<TextMeshProUGUI>();
+		musicValue = gameObject.GetNamedChild("MusicValue").GetComponent<TextMeshProUGUI>();
 		sensitivityValue = gameObject.GetNamedChild("SensitivityValue").GetComponent<TextMeshProUGUI>();
 		diameterValue = gameObject.GetNamedChild("DiameterValue").GetComponent<TextMeshProUGUI>();
 
@@ -34,6 +34,13 @@ public class SettingsMenu : MonoBehaviour
 		{
 			Debug.Log("Audio not set, setting it to 1.0");
 			PlayerPrefs.SetFloat("Audio", 1.0f);
+			PlayerPrefs.Save();
+		}
+
+		if (!PlayerPrefs.HasKey("Music"))
+		{
+			Debug.Log("Music volume not set, setting it to 0.5");
+			PlayerPrefs.SetFloat("Music", 0.5f);
 			PlayerPrefs.Save();
 		}
 
@@ -60,6 +67,8 @@ public class SettingsMenu : MonoBehaviour
 
 		audioValue.text = PlayerPrefs.GetFloat("Audio").ToString("0.0").Replace(',', '.');
 		audioSlider.value = PlayerPrefs.GetFloat("Audio");
+		musicValue.text = PlayerPrefs.GetFloat("Music").ToString("0.0").Replace(',', '.');
+		musicSlider.value = PlayerPrefs.GetFloat("Music");
 		sensitivityValue.text = PlayerPrefs.GetFloat("Sensitivity").ToString();
 		sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
 		diameterValue.text = PlayerPrefs.GetFloat("SphereDiameter").ToString("0.0").Replace(',', '.');
@@ -80,6 +89,16 @@ public class SettingsMenu : MonoBehaviour
 		PlayerPrefs.Save();
 		audioValue.text = roundedVolume.ToString("0.0").Replace(',', '.');
 		Debug.Log("Changed audio volume to " + roundedVolume);
+	}
+
+	public void SetMusic(float volume)
+	{
+		float roundedVolume = (float)Math.Round(volume, 1);
+
+		PlayerPrefs.SetFloat("Music", roundedVolume);
+		PlayerPrefs.Save();
+		musicValue.text = roundedVolume.ToString("0.0").Replace(',', '.');
+		Debug.Log("Changed music volume to " + roundedVolume);
 	}
 
 	public void SetSensitivity(float sensitivity)
