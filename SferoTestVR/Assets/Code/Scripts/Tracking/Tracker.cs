@@ -15,8 +15,10 @@ public class Tracker : MonoBehaviour
     Rigidbody playerRb;
 
 
-    List<TrackRecord> records;    
+    List<TrackRecord> recordsFinal;
+    List<TrackRecord> recordsTemp;
     float lastRecord = 0;
+    Checkpoint lastHitCheckpoint = null;
 
     // Start is called before the first frame update
     void Start()
@@ -37,11 +39,13 @@ public class Tracker : MonoBehaviour
                 Vector3 playerPos = room.transform.InverseTransformPoint(player.transform.position);
                 Vector3 playerVel = room.transform.InverseTransformDirection(playerRb.velocity);
 
-                records.Add(new TrackRecord(
+                // add record to temp list
+                recordsTemp.Add(new TrackRecord(
                     new Vector2(playerPos.x, playerPos.z),
                     new Vector2(playerVel.x, playerVel.z),
                     player.GetSphereRecord(),
-                    player.GetMotorsRecords()
+                    player.GetMotorsRecords(),
+                    !player.playerControlsSelf
                     ));
 
             }
@@ -53,19 +57,41 @@ public class Tracker : MonoBehaviour
     public void StartTracking()
     {
         tracking = true;
-        records = new List<TrackRecord>();
+        recordsTemp = new List<TrackRecord>();
+        recordsFinal = new List<TrackRecord>();
+        Checkpoint.OnCheckPointCollision += OnCheckpointSet;
     }
 
 
     public void StopTracking()
     {
         tracking = false;
-        //save to the file (always?)
 
+        //copy fresh temp to the final path
+        recordsFinal.AddRange(recordsTemp);
+
+        //save to the file (always?)
         SaveToFile();
-        SVG.CreateSVG("Room " + room.index.ToString() + ".svg", records, pathTemplate.GetPathPoints(),room.length,room.width);
+        SVG.CreateSVG("Room " + room.index.ToString() + ".svg", recordsFinal, pathTemplate.GetPathPoints(),room.length,room.width);
+
+        Checkpoint.OnCheckPointCollision -= OnCheckpointSet;
     }
 
+    /// <summary>
+    /// Check if player has died, indicated by colliding second time with same checkpoint.    
+    /// Temp array is always cleared, but if player hit new checkpoint, 
+    /// the temp records are copied to records list (it is the final one)
+    /// </summary>
+    /// <param name="checkpoint"></param>
+    void OnCheckpointSet(Checkpoint checkpoint)
+    {
+        if(lastHitCheckpoint != checkpoint)
+        {
+            recordsFinal.AddRange(recordsTemp);
+        }        
+        lastHitCheckpoint = checkpoint;
+        recordsTemp.Clear();
+    }
 
     class TrackFile
     {
@@ -115,7 +141,7 @@ public class Tracker : MonoBehaviour
             TrackFile trackFile = new TrackFile();
             trackFile.roomName = room.gameObject.name;
             trackFile.roomDimensions = room.width + " x " + room.length;
-            trackFile.records = records;
+            trackFile.records = recordsFinal;
             trackFile.points = pathTemplate.GetPathPoints();
 
 

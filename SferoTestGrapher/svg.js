@@ -11,7 +11,7 @@ window.onload= function(){
         const files = event.target.files;
         MainImageContainer.innerHTML="";
 		choicesNumber=files.length/2;
-		ReadFiles(files,0,true);
+		//ReadFiles(files,0,true);
 		
 		
         for(var i=0;i<files.length;i+=2){        
@@ -19,7 +19,7 @@ window.onload= function(){
             var svg = files[i+1];                        
 				
 		
-            //StartFileReader(path, svg,first);
+            StartFileReader(path, svg,first);
             first=false;			
         }        
     });
@@ -50,6 +50,7 @@ function ReadFiles(files,index,first){
                 point['pos']['y']=parseFloat(point['pos']['y']).toFixed(2);
                 point['vel']['x']=parseFloat(point['vel']['x']).toFixed(2);
                 point['vel']['y']=parseFloat(point['vel']['y']).toFixed(2);
+                point['inControlZone'] = false;
             });
             
 
@@ -84,7 +85,7 @@ function StartFileReader(trackFile,svgFile,first){
                 point['pos']['x']=parseFloat(point['pos']['x']).toFixed(2);
                 point['pos']['y']=parseFloat(point['pos']['y']).toFixed(2);
                 point['vel']['x']=parseFloat(point['vel']['x']).toFixed(2);
-                point['vel']['y']=parseFloat(point['vel']['y']).toFixed(2);
+                point['vel']['y']=parseFloat(point['vel']['y']).toFixed(2);                
             });
             
 
@@ -161,28 +162,29 @@ function CreatePathCointaner(roomNameStr, roomSizeStr, svgSrc, records,shown){
                 <div class="List">
                     <div>pos</div>
                     <ul>
-                        <li>x:`+record.pos.x+`</li>
-                        <li>y:`+record.pos.y+`</li>
+                        <li>x: `+record.pos.x+`</li>
+                        <li>y: `+record.pos.y+`</li>
                     </ul>
                 </div>
 
                 <div class="List">
                     <div>vel</div>
                     <ul>
-                        <li>x:`+record.vel.x+`</li>
-                        <li>y:`+record.vel.y+`</li>
+                        <li>x: `+record.vel.x+`</li>
+                        <li>y: `+record.vel.y+`</li>
                     </ul>
                 </div>
 
                 <div class="List">
                     <div>sphereRecord</div>
                     <ul>
-                        <li>timestamp:`+record.sphereRecord.timestamp+`</li>
-                        <li>velocity:`+record.sphereRecord.velocity+`</li>
-                        <li>direction:`+record.sphereRecord.direction+`</li>
-                        <li>velocityVectorX:`+record.sphereRecord.velocityVectorX+`</li>
-                        <li>velocityVectorY:`+record.sphereRecord.velocityVectorY+`</li>
-                        <li>velocityVectorZ:`+record.sphereRecord.velocityVectorZ+`</li>
+                        <li>timestamp: `+record.sphereRecord.timestamp+`</li>
+                        <li>velocity: `+record.sphereRecord.velocity+`</li>
+                        <li>direction: `+record.sphereRecord.direction+`</li>
+                        <li>velocityVectorX: `+record.sphereRecord.velocityVectorX+`</li>
+                        <li>velocityVectorY: `+record.sphereRecord.velocityVectorY+`</li>
+                        <li>velocityVectorZ: `+record.sphereRecord.velocityVectorZ+`</li>
+                        <li>in control zone: `+record.inControlZone+`</li>
                     </ul>
                 </div>
 
@@ -192,36 +194,36 @@ function CreatePathCointaner(roomNameStr, roomSizeStr, svgSrc, records,shown){
                         <div class="List">
                             <div>motor1</div>
                             <ul>
-                                <li>motorCurrent:`+record.motorRecords.motor1.motorCurrent+`A</li>
-                                <li>motorVoltage:`+record.motorRecords.motor1.motorVoltage+`V</li>
-                                <li>motorVelocity:`+record.motorRecords.motor1.motorVelocity+`</li>
+                                <li>motorCurrent: `+record.motorRecords.motor1.motorCurrent+`A</li>
+                                <li>motorVoltage: `+record.motorRecords.motor1.motorVoltage+`V</li>
+                                <li>motorVelocity: `+record.motorRecords.motor1.motorVelocity+`</li>
                             </ul>
                         </div>
                         
                         <div class="List">
                             <div>motor2</div>
                             <ul>
-                            <li>motorCurrent:`+record.motorRecords.motor2.motorCurrent+`A</li>
-                            <li>motorVoltage:`+record.motorRecords.motor2.motorVoltage+`V</li>
-                            <li>motorVelocity:`+record.motorRecords.motor2.motorVelocity+`</li>
+                            <li>motorCurrent: `+record.motorRecords.motor2.motorCurrent+`A</li>
+                            <li>motorVoltage: `+record.motorRecords.motor2.motorVoltage+`V</li>
+                            <li>motorVelocity: `+record.motorRecords.motor2.motorVelocity+`</li>
                             </ul>
                         </div>
 
                         <div class="List">
                             <div>motor3</div>
                             <ul>
-                                <li>motorCurrent:`+record.motorRecords.motor3.motorCurrent+`A</li>
-                                <li>motorVoltage:`+record.motorRecords.motor3.motorVoltage+`V</li>
-                                <li>motorVelocity:`+record.motorRecords.motor3.motorVelocity+`</li>
+                                <li>motorCurrent: `+record.motorRecords.motor3.motorCurrent+`A</li>
+                                <li>motorVoltage: `+record.motorRecords.motor3.motorVoltage+`V</li>
+                                <li>motorVelocity: `+record.motorRecords.motor3.motorVelocity+`</li>
                             </ul>
                         </div>
 
                         <div class="List">
                             <div>motor4</div>
                             <ul>
-                                <li>motorCurrent:`+record.motorRecords.motor4.motorCurrent+`A</li>
-                                <li>motorVoltage:`+record.motorRecords.motor4.motorVoltage+`V</li>
-                                <li>motorVelocity:`+record.motorRecords.motor4.motorVelocity+`</li>
+                                <li>motorCurrent: `+record.motorRecords.motor4.motorCurrent+`A</li>
+                                <li>motorVoltage: `+record.motorRecords.motor4.motorVoltage+`V</li>
+                                <li>motorVelocity: `+record.motorRecords.motor4.motorVelocity+`</li>
                             </ul>
                         </div>
                     </ul>

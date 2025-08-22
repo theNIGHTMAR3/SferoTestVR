@@ -13,21 +13,23 @@ public class PlayerSoundtrack : MonoBehaviour
 	private AudioClip lastPlayed;
 
 
+
 	private void Awake()
 	{
 		if (!PlayerPrefs.HasKey("Music"))
 		{
-            Debug.Log("Music volume not set, setting it to 0.5");
+			Debug.Log("Music volume not set, setting it to 0.5");
 			PlayerPrefs.SetFloat("Music", 0.5f);
 			PlayerPrefs.Save();
 		}
 		ChangeMusicVolume(PlayerPrefs.GetFloat("Music"));
-	}
 
+		StartNewRound();
+	}
 
 	private void Update()
 	{
-		if (!audioSource.isPlaying && playlist.Count > 0)
+		if (!audioSource.isPlaying)
 		{
 			PlayNext();
 		}
@@ -56,7 +58,7 @@ public class PlayerSoundtrack : MonoBehaviour
 	public void ChangeMusicVolume(float volume)
 	{
 		audioSource.volume = volume;
-        Debug.Log("Changed music volume to: " + volume);
+		Debug.Log("Changed music volume to: " + volume);
 	}
 
 
@@ -123,5 +125,5 @@ public class PlayerSoundtrack : MonoBehaviour
 
 
 
-	
+
 }

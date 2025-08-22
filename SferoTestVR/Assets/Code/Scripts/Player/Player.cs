@@ -25,7 +25,6 @@ public class Player : MonoBehaviour
     [SerializeField] protected float maxSpeedSound = 5.0f;
 
     [SerializeField] protected AudioClip[] hitSounds;
-    private PlayerSoundtrack playerSoundtrack;
 
     public float moveSpeed = 10f;
    
@@ -49,7 +48,7 @@ public class Player : MonoBehaviour
     /// <summary> 
     /// Bool whether it's the player, or the game controlling the sphere 
     /// </summary>
-    protected bool playerControlsSelf = true;
+    public bool playerControlsSelf { get; protected set; } = true;
     
 
 
@@ -70,11 +69,26 @@ public class Player : MonoBehaviour
         SetNewCheckPoint(playerSpawn);
         transform.position = lastCheckpointPos;
 
-        playerSoundtrack = GetComponent<PlayerSoundtrack>();
-        playerSoundtrack.StartNewRound();
-
 		SetPlayerSize();
         StartCoroutine(FreezePlayer(1));
+    }
+
+    protected virtual void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isAlive && !hasWon)
+        {
+            Die();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q) && isRespawning)
+        {
+            StopRespawning();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && hasWon)
+        {
+            GoBackToMainMenu();
+        }
     }
 
     /// <summary>
@@ -89,22 +103,7 @@ public class Player : MonoBehaviour
         else
         {
 
-        }
-
-        if(Input.GetKeyDown(KeyCode.Space) && isAlive && !hasWon)
-        {
-            Die();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q) && isRespawning)
-        {
-            StopRespawning();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && hasWon)
-        {
-            GoBackToMainMenu();
-        }
+        }        
 
         CalculateRollingVolume();
 	}
