@@ -16,12 +16,15 @@ public struct TrackRecord
     public SphereRecord sphereRecord;
     public MotorRecords motorRecords;
 
-    public TrackRecord(Vector2 pos, Vector2 vel, SphereRecord sphereRecord, MotorRecords motorRecords)
+    public bool inControlZone;
+
+    public TrackRecord(Vector2 pos, Vector2 vel, SphereRecord sphereRecord, MotorRecords motorRecords, bool inControlZone)
     {
         this.pos = pos;
         this.vel = vel;
         this.sphereRecord = sphereRecord;
         this.motorRecords = motorRecords;
+        this.inControlZone = inControlZone;
     }
 
     public override string ToString()
