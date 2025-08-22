@@ -22,8 +22,6 @@ public class BuildModificator : IPreprocessBuildWithReport
         File.Copy(MapLoader.CONFIG_FILE, folder+"/"+ MapLoader.CONFIG_FILE);
         #endregion
 
-#if UNITY_EDITOR
-#endif
 
         #region create directory with prefab images
 

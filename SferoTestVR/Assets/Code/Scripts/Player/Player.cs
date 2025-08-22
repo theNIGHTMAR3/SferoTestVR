@@ -25,7 +25,6 @@ public class Player : MonoBehaviour
     [SerializeField] protected float maxSpeedSound = 5.0f;
 
     [SerializeField] protected AudioClip[] hitSounds;
-    private PlayerSoundtrack playerSoundtrack;
 
     public float moveSpeed = 10f;
    
@@ -69,9 +68,6 @@ public class Player : MonoBehaviour
 		playerSpawn = GameObject.FindGameObjectWithTag("Respawn");
         SetNewCheckPoint(playerSpawn);
         transform.position = lastCheckpointPos;
-
-        playerSoundtrack = GetComponent<PlayerSoundtrack>();
-        playerSoundtrack.StartNewRound();
 
 		SetPlayerSize();
         StartCoroutine(FreezePlayer(1));

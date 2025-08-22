@@ -13,20 +13,15 @@ public class PlayerSoundtrack : MonoBehaviour
 	private Queue<AudioClip> playlist = new Queue<AudioClip>();
 	private AudioClip lastPlayed;
 
-
-	//private void Awake()
-	//{
-	//	audioSource = GetComponent<AudioSource>();
-	//	if (audioSource == null)
-	//		audioSource = gameObject.AddComponent<AudioSource>();
-
-	//	audioSource.loop = false;
-	//}
+	private void Start()
+	{
+		StartNewRound();
+	}
 
 
 	private void Update()
 	{
-		if (!audioSource.isPlaying && playlist.Count > 0)
+		if (!audioSource.isPlaying)
 		{
 			PlayNext();
 		}
