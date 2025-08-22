@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioSource playerSource;
 
+
 	private void Awake()
 	{
 		if(instance == null)
@@ -21,7 +22,7 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-		playerSource = GameObject.FindGameObjectWithTag("Player").GetComponents<AudioSource>()[1];
+		playerSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
 
 		if (!PlayerPrefs.HasKey("Audio"))
 		{
@@ -32,8 +33,7 @@ public class SoundManager : MonoBehaviour
         ChangeMasterVolume(PlayerPrefs.GetFloat("Audio"));
 	}
 
-
-	public void ChangeMasterVolume(float volume)
+    public void ChangeMasterVolume(float volume)
     {
         AudioListener.volume = volume;
 		Debug.Log("Changed audio to: "+ volume);
@@ -42,8 +42,6 @@ public class SoundManager : MonoBehaviour
 
 	public void PlaySoundOnPlayer(AudioClip clip)
     {
-        Debug.Log("playing on player: " + clip.name);
 		playerSource.PlayOneShot(clip);
-	}
-
+    }
 }
