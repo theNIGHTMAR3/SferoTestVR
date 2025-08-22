@@ -68,18 +68,18 @@ public static class SVG
 
         //left part
         //drawn from the bottom
-        svg.Add(CreateLine(xNamespace,-0.5,0, -0.5, -0.5));
-        svg.Add(CreateLine(xNamespace,-0.5,-0.5, -width/2, -0.5));
+        svg.Add(CreateLine(xNamespace,-2,0, -2, -0.5));
+        svg.Add(CreateLine(xNamespace,-2,-0.5, -width/2, -0.5));
         svg.Add(CreateLine(xNamespace ,- width / 2, -0.5, -width / 2, -(length - 0.5)));
-        svg.Add(CreateLine(xNamespace, -width / 2, -(length - 0.5), -0.5, -(length - 0.5)));
-        svg.Add(CreateLine(xNamespace, -0.5, -(length - 0.5), -0.5, -length));
+        svg.Add(CreateLine(xNamespace, -width / 2, -(length - 0.5), -2, -(length - 0.5)));
+        svg.Add(CreateLine(xNamespace, -2, -(length - 0.5), -2, -length));
 
         //right part
-        svg.Add(CreateLine(xNamespace, 0.5, 0, 0.5, -0.5));
-        svg.Add(CreateLine(xNamespace, 0.5, -0.5, width / 2, -0.5));
+        svg.Add(CreateLine(xNamespace, 2, 0, 2, -0.5));
+        svg.Add(CreateLine(xNamespace, 2, -0.5, width / 2, -0.5));
         svg.Add(CreateLine(xNamespace, width / 2, -0.5, width / 2, -(length - 0.5)));
-        svg.Add(CreateLine(xNamespace, width / 2, -(length - 0.5), 0.5, -(length - 0.5)));
-        svg.Add(CreateLine(xNamespace, 0.5, -(length - 0.5), 0.5, -length));
+        svg.Add(CreateLine(xNamespace, width / 2, -(length - 0.5), 2, -(length - 0.5)));
+        svg.Add(CreateLine(xNamespace, 2, -(length - 0.5), 2, -length));
 
     }
 
@@ -125,9 +125,11 @@ public static class SVG
         rightEnd += record.pos;
         leftEnd += record.pos;
         endArrow += record.pos;
-        
-        svg.Add(CreateLine(xNamespace, startArrow.x, -startArrow.y,endArrow.x, -endArrow.y,"255,0,0"));
-        svg.Add(CreateLine(xNamespace, rightEnd.x, -rightEnd.y,endArrow.x,- endArrow.y, "255,0,0"));
-        svg.Add(CreateLine(xNamespace, leftEnd.x, -leftEnd.y,endArrow.x, -endArrow.y, "255,0,0"));        
+
+        string color = record.inControlZone ? "0,255,0" : "255,0,0";
+
+        svg.Add(CreateLine(xNamespace, startArrow.x, -startArrow.y,endArrow.x, -endArrow.y, color));
+        svg.Add(CreateLine(xNamespace, rightEnd.x, -rightEnd.y,endArrow.x,- endArrow.y, color));
+        svg.Add(CreateLine(xNamespace, leftEnd.x, -leftEnd.y,endArrow.x, -endArrow.y, color));        
     }
 }
