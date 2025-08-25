@@ -1294,7 +1294,7 @@ PrefabInstance:
     - target: {fileID: 1254135090540692256, guid: 03b3df42cb07d6946b07c019d23e7219,
         type: 3}
       propertyPath: m_Name
-      value: Inclines - 1
+      value: Inclines
       objectReference: {fileID: 0}
     - target: {fileID: 1885958849252792730, guid: 03b3df42cb07d6946b07c019d23e7219,
         type: 3}

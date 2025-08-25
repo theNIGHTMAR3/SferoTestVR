@@ -455,7 +455,7 @@ PrefabInstance:
     - target: {fileID: 7853395878378555940, guid: d67e05e5c40270c448bd3c9c50cb47a5,
         type: 3}
       propertyPath: m_Name
-      value: ShortFakePath
+      value: Short fake path
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d67e05e5c40270c448bd3c9c50cb47a5, type: 3}

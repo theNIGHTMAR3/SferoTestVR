@@ -275,7 +275,7 @@ PrefabInstance:
     - target: {fileID: 4527272787461580405, guid: d0a48197a19753640a11a22425104667,
         type: 3}
       propertyPath: m_Name
-      value: Straight Moving Platform
+      value: Straight moving platform
       objectReference: {fileID: 0}
     - target: {fileID: 6994533299865071194, guid: d0a48197a19753640a11a22425104667,
         type: 3}

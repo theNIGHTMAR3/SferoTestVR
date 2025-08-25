@@ -1,3 +1,10 @@
-Final room 1
-Final room 2
+Training room
+Straight moving platform
+Mud
+Zigzak with ramps
+Bridge and cylinder
+Short path with spikes
 Bars downwards
+Hidden path
+Mud and spikes
+Long narrow path
