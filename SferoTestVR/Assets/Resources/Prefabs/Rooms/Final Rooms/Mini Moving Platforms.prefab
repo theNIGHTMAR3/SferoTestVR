@@ -4738,7 +4738,7 @@ PrefabInstance:
     - target: {fileID: 1771560981596295129, guid: 452d7668b609477499bdb60e11806ebb,
         type: 3}
       propertyPath: m_Name
-      value: Mini Moving Platforms
+      value: Mini moving platforms
       objectReference: {fileID: 0}
     - target: {fileID: 6393182908489317390, guid: 452d7668b609477499bdb60e11806ebb,
         type: 3}

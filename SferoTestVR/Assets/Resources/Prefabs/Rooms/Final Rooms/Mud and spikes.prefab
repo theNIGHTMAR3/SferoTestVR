@@ -2701,7 +2701,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shortenTime
-      value: 3
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
@@ -3121,7 +3121,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 421ac4474a21c0248a1b3ff217ff0e0a,
         type: 3}
       propertyPath: shortenTime
-      value: 3
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 421ac4474a21c0248a1b3ff217ff0e0a,
         type: 3}
@@ -4424,7 +4424,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 421ac4474a21c0248a1b3ff217ff0e0a,
         type: 3}
       propertyPath: shortenTime
-      value: 3
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 421ac4474a21c0248a1b3ff217ff0e0a,
         type: 3}
@@ -6460,7 +6460,7 @@ PrefabInstance:
     - target: {fileID: 1771560981596295129, guid: 452d7668b609477499bdb60e11806ebb,
         type: 3}
       propertyPath: m_Name
-      value: Final room 1
+      value: Mud and spikes
       objectReference: {fileID: 0}
     - target: {fileID: 3755031234189354187, guid: 452d7668b609477499bdb60e11806ebb,
         type: 3}
