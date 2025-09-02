@@ -751,7 +751,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shortenTime
-      value: 3.5
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
@@ -766,7 +766,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shorteningTime
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e6748c510e00b478ef55fbfd899575, type: 3}
@@ -846,7 +846,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shortenTime
-      value: 3.5
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
@@ -861,7 +861,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shorteningTime
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e6748c510e00b478ef55fbfd899575, type: 3}
@@ -3141,7 +3141,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shortenTime
-      value: 3.5
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
@@ -3156,7 +3156,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shorteningTime
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e6748c510e00b478ef55fbfd899575, type: 3}
@@ -3984,7 +3984,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shortenTime
-      value: 3.5
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
@@ -3999,7 +3999,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shorteningTime
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e6748c510e00b478ef55fbfd899575, type: 3}
@@ -4334,7 +4334,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shortenTime
-      value: 3.5
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
@@ -4349,7 +4349,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shorteningTime
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e6748c510e00b478ef55fbfd899575, type: 3}
@@ -4763,7 +4763,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shortenTime
-      value: 3.5
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
@@ -4778,7 +4778,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shorteningTime
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e6748c510e00b478ef55fbfd899575, type: 3}
