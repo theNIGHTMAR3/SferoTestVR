@@ -1022,6 +1022,7 @@ GameObject:
   - component: {fileID: 9028140645834905813}
   - component: {fileID: 8881762014614629832}
   - component: {fileID: 2549706638096781008}
+  - component: {fileID: 168880416441704313}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1145,6 +1146,19 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &168880416441704313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5234827609080375943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b33a1821782ce64da60d299207ef082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRB: {fileID: 2260169700971300431}
 --- !u!1 &7209350957839008518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,6 +1393,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3078976645051719882}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &2260169700971300431 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 3884078341190772357, guid: 06d413db8587f1e40a3bc086b507b4b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3078976645051719882}
+  m_PrefabAsset: {fileID: 0}
 --- !u!82 &7296772959690879616 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 5762884222654403146, guid: 06d413db8587f1e40a3bc086b507b4b5,
@@ -1596,15 +1616,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f39979f5225f549b65f34bffaf8da0, type: 3}
---- !u!224 &1014132124426724844 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4029832283397559172, guid: 81f39979f5225f549b65f34bffaf8da0,
-    type: 3}
-  m_PrefabInstance: {fileID: 4178844398824748648}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1014132124426724840 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4029832283397559168, guid: 81f39979f5225f549b65f34bffaf8da0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4178844398824748648}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1014132124426724844 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4029832283397559172, guid: 81f39979f5225f549b65f34bffaf8da0,
     type: 3}
   m_PrefabInstance: {fileID: 4178844398824748648}
   m_PrefabAsset: {fileID: 0}
