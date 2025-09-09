@@ -1,9 +1,9 @@
 Training room
-Straight moving platform
+Straight Moving Platform
 Mud
 Zigzak with ramps
 Bridge and cylinder
-Short path with spikes
+Short Path With Spikes
 Bars downwards
 Hidden path
 Mud and spikes
