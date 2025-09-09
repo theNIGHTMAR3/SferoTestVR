@@ -751,7 +751,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shortenTime
-      value: 4.5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
@@ -846,7 +846,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shortenTime
-      value: 4.5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
@@ -3141,7 +3141,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shortenTime
-      value: 4.5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
@@ -3984,7 +3984,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shortenTime
-      value: 4.5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
@@ -4334,7 +4334,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shortenTime
-      value: 4.5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
@@ -4763,7 +4763,7 @@ PrefabInstance:
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
       propertyPath: shortenTime
-      value: 4.5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 1635091553928263915, guid: 51e6748c510e00b478ef55fbfd899575,
         type: 3}
