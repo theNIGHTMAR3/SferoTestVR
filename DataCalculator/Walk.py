@@ -70,6 +70,16 @@ class WalkCharacteristics:
             self.outside_zone_avg_offset = sum(self.offset_outside_zone) / len(self.offset_outside_zone)
             self.outside_zone_dev_offset = statistics.stdev(self.offset_outside_zone)
 
+    def remove_player_stops(self) -> None:
+        # remove the records where player wasn't moving
+
+        # iterate from the end
+        for i in range(len(self.speed_outside_zone) - 1, -1, -1):
+            if self.speed_outside_zone[i] <= 0.01:
+                del self.speed_outside_zone[i]
+                del self.offset_outside_zone[i]
+
+
     def __str__(self):
         return f"""
     in_zone_avg_walk_speed = {self.in_zone_avg_walk_speed}
@@ -104,4 +114,5 @@ class WalkSequence:
 
         characteristics = WalkCharacteristics()
         characteristics.append(speed_array_in_zone,speed_array_outside_zone,offset_array_in_zone,offset_array_outside_zone)
+        characteristics.remove_player_stops()
         return characteristics
