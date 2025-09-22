@@ -75,7 +75,7 @@ class WalkCharacteristics:
 
         # iterate from the end
         for i in range(len(self.speed_outside_zone) - 1, -1, -1):
-            if self.speed_outside_zone[i] <= 0.01:
+            if self.speed_outside_zone[i] <= 0.05:
                 del self.speed_outside_zone[i]
                 del self.offset_outside_zone[i]
 
