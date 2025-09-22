@@ -59,8 +59,7 @@ class Room:
         velocity : list[ float] = []
         for record in self.records:
             if record.in_control_zone:
-                vel =  np.linalg.norm(record.vel)
-                velocity.append(vel)
+                velocity.append(record.vel)
         return velocity
 
 
@@ -68,8 +67,7 @@ class Room:
         velocity: list[ float] = []
         for record in self.records:
             if not record.in_control_zone:
-                vel = np.linalg.norm(record.vel)
-                velocity.append(vel)
+                velocity.append(record.vel)
         return velocity
 
 

@@ -2,7 +2,7 @@ class Record:
     def __init__(
             self,
             pos: tuple[float, float],
-            vel: tuple[float, float],
+            vel: float,
             in_control_zone: bool
     ):
         self.pos = pos
@@ -18,7 +18,7 @@ def create_records_array(json_records) -> list[Record]:
         records.append(
             Record(
                 (record['pos']['x'],record['pos']['y']),
-                (record['vel']['x'],record['vel']['y']),
+                (record['sphereRecord']['velocity']),
                 record['inControlZone']
             )
         )
